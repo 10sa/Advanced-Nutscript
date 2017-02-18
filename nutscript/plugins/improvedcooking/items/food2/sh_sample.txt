@@ -1,0 +1,37 @@
+﻿// 아이템 이름 //
+ITEM.name = "스튜";
+
+// 아이템 ID //
+ITEM.uniqueID = "food_stew";
+
+// 아이템 설명 //
+ITEM.desc = "따뜻함, 그리고 풍만감.";
+
+// 아이템 모델 //
+ITEM.model = Model("models/props_c17/metalPot001a.mdl");
+
+// 섭취 시 회복되는 배고픔 량 //
+ITEM.hunger = 30;
+
+// 요리 시 요리 레벨에 따른 추가 배고픔 량 //
+ITEM.hungermultp = 5;
+
+// 섭취 시 회복되는 목마름 양 //
+ITEM.thirst = 20;
+
+// 요리 시 요리 레벨에 따른 추가 배고픔 량 //
+ITEM.thirstmultp = 5;
+
+// 요리 가능 여부 //
+ITEM.cookable = true;
+
+// 드랍될 쓰레기 아이템 ID //
+ITEM.junk = "";
+
+// 드랍되는 쓰레기의 갯수 //
+ITEM.junkAmount = "";
+
+ITEM.data = {
+	// 섭취 가능한 횟수 //
+	usenum = 8
+}

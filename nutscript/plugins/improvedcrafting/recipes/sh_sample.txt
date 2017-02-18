@@ -1,0 +1,35 @@
+local RECIPE = {}
+
+// 레시피 이름 //
+RECIPE.name = "A Skull";
+
+// 레시피 카테고리 //
+RECIPE.category = nut.lang.Get("icat_material");
+
+// 레시피 결과물 모델 //
+RECIPE.model = Model("models/Gibs/HGIBS.mdl");
+
+// 레시피 설명 //
+RECIPE.desc = "A Skull.";
+
+// 필요로 하는 설계도, 없을시 nil. //
+RECIPE.blueprint = nil;
+
+// 레시피 ID //
+RECIPE.recipeID = "example";
+
+// 필요로 하는 작업대, 생성한 작업대의 파일 이름(클래스) 으로 식별합니다.	 //
+// 플레이어의 제작 탭에서 제작 가능한 경우 nil. 					//
+RECIPE.workbenchType = nil;
+
+// 요구하는 아이템 //
+RECIPE.items = {
+	// [아이템 ID] = 필요로 하는 갯수 //
+	["bone"] = 1
+};
+
+RECIPE.result = {
+	// [결과물 ID] = 나오는 갯수 //
+	["skull"] = 2
+};
+RECIPES:Register( RECIPE )
