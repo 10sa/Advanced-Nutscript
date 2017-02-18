@@ -231,7 +231,7 @@ if (CLIENT) then
 	end)
 
 	local nextSend = 0
-
+	
 	hook.Add("ChatTextChanged", "nut_Typing", function(text)
 		if (nut.config.showTypingText) then
 			if (string.sub(text, 1, 3) == "/pm") then
@@ -265,7 +265,8 @@ if (CLIENT) then
 else
 	netstream.Hook("nut_Typing", function(client, data)
 		client:SetNetVar("typing", data, client:GetPos())
-
+		print(data);
+		
 		hook.Run("PlayerTyping", client, data)
 	end)
 

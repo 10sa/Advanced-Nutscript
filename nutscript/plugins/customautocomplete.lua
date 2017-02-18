@@ -8,11 +8,11 @@ if (CLIENT) then
 	local textColor = Color(231, 231, 231)
 	local outline = Color(0, 0, 0, 150)
 	
-	function PLUGIN:HUDPaint()
+	function PLUGIN:HUDPaintTopLayer()
 		local frame = nut.chat.panel.frame
 		local contentFrame = nut.chat.panel.content;
-
-		if (IsValid(frame) and LocalPlayer():IsTyping()) then
+		
+		if (IsValid(frame)) then
 			if (chatText:sub(1, 1) == "/" and chatText:sub(1, 2) != "//") then
 				local spacer = 0
 				local counter = 0

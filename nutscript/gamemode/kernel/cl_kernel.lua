@@ -203,6 +203,7 @@ function GM:HUDPaint()
 	y = nut.bar.Paint(x, y, BAR_WIDTH, BAR_HEIGHT)
 
 	nut.bar.PaintMain()
+	hook.Run("HUDPaintTopLayer");
 end
 
 function GM:DrawPlayerDamageScreen(damageValue)
