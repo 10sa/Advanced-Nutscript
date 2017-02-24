@@ -16,17 +16,7 @@ function PLUGIN:IsDoor(entity)
 end
 // Plugin Metafunction Addtion.
 AdvNut.util.IsDoor = PLUGIN.IsDoor;
-
-local entityMeta = FindMetaTable("Entity")
-function entityMeta:IsDoor()
-	local class = string.lower(self:GetClass() or "");
-	
-	if (class and (class == "func_door" or class == "func_door_rotating" or class == "prop_door_rotating")) then
-		return true;
-	else
-		return false;
-	end;
-end; 
+FindMetaTable("Entity").IsDoor = PLUTIN.IsDoor;
 
 function PLUGIN:IsDoorOwned(entity)
 	if (entity:GetNetVar("owner") != nil) then
