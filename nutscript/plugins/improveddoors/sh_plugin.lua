@@ -14,9 +14,7 @@ function PLUGIN:IsDoor(entity)
 		return false;
 	end;
 end
-// Plugin Metafunction Addtion.
 AdvNut.util.IsDoor = PLUGIN.IsDoor;
-FindMetaTable("Entity").IsDoor = PLUTIN.IsDoor;
 
 function PLUGIN:IsDoorOwned(entity)
 	if (entity:GetNetVar("owner") != nil) then
@@ -49,4 +47,3 @@ end;
 nut.util.Include("sh_commands.lua");
 nut.util.Include("cl_plugin.lua");
 nut.util.Include("sv_plugin.lua");
-nut.util.Include("sh_util.lua");
