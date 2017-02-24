@@ -61,7 +61,7 @@ if (CLIENT) then
 
 		if (itemTable) then
 			local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha)
-			local data = self:GetData()
+			local data = self:GetData() or "";
 
 			if itemTable.color != nil then
 				color = Color(itemTable.color.r, itemTable.color.g, itemTable.color.b, alpha)
