@@ -265,7 +265,6 @@ if (CLIENT) then
 else
 	netstream.Hook("nut_Typing", function(client, data)
 		client:SetNetVar("typing", data, client:GetPos())
-		print(data);
 		
 		hook.Run("PlayerTyping", client, data)
 	end)
