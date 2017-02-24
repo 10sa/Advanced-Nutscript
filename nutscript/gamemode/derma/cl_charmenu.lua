@@ -289,7 +289,6 @@ function PANEL:Init()
 						end);
 						
 						table.insert(self.charStage, charSelect);
-						print("INSERT");
 						
 					end
 				end

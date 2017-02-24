@@ -1,7 +1,7 @@
 ﻿local PLUGIN = PLUGIN or {};
 
-PLUGIN:SetPluginConfig("isUseRealistic", true);
-PLUGIN:SetPluginConfig("realisticScale", 1);
+PLUGIN:SetPluginConfig("isUseRealistic", PLUGIN:GetPluginConfig("isUseRealistic") or true);
+PLUGIN:SetPluginConfig("realisticScale", PLUGIN:GetPluginConfig("realisticScale") or 1);
 PLUGIN:SetPluginConfig("realisticMaxScale", 3);
 
 PLUGIN.currAng = PLUGIN.currAng or Angle( 0, 0, 0 )
@@ -26,7 +26,7 @@ end
 
 function PLUGIN:ShutDown()
 	local data = {
-		isUseRealistic = PLUGIN:GetPluginConfig("isUseRealistic"),
+		isUseRealistic = PLUGIN:GetPluginConfig("isUseRealistic", false),
 		realisticScale = PLUGIN:GetPluginConfig("realisticScale")
 	}
 	
