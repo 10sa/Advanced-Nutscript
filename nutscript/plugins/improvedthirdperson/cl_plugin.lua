@@ -38,6 +38,7 @@ function playerMeta:CanOverrideView()
 		self.character && // If player's character is valid.
 		!self:GetOverrideSeq()  && // If player is not in acting sequence.
 		!self:IsRagdolled() && // If player is not ragdolled/fallover'd
+		!self:IsNoClipping() && // If player is not noclipping.
 		PLUGIN:GetPluginConfig("distance", 0) > 0 // If player enabled the thirdperson.
 	)
 end
