@@ -35,7 +35,7 @@ if (SERVER) then
 end
 
 function ENT:GetData()
-	if (self:GetInternalData()) then
+	if (self:GetInternalData() != "") then
 		if (!self.realData) then
 			self.realData = pon.decode(self:GetInternalData())
 		end
