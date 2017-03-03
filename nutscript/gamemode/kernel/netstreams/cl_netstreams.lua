@@ -25,15 +25,12 @@ netstream.Hook(AdvNut.util.CreateIdentifier("SetConfigs", CLIENT), function(data
 	end;
 end);
 
-// TO DO : Change To Configs //
-// local FADE_TIME = 7
-
 netstream.Hook("nut_FadeIntro", function(data)
-	nut.fadeStart = CurTime()
-	nut.fadeFinish = CurTime() + 7
+	nut.fadeStart = CurTime();
+	nut.fadeFinish = CurTime() + nut.config.introFadeTime;
 
-	nut.fadeColorStart = CurTime() + 7 + 5
-	nut.fadeColorFinish = CurTime() + 7 + 10
+	nut.fadeColorStart = CurTime() + nut.config.introFadeTime + 5;
+	nut.fadeColorFinish = CurTime() + nut.config.introFadeTime + 10;
 
 	hook.Run("DoSchemaIntro")
 end)

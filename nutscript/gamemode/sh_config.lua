@@ -170,6 +170,8 @@ nut.config.maxDescLength = 240
 -- How many seconds are in a minute.
 nut.config.dateMinuteLength = 60
 
+nut.config.introFadeTime = 7;
+
 if (CLIENT) then
 	-- Whether or not the money is shown in the side menu.
 	nut.config.showMoney = true
