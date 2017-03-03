@@ -143,10 +143,22 @@ function nut.plugin.Load(directory)
 					return nut.util.ReadTable(v, ignoreMap, forceRefresh)
 				end
 			
-				function PLUGIN:GetPluginIdentifier(key)
-				{
-					return "AdvNut_"..self.uniqueID..key;
-				}
+				function PLUGIN:GetPluginIdentifier(key, caller)
+					return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
+				end;
+				
+				/// Don't use this function. it's private function.
+				function PLUGIN:_GetPluginLanguageIdentifier(key)
+					return self:GetPluginIdentifier("").."Language."..key;
+				end;
+			
+				function PLUGIN:AddPluginLanguage(key, value, language)
+					nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
+				end;
+			
+				function PLUGIN:GetLanguage(key)
+					return nut.lang.Get(self:_GetPluginLanguageIdentifier(key));
+				end;
 				
 				function PLUGIN:GetPluginConfig(key, default)
 					if (self) then

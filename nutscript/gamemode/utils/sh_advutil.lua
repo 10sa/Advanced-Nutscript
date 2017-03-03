@@ -12,7 +12,7 @@ function AdvNut.util.GetPlayerTraceEntity(client)
 	return util.TraceLine(dat).Entity;
 end;
 	
-function AdvNut.util.CreateIdentifier(subIdentifier, Caller)
+function AdvNut.util.CreateIdentifier(subIdentifier, caller)
 	if (Caller) then
 		if (Caller == CLIENT) then
 			return "AdvNut.Client."..subIdentifier;
@@ -22,7 +22,7 @@ function AdvNut.util.CreateIdentifier(subIdentifier, Caller)
 			error("Wrong Caller.");
 		end;
 	else
-		return "AdvNut."..subIdentifier;
+		return "AdvNut.Share."..subIdentifier;
 	end;
 end;
 			
