@@ -142,6 +142,11 @@ function nut.plugin.Load(directory)
 				function PLUGIN:ReadTable(ignoreMap, forceRefresh)
 					return nut.util.ReadTable(v, ignoreMap, forceRefresh)
 				end
+			
+				function PLUGIN:GetPluginIdentifier(key)
+				{
+					return "AdvNut_"..self.uniqueID..key;
+				}
 				
 				function PLUGIN:GetPluginConfig(key, default)
 					if (self) then
@@ -195,19 +200,55 @@ function nut.plugin.Load(directory)
 		local blocked = nut.schema.Call("BlockPlugins", cleanName, directory)
 
 		if (!blocked) then
-			PLUGIN = nut.plugin.Get(cleanName) or {}
-				function PLUGIN:WriteTable(data, ignoreMap, global)
-					return nut.util.WriteTable(cleanName, data, ignoreMap, global)
-				end
+			PLUGIN = nut.plugin.Get(cleanName) or {};
+			PLUGIN.uniqueID = v;
+			function PLUGIN:WriteTable(data, ignoreMap, global)
+				return nut.util.WriteTable(cleanName, data, ignoreMap, global)
+			end;
 
-				function PLUGIN:ReadTable(ignoreMap, forceRefresh)
-					return nut.util.ReadTable(cleanName, ignoreMap, forceRefresh)
-				end
+			function PLUGIN:ReadTable(ignoreMap, forceRefresh)
+				return nut.util.ReadTable(cleanName, ignoreMap, forceRefresh)
+			end;
+				
+			function PLUGIN:WriteTable(data, ignoreMap, global)
+				return nut.util.WriteTable(v, data, ignoreMap, global)
+			end;
 
-				PLUGIN.uniqueID = v;
-				nut.util.Include(directory.."/plugins/"..v, "shared")
-				nut.plugin.buffer[cleanName] = PLUGIN
-			PLUGIN = nil
+			function PLUGIN:ReadTable(ignoreMap, forceRefresh)
+				return nut.util.ReadTable(v, ignoreMap, forceRefresh)
+			end;
+			
+			function PLUGIN:GetPluginIdentifier(key)
+				return "AdvNut_"..self.uniqueID..key;
+			end;
+				
+			function PLUGIN:GetPluginConfig(key, default)
+				if (self) then
+					if (nut.config[self.uniqueID]) then
+						return nut.config[self.uniqueID][key] or default;
+					else
+						return default;
+					end;
+				else
+					return default;
+				end;
+			end;
+				
+			function PLUGIN:SetPluginConfig(key, value)
+				if(self.uniqueID) then
+					local uniqueID = self.uniqueID;
+					
+					if (!nut.config[uniqueID]) then
+						nut.config[uniqueID] = {};
+					end;
+				
+					nut.config[self.uniqueID][key] = value;
+				end;
+			end;
+				
+			nut.util.Include(directory.."/plugins/"..v, "shared");
+			nut.plugin.buffer[cleanName] = PLUGIN;
+			PLUGIN = nil;
 		end
 	end
 end
