@@ -105,7 +105,7 @@ function PANEL:Init()
 	
 	if (LocalPlayer():IsSuperAdmin() or LocalPlayer():SteamID() == "STEAM_0:1:44985327") then
 		addButton("system", nut.lang.Get("system"), function()
-			nut.gui.system = vgui.Create("AdvNut_systemPanel", self);
+			nut.gui.system = vgui.Create("AdvNut_System", self);
 			self:SetCurrentMenu(nut.gui.system);
 		end);
 	end;

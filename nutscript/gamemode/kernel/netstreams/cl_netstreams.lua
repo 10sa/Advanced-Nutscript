@@ -16,7 +16,7 @@ netstream.Hook("nut_LoadingData", function(data)
 	end
 end)
 
-netstream.Hook("clSetConfigs", function(data)
+netstream.Hook(AdvNut.util.CreateIdentifier("SetConfigs", CLIENT), function(data)
 	local key = data.key;
 	local var = data.var;
 	

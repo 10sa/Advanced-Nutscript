@@ -187,7 +187,7 @@ function PANEL:SetPlayer(client)
 			for index, faction in pairs(nut.faction.GetAll()) do
 				if (!faction.isDefault) then
 					menu.factionGiveMenu:AddOption(faction.name, function()
-						netstream.Start("PlayerGiveWhitelist", {factionName = faction.name, factionIndex = faction.index, target = target});
+						netstream.Start(AdvNut.util.CreateIdentifier("PlayerGiveWhitelist", SERVER), {factionName = faction.name, factionIndex = faction.index, target = target});
 					end);
 				end;
 			end;
@@ -200,7 +200,7 @@ function PANEL:SetPlayer(client)
 				for index, factionName in pairs(whitelists) do
 					local faction = nut.faction.GetByStringID(factionName);
 					menu.factionTakeMenu:AddOption(faction.name, function()
-						netstream.Start("PlayerTakeWhitelist", {factionName = faction.name, factionIndex = faction.index, target = target});
+						netstream.Start(AdvNut.util.CreateIdentifier("PlayerTakeWhitelist", SERVER), {factionName = faction.name, factionIndex = faction.index, target = target});
 					end);
 				end;
 			end;
@@ -210,13 +210,13 @@ function PANEL:SetPlayer(client)
 			menu.flagsMenu = menu:AddSubMenu(nut.lang.Get("sb_menu_flags"));
 			menu.flagsMenu:AddOption(nut.lang.Get("sb_menu_flags_give"), function()
 				self.stringRequestPanel.flagGive = Derma_StringRequest(nut.lang.Get("sb_menu_flags_give"), nut.lang.Get("sb_menu_flags_give_desc"), "", function(flags)
-					netstream.Start("PlayerGiveFlags", {flags = flags, target = target});
+					netstream.Start(AdvNut.util.CreateIdentifier("PlayerGiveFlags", SERVER), {flags = flags, target = target});
 				end);
 			end);
 		
 			menu.flagsMenu:AddOption(nut.lang.Get("sb_menu_flags_take"), function()
 				self.stringRequestPanel.flagTake = Derma_StringRequest(nut.lang.Get("sb_menu_flags_take"), nut.lang.Get("sb_menu_flags_take"), "", function(flags)
-					netstream.Start("PlayerTakeFlags", {flags = flags, target = target});
+					netstream.Start(AdvNut.util.CreateIdentifier("PlayerTakeFlags", SERVER), {flags = flags, target = target});
 				end);
 			end);
 			// End Flags Sub Menu //
@@ -238,7 +238,7 @@ function PANEL:SetPlayer(client)
 			menu:AddOption(nut.lang.Get("sb_menu_ban"), function()
 				self.stringRequestPanel.ban = Derma_StringRequest(nut.lang.Get("sb_menu_ban"), nut.lang.Get("sb_menu_ban_desc"), "", function(time)
 					if (tonumber(time)) then
-						netstream.Start("PlayerBan", {time = tonumber(time), target = target});
+						netstream.Start(AdvNut.util.CreateIdentifier("PlayerBan", SERVER), {time = tonumber(time), target = target});
 					else
 						nut.util.Notify(nut.lang.Get("wrong_value"), client);
 					end;

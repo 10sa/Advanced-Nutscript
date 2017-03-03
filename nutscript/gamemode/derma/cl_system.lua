@@ -40,7 +40,7 @@ function PANEL:Init()
 					key = line.index,
 					var = castedVar
 				};
-				netstream.Start("SetServerConfigs", {key = line.index, var = castedVar});
+				netstream.Start(AdvNut.util.CreateIdentifier("GetServerConfigs", SERVER), {key = line.index, var = castedVar});
 				self.noticePanel:SetType(4)
 				self.noticePanel:SetText(nut.lang.Get("system_tip"));
 				
@@ -57,7 +57,7 @@ end
 
 function PANEL:Build()
 	self.sheet:Clear();
-	netstream.Start("GetServerConfigs");
+	netstream.Start(AdvNut.util.CreateIdentifier("GetServerConfigs", SERVER));
 	
 end;
 
@@ -69,7 +69,7 @@ function PANEL:Close()
 	self:Remove();
 end;
 
-netstream.Hook("GetServerConfigs", function(data)
+netstream.Hook(AdvNut.util.CreateIdentifier("GetServerConfigs", CLIENT), function(data)
 	for index, config in SortedPairs(data) do
 		local varType = type(config.var);
 		
@@ -83,4 +83,4 @@ netstream.Hook("GetServerConfigs", function(data)
 		end;
 	end;
 end);
-vgui.Register("AdvNut_systemPanel", PANEL, "AdvNut_BaseForm");
+vgui.Register("AdvNut_System", PANEL, "AdvNut_BaseForm");
