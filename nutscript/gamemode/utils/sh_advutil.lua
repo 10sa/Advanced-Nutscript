@@ -11,6 +11,11 @@ function AdvNut.util.GetPlayerTraceEntity(client)
 	
 	return util.TraceLine(dat).Entity;
 end;
+	
+function AdvNut.util.CreateIdentifier(subIdentifier)
+	return "AdvNut_"..subIdentifier;
+end;
+			
 
 function AdvNut.util.LoadCachedConfigs()
 	if(AdvNut.cachedConfig != nil) then
