@@ -143,7 +143,7 @@ function nut.plugin.Load(directory)
 					return nut.util.ReadTable(v, ignoreMap, forceRefresh)
 				end
 			
-				function PLUGIN:GetPluginIdentifier(key, caller)
+				function PLUGIN:CreatePluginIdentifier(key, caller)
 					return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
 				end;
 				
@@ -230,7 +230,7 @@ function nut.plugin.Load(directory)
 				return nut.util.ReadTable(v, ignoreMap, forceRefresh)
 			end;
 			
-			function PLUGIN:GetPluginIdentifier(key)
+			function PLUGIN:CreatePluginIdentifier(key)
 				return "AdvNut_"..self.uniqueID..key;
 			end;
 				

@@ -181,7 +181,7 @@ function PLUGIN:PlayerBindPress(bind, pressed)
 end
 hook.Add("PlayerBindPress", "DoorBindPress", PLUGIN.PlayerBindPress);
 
-function PLUGIN:IsCanOpenQuickRecognitionMenu()
+function PLUGIN:PlayerCanOpenQuickRecognitionMenu()
 	local entity = AdvNut.util.GetPlayerTraceEntity(LocalPlayer());	
 	
 	if (IsValid(entity) and PLUGIN:IsDoor(entity)) then

@@ -1,7 +1,7 @@
 PLUGIN.name = "인식 (Recognition)"
 PLUGIN.author = "Chessnut / 번역자 : Tensa"
 PLUGIN.desc = "인식 시스템을 추가합니다."
- 
+
 if (CLIENT) then
 	function PLUGIN:IsPlayerRecognized(client)
 		if (client == LocalPlayer()) then
@@ -52,3 +52,4 @@ else
 end
 
 nut.util.Include("sh_commands.lua")
+AdvNut.util.PluginIncludeDir("derma", PLUGIN.uniqueID, true);
