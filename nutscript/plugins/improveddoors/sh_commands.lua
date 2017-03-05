@@ -168,7 +168,7 @@ nut.command.Register({
 			local hidden = util.tobool(arguments[1])
 
 			PLUGIN:DoorSetHidden(entity, hidden)
-			nut.util.Notify(nut.lang.Get("doors_change_hidden", (hidden and nut.lang.Get("doors_hidden") or nut.lang.Get("doors_show")), client))
+			nut.util.Notify(nut.lang.Get("doors_change_hidden", (hidden and nut.lang.Get("doors_hidden") or nut.lang.Get("doors_show"))), client)
 		else
 			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
 		end
