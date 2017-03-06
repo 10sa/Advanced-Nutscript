@@ -60,6 +60,7 @@ function PANEL:Init()
 end
 vgui.Register("nut_Moderator", PANEL, "AdvNut_BaseForm")
 
+// Not Now. //
 /* function PLUGIN:CreateMenuButtons(menu, addButton)
 	if (LocalPlayer():IsAdmin()) then
 		addButton("mod", nut.lang.Get("mr_moderator"), function()

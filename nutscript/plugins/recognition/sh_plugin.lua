@@ -2,6 +2,8 @@ PLUGIN.name = "인식 (Recognition)"
 PLUGIN.author = "Chessnut / 번역자 : Tensa"
 PLUGIN.desc = "인식 시스템을 추가합니다."
 
+AdvNut.util.PluginIncludeDir("language", PLUGIN.uniqueID, true);
+
 function PLUGIN:SetRecognized(client, other)
 	local id = client.character:GetVar("id");
 	local recognized = other.character:GetData("recog", {});

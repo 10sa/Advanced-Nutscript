@@ -1,4 +1,3 @@
-if SERVER then return end
 local size = 16
 local border = 4
 local distance = size + border

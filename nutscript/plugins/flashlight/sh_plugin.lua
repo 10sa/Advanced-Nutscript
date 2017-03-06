@@ -9,3 +9,5 @@ function PLUGIN:PlayerSwitchFlashlight(client, state)
 
 	return true
 end
+
+AdvNut.util.PluginIncludeDir("language", PLUGIN.uniqueID, true);

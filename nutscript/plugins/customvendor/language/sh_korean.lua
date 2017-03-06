@@ -1,0 +1,36 @@
+nut.lang.Add("vd_vendor", "상인", language);
+
+nut.lang.Add("vd_buy", "구매", language);
+nut.lang.Add("vd_sell", "판매", language);
+nut.lang.Add("vd_name", "이름", language);
+nut.lang.Add("vd_price", "설정된 가격", language);
+nut.lang.Add("vd_orignal_price", "원래 가격", language);
+nut.lang.Add("vd_itemID", "아아템 코드", language);
+
+nut.lang.Add("vd_admin", "관리", language);
+
+nut.lang.Add("vd_admin_faction", "팩션 권한 설정", language);
+nut.lang.Add("vd_admin_faction_desc", "%s 팩션에게 구매 / 판매 권한을 부여합니다.", language);
+
+nut.lang.Add("vd_admin_classes", "클래스 권한 설정", language);
+nut.lang.Add("vd_admin_classes_desc", "%s 클래스에게 구매 / 판매 권한을 부여합니다.", language);
+
+nut.lang.Add("vd_admin_action", "구매 / 판매 여부", language);
+nut.lang.Add("vd_admin_sell", "플레이어에게 판매함", language);
+nut.lang.Add("vd_admin_buy", "플레이어에게서 구매함", language);
+
+nut.lang.Add("vd_admin_selling", "판매 여부", language);
+nut.lang.Add("vd_admin_buying", "구매 여부", language);
+
+nut.lang.Add("vd_admin_name", "이름", language);
+nut.lang.Add("vd_admin_adj", "물가 조정 (배수)", language);
+nut.lang.Add("vd_admin_money", "상인이 가지고 있는 돈", language);
+nut.lang.Add("vd_admin_desc", "설명", language);
+nut.lang.Add("vd_admin_model", "모델", language);
+
+nut.lang.Add("vd_admin_save", "저장", language);
+
+nut.lang.Add("vd_admin_faction_desc", "%s 팩션에게 접근을 허가합니다.", language);
+nut.lang.Add("vd_admin_tip", "왼쪽 클릭으로 판매 / 구매, 오른쪽 클릭으로 가격을 정합니다.", language);
+nut.lang.Add("vd_sell_desc", "이름: %s\n설명: %s\n%s", language);
+nut.lang.Add("vd_admin_ask_price", "이 아이템의 가격은?", language);

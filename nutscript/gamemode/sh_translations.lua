@@ -16,6 +16,8 @@ if (!nut.lang) then
 	include("libs/sh_lang.lua")
 end
 
+nut.util.IncludeDir("language")
+
 -- Start off with English.
 local language = "english"
 
@@ -643,5 +645,3 @@ nut.lang.Add("gender", "Пол", language)
 nut.lang.Add("gender_desc", "Это пол вашего персонажа.", language)
 nut.lang.Add("model", "Модель", language)
 nut.lang.Add("model_desc", "Это модель, которая будет отражать внешность персонажа.", language)
-
-nut.util.Include("language/sh_korean.lua")

@@ -6,6 +6,8 @@ PLUGIN.ranks = PLUGIN.ranks or {}
 PLUGIN.users = PLUGIN.users or {}
 PLUGIN.bans = PLUGIN.bans or {}
 
+AdvNut.util.PluginIncludeDir("language", PLUGIN.uniqueID, true);
+
 local playerMeta = FindMetaTable("Player")
 
 function playerMeta:GetUserGroup()
@@ -199,11 +201,11 @@ function PLUGIN:player_connect(data)
 	end
 end
 
-nut.util.Include("sh_commands.lua")
-nut.util.Include("cl_derma.lua")
-
 function PLUGIN:PlayerNoClip(client)
 	if (!self:IsAllowed(client, "operator")) then
 		return false
 	end
 end
+
+nut.util.Include("sh_commands.lua");
+AdvNut.util.Include("derma", PLUGIN.uniqueID, true);
