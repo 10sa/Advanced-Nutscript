@@ -109,7 +109,7 @@ function PLUGIN:PlayerHunger( player )
 		character:SetData("thirst", THIRST_MAX);
 		character:SetData("hunger", HUNGER_MAX);
 		
-		player:ConCommand(nut.lang.Get("die_hungry", "say /me"));
+		player:ConCommand(PLUGIN:GetPluginLanguage("die_hungry", "say /me"));
 		player:Kill();
 	end
 end
@@ -126,7 +126,7 @@ function PLUGIN:PlayerThirst( player )
 		character:SetData("thirst", THIRST_MAX);
 		character:SetData("hunger", HUNGER_MAX);
 			
-		player:ConCommand(nut.lang.Get("die_thirst", "say /me"));
+		player:ConCommand(PLUGIN:GetPluginLanguage("die_thirst", "say /me"));
 		player:Kill();
 	end
 end

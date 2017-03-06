@@ -4,7 +4,7 @@ local PANEL = {}
 
 		self:SetSize(width, ScrH() * nut.config.menuHeight)
 		self:MakePopup()
-		self:SetTitle(nut.lang.Get("inventory"))
+		self:SetTitle(PLUGIN:GetPluginLanguage("inventory"))
 		self:Center()
 
 		self.list = self:Add("AdvNut_ScrollPanel")
@@ -13,7 +13,7 @@ local PANEL = {}
 		self.list:SetDrawBackground(true)
 
 		self.storageTitle = self.list:Add("DLabel")
-		self.storageTitle:SetText(nut.lang.Get("sr_storage"))
+		self.storageTitle:SetText(PLUGIN:GetPluginLanguage("sr_storage"))
 		self.storageTitle:DockMargin(3, 3, 3, 3)
 		self.storageTitle:Dock(TOP)
 		self.storageTitle:SetTextColor(Color(60, 60, 60))
@@ -51,7 +51,7 @@ local PANEL = {}
 		self.inv:SetDrawBackground(true)
 
 		self.invTitle = self.inv:Add("DLabel")
-		self.invTitle:SetText(nut.lang.Get("inventory"))
+		self.invTitle:SetText(PLUGIN:GetPluginLanguage("inventory"))
 		self.invTitle:DockMargin(3, 3, 3, 3)
 		self.invTitle:Dock(TOP)
 		self.invTitle:SetTextColor(Color(60, 60, 60))
@@ -89,7 +89,7 @@ local PANEL = {}
 
 		transfer = self.money2:Add("DButton")
 		transfer:Dock(RIGHT)
-		transfer:SetText(nut.lang.Get("sr_move"))
+		transfer:SetText(PLUGIN:GetPluginLanguage("sr_move"))
 		transfer.DoClick = function(panel)
 			local value = tonumber(self.money2:GetText()) or 0
 
@@ -116,7 +116,7 @@ local PANEL = {}
 		self.entity = entity
 		self:SetupInv()
 
-		self:SetTitle(entity:GetNetVar("name", nut.lang.Get("sr_storage")))
+		self:SetTitle(entity:GetNetVar("name", PLUGIN:GetPluginLanguage("sr_storage")))
 
 		self.weightText = self.weight:Add("DLabel")
 		self.weightText:Dock(FILL)
@@ -137,7 +137,7 @@ local PANEL = {}
 
 		transfer = self.money:Add("DButton")
 		transfer:Dock(RIGHT)
-		transfer:SetText(nut.lang.Get("sr_move"))
+		transfer:SetText(PLUGIN:GetPluginLanguage("sr_move"))
 		transfer.DoClick = function(panel)
 			local value = tonumber(self.money:GetText()) or 0
 
@@ -197,7 +197,7 @@ local PANEL = {}
 					label:SetDark(true)
 					label:SetExpensiveShadow(1, Color(240, 240, 240))
 
-					icon:SetToolTip(nut.lang.Get("item_info", itemTable.name, itemTable:GetDesc(v.data)))
+					icon:SetToolTip(PLUGIN:GetPluginLanguage("item_info", itemTable.name, itemTable:GetDesc(v.data)))
 					icon.DoClick = function(icon)
 						netstream.Start("nut_StorageUpdate", {entity, class, -1, v.data or {}, self.entity.lock})
 					end
@@ -265,7 +265,7 @@ local PANEL = {}
 					label:SetDark(true)
 					label:SetExpensiveShadow(1, Color(240, 240, 240))
 
-					icon:SetToolTip(nut.lang.Get("item_info", itemTable.name, itemTable:GetDesc(v.data)))
+					icon:SetToolTip(PLUGIN:GetPluginLanguage("item_info", itemTable.name, itemTable:GetDesc(v.data)))
 					icon.DoClick = function(icon)
 						if (itemTable.CanTransfer and itemTable:CanTransfer(LocalPlayer(), v.data) == false) then
 							return false
@@ -310,10 +310,10 @@ function PLUGIN:DrawTargetID(entity, x, y, alpha)
 
 		nut.util.DrawText(x, y, entity:GetNetVar("name", "Storage"), color)
 			y = y + nut.config.targetTall
-		nut.util.DrawText(x, y, nut.lang.Get("sr_usespace", entity:GetNetVar("weight", 0)), Color(255, 255, 255, alpha), "nut_TargetFontSmall")
+		nut.util.DrawText(x, y, PLUGIN:GetPluginLanguage("sr_usespace", entity:GetNetVar("weight", 0)), Color(255, 255, 255, alpha), "nut_TargetFontSmall")
 
 		if (entity:GetNetVar("locked", false)) then
-			nut.util.DrawText(x, y + 16, nut.lang.Get("sr_locked"), Color(255, 30, 30, alpha), "nut_TargetFontSmall")
+			nut.util.DrawText(x, y + 16, PLUGIN:GetPluginLanguage("sr_locked"), Color(255, 30, 30, alpha), "nut_TargetFontSmall")
 		end
 	end
 end

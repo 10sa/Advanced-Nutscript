@@ -1,10 +1,10 @@
 BASE.name = "Base Storage"
 BASE.uniqueID = "base_storage"
-BASE.category = nut.lang.Get("storage")
+BASE.category = PLUGIN:GetPluginLanguage("storage")
 BASE.functions = {}
 BASE.functions.Use = {
-	text = nut.lang.Get("setup"),
-	tip = nut.lang.Get("setup_desc"),
+	text = PLUGIN:GetPluginLanguage("setup"),
+	tip = PLUGIN:GetPluginLanguage("setup_desc"),
 	icon = "icon16/weather_sun.png",
 	run = function(itemTable, client, data, entity)
 		if (SERVER) then

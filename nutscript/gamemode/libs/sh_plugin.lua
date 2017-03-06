@@ -156,7 +156,7 @@ function nut.plugin.Load(directory)
 					nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
 				end;
 			
-				function PLUGIN:GetLanguage(key)
+				function PLUGIN:GetPluginLanguage(key)
 					return nut.lang.Get(self:_GetPluginLanguageIdentifier(key));
 				end;
 				

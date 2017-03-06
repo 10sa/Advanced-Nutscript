@@ -7,7 +7,7 @@ local locks = {
 	
 local function lck1(entity)
 	if (!LocalPlayer():HasItem("classic_locker_1")) then 
-		nut.util.Notify(nut.lang.Get("sr_lock_noitem"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("sr_lock_noitem"), client)
 
 		return false
 	end
@@ -17,12 +17,12 @@ end
 	
 local function lck2(entity)
 	if (!LocalPlayer():HasItem("digital_locker_1")) then
-		nut.util.Notify(nut.lang.Get("sr_lock_noitem"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("sr_lock_noitem"), client)
 
 		return false
 	end
 
-	Derma_StringRequest( nut.lang.Get("sr_d_locker_name"), nut.lang.Get("sr_enter_password"), "", function( pas ) 
+	Derma_StringRequest( PLUGIN:GetPluginLanguage("sr_d_locker_name"), PLUGIN:GetPluginLanguage("sr_enter_password"), "", function( pas ) 
 		netstream.Start("nut_RequestLock", {entity, false, pas})
 	end)
 end
@@ -30,8 +30,8 @@ end
 local storfuncs = {
 	aopen = {
 		icon = "icon16/star.png",
-		name = nut.lang.Get("sr_admin_open"),
-		tip = nut.lang.Get("sr_admin_open_desc"),
+		name = PLUGIN:GetPluginLanguage("sr_admin_open"),
+		tip = PLUGIN:GetPluginLanguage("sr_admin_open_desc"),
 		cond = function(entity)
 			return LocalPlayer():IsAdmin()
 		end,
@@ -42,8 +42,8 @@ local storfuncs = {
 	},
 
 	open = {
-		name = nut.lang.Get("open"),
-		tip = nut.lang.Get("sr_open_desc"),
+		name = PLUGIN:GetPluginLanguage("open"),
+		tip = PLUGIN:GetPluginLanguage("sr_open_desc"),
 		cond = function(entity)
 			return true
 		end,
@@ -65,8 +65,8 @@ local storfuncs = {
 
 	lock = {
 		icon = "icon16/key.png",
-		name = nut.lang.Get("lock"),
-		tip = nut.lang.Get("sr_lock_desc"),
+		name = PLUGIN:GetPluginLanguage("lock"),
+		tip = PLUGIN:GetPluginLanguage("sr_lock_desc"),
 		cond = function(entity)
 			for _, item in pairs( locks ) do
 				if LocalPlayer():HasItem( item ) then
@@ -78,7 +78,7 @@ local storfuncs = {
 		end,
 		
 		func = function(entity)
-			Derma_Query( nut.lang.Get("sr_lock_type"), nut.lang.Get("sr_confirmation"), nut.lang.Get("sr_c_locker_name"), function() lck1(entity) end, nut.lang.Get("sr_d_locker_name"), function() lck2(entity) end, nut.lang.Get("cancel"), function() end )
+			Derma_Query( PLUGIN:GetPluginLanguage("sr_lock_type"), PLUGIN:GetPluginLanguage("sr_confirmation"), PLUGIN:GetPluginLanguage("sr_c_locker_name"), function() lck1(entity) end, PLUGIN:GetPluginLanguage("sr_d_locker_name"), function() lck2(entity) end, PLUGIN:GetPluginLanguage("cancel"), function() end )
 		end,
 	},
 }
@@ -119,7 +119,7 @@ netstream.Hook("nut_ShowStorageMenu", function(entity)
 end);
 		
 netstream.Hook("nut_RequestPassword", function(entity)
-	Derma_StringRequest( nut.lang.Get("sr_d_locker_name"), nut.lang.Get("sr_enter_password"), "", function(str) 
+	Derma_StringRequest( PLUGIN:GetPluginLanguage("sr_d_locker_name"), PLUGIN:GetPluginLanguage("sr_enter_password"), "", function(str) 
 		entity.lock = str // Storing correct password in client. You can't send malicious net-message to the server without setting the password via this menu.
 
 		netstream.Start("nut_VerifyPassword", {entity, str})

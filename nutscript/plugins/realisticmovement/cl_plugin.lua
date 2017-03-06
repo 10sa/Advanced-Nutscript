@@ -34,10 +34,10 @@ function PLUGIN:ShutDown()
 end
 
 function PLUGIN:SettingsInit()
-	local categoryName = nut.lang.Get("rm_category");
+	local categoryName = PLUGIN:GetPluginLanguage("rm_category");
 	
 	nut.setting.Register({
-		name = nut.lang.Get("rm_scale"),
+		name = PLUGIN:GetPluginLanguage("rm_scale"),
 		var = "realisticScale",
 		type = "slider",
 		min = 1,
@@ -47,7 +47,7 @@ function PLUGIN:SettingsInit()
 	});
 		
 	nut.setting.Register({
-		name = nut.lang.Get("rm_isUsing"),
+		name = PLUGIN:GetPluginLanguage("rm_isUsing"),
 		var ="isUseRealistic",
 		type = "checker",
 		category = categoryName,

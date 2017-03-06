@@ -59,12 +59,12 @@ else
 	netstream.Hook("nut_ShowNotiMenu", function(data)
 		local menu = DermaMenu()
 
-		menu:AddOption( nut.lang.Get("nb_set_title"), function()
+		menu:AddOption( PLUGIN:GetPluginLanguage("nb_set_title"), function()
 			Derma_StringRequest("Text Request", "Enter the title for the Noti-Board.", "A Sample Text", function(text)
 				netstream.Start("nut_NotiRequest", {"title", tostring(text), data})
 			end, nil, "Submit", "Cancel")
 		end):SetImage("icon16/page.png")
-		menu:AddOption( nut.lang.Get("nb_set_text"), function()
+		menu:AddOption( PLUGIN:GetPluginLanguage("nb_set_text"), function()
 			Derma_StringRequest("Text Request", "Enter the text for the Noti-Board.", "A Sample Text", function(text)
 				netstream.Start("nut_NotiRequest", {"text", tostring(text), data})
 			end, nil, "Submit", "Cancel")
@@ -104,8 +104,8 @@ else
 			SCREEN_OVERLAY:Recompute()
 		end
 		
-		local text = self:GetNetVar("text", nut.lang.Get("no_desc"))
-		local title = self:GetNetVar("title", nut.lang.Get("no_desc"))
+		local text = self:GetNetVar("text", PLUGIN:GetPluginLanguage("no_desc"))
+		local title = self:GetNetVar("title", PLUGIN:GetPluginLanguage("no_desc"))
 
 		if dist <= distance then
 			render.PushCustomClipPlane(up, up:Dot( pos-ch ))

@@ -1,8 +1,8 @@
-ITEM.name = nut.lang.Get("cook_barrel_name")
+ITEM.name = PLUGIN:GetPluginLanguage("cook_barrel_name")
 ITEM.uniqueID = "cbarrel"
-ITEM.category = nut.lang.Get("c_cooking")
+ITEM.category = PLUGIN:GetPluginLanguage("c_cooking")
 ITEM.model = Model("models/props_phx/empty_barrel.mdl")
-ITEM.desc = nut.lang.Get("cook_barrel_desc")
+ITEM.desc = PLUGIN:GetPluginLanguage("cook_barrel_desc")
 ITEM.functions = {}
 ITEM.functions.Use = {
 	tip = "Set up a Barrel on the ground.",

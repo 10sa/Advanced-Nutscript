@@ -16,9 +16,9 @@ function PLUGIN:DrawTargetID(entity, x, y, alpha)
 		local mainColor = nut.config.mainColor;
 		local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha);
 
-		nut.util.DrawText(x, y, nut.lang.Get("bc_machine"), color);
+		nut.util.DrawText(x, y, PLUGIN:GetPluginLanguage("bc_machine"), color);
 		y = y + nut.config.targetTall;
-		local text = nut.lang.Get("bc_machine_desc");
+		local text = PLUGIN:GetPluginLanguage("bc_machine_desc");
 		nut.util.DrawText(x, y, text, Color(255, 255, 255, alpha));
 	end
 end;

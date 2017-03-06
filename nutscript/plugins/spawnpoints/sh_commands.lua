@@ -2,7 +2,7 @@ local PLUGIN = PLUGIN or { };
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = nut.lang.Get("syntax_faction")..nut.lang.Get("syntax_class"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_faction")..PLUGIN:GetPluginLanguage("syntax_class"),
 	onRun = function(client, arguments)
 		local faction = arguments[1] or ""
 		local class = arguments[2] or ""
@@ -39,9 +39,9 @@ nut.command.Register({
 		PLUGIN.points[#PLUGIN.points + 1] = {pos = position, ang = angles, faction = factionIndex, class = classID}
 
 		if (classTable) then
-			nut.util.Notify(nut.lang.Get("sp_add_class", (factionTable and factionTable.name or nut.lang.Get("sp_default")), classTable.name), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("sp_add_class", (factionTable and factionTable.name or PLUGIN:GetPluginLanguage("sp_default")), classTable.name), client)
 		else
-			nut.util.Notify(nut.lang.Get("sp_add_faction", (factionTable and factionTable.name or nut.lang.Get("sp_default"))), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("sp_add_faction", (factionTable and factionTable.name or PLUGIN:GetPluginLanguage("sp_default"))), client)
 		end
 
 		PLUGIN:SaveData()
@@ -50,7 +50,7 @@ nut.command.Register({
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = nut.lang.Get("syntax_radius"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_radius"),
 	onRun = function(client, arguments)
 		local radius = math.max(tonumber(arguments[1] or "") or 128, 8)
 		local i = 0
@@ -63,7 +63,7 @@ nut.command.Register({
 			end
 		end
 
-		nut.util.Notify(nut.lang.Get("sp_remove", i), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("sp_remove", i), client)
 		PLUGIN:SaveData()
 	end
 }, "spawnremove")

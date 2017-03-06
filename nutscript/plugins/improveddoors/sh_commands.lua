@@ -17,23 +17,23 @@ nut.command.Register({
 			local cost = nut.config.doorCost
 
 			if (!client:CanAfford(cost)) then
-				nut.util.Notify(nut.lang.Get("no_afford"), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("no_afford"), client)
 
 				return
 			end
 
 			if (!PLUGIN:IsDoorOwned(entity)) then
 				PLUGIN:SetDoorOwner(entity, client);
-				entity:SetNetVar("title", nut.lang.Get("doors_buyed_door"));
-				entity:SetNetVar("desc", nut.lang.Get("doors_owner", client:Name()));
+				entity:SetNetVar("title", PLUGIN:GetPluginLanguage("doors_buyed_door"));
+				entity:SetNetVar("desc", PLUGIN:GetPluginLanguage("doors_owner", client:Name()));
 
-				nut.util.Notify(nut.lang.Get("doors_buy_door", nut.currency.GetName(cost)), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("doors_buy_door", nut.currency.GetName(cost)), client)
 				client:TakeMoney(cost)
 			else
-				nut.util.Notify(nut.lang.Get("doors_selled_door"), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("doors_selled_door"), client)
 			end
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorbuy")
@@ -50,17 +50,17 @@ nut.command.Register({
 		if (IsValid(entity) and PLUGIN:IsDoor(entity) and !entity:GetNetVar("hidden")) then
 			if (PLUGIN:EqualDoorOwner(entity, client)) then
 				PLUGIN:SetDoorOwner(entity, nil);
-				entity:SetNetVar("title", nut.lang.Get("doors_can_buy"))
+				entity:SetNetVar("title", PLUGIN:GetPluginLanguage("doors_can_buy"))
 
 				local amount = nut.config.doorSellAmount
 
-				nut.util.Notify(nut.lang.Get("doors_sell_door", nut.currency.GetName(amount)), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("doors_sell_door", nut.currency.GetName(amount)), client)
 				client:GiveMoney(amount)
 			else
-				nut.util.Notify(nut.lang.Get("doors_not_owner"), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_owner"), client)
 			end
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorsell")
@@ -80,13 +80,13 @@ nut.command.Register({
 				nut.util.Notify("이미 구매 가능한 문입니다.", client);
 			else
 				entity:SetNetVar("owner", nil)
-				entity:SetNetVar("title", nut.lang.Get("doors_can_buy"));
-				entity:SetNetVar("desc", nut.lang.Get("doors_buy_desc"));
+				entity:SetNetVar("title", PLUGIN:GetPluginLanguage("doors_can_buy"));
+				entity:SetNetVar("desc", PLUGIN:GetPluginLanguage("doors_buy_desc"));
 			
 				nut.util.Notify("성공적으로 문을 판매하였습니다.", client)
 			end;
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorforcesell");
@@ -100,7 +100,7 @@ nut.command.Register({
 			data.filter = client
 		local trace = util.TraceLine(data)
 		local entity = trace.Entity
-		local title = nut.lang.Get("doors_buyed_door")
+		local title = PLUGIN:GetPluginLanguage("doors_buyed_door")
 
 		if (#arguments > 0) then
 			title = table.concat(arguments, " ")
@@ -108,9 +108,9 @@ nut.command.Register({
 		
 		if (IsValid(entity) and PLUGIN:IsDoor(entity)) then
 			entity:SetNetVar("title", title);
-			nut.util.Notify(nut.lang.Get("doors_change_title"), client);
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_change_title"), client);
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client);
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client);
 		end
 	end
 }, "doorsettitle");
@@ -119,7 +119,7 @@ nut.command.Register({
 	adminOnly = true,
 	onRun = function(client, arguments)
 		local entity = AdvNut.util.GetPlayerTraceEntity(client);
-		local desc = nut.lang.Get("doors_buyed_door")
+		local desc = PLUGIN:GetPluginLanguage("doors_buyed_door")
 
 		if (#arguments > 0) then
 			desc = table.concat(arguments, " ")
@@ -127,9 +127,9 @@ nut.command.Register({
 		
 		if (IsValid(entity) and PLUGIN:IsDoor(entity)) then
 			entity:SetNetVar("desc", desc);
-			nut.util.Notify(nut.lang.Get("doors_change_title"), client);
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_change_title"), client);
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client);
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client);
 		end
 	end
 }, "doorsetdesc");
@@ -144,16 +144,16 @@ nut.command.Register({
 			if (PLUGIN:IsDoorOwned(entity)) then
 				nut.util.Notify("다른 플레이어가 소유중인 문 입니다.", client);
 			else
-				local title = nut.lang.Get("doors_cant_buy")
+				local title = PLUGIN:GetPluginLanguage("doors_cant_buy")
 
 				PLUGIN:DoorSetUnownable(entity)
 				
-				entity:SetNetVar("title", nut.lang.Get("doors_cant_buy"));
-				entity:SetNetVar("desc", nut.lang.Get("doors_cant_buy"));
-				nut.util.Notify(nut.lang.Get("doors_change_unownable"), client);
+				entity:SetNetVar("title", PLUGIN:GetPluginLanguage("doors_cant_buy"));
+				entity:SetNetVar("desc", PLUGIN:GetPluginLanguage("doors_cant_buy"));
+				nut.util.Notify(PLUGIN:GetPluginLanguage("doors_change_unownable"), client);
 			end;
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorsetunownable")
@@ -168,9 +168,9 @@ nut.command.Register({
 			local hidden = util.tobool(arguments[1])
 
 			PLUGIN:DoorSetHidden(entity, hidden)
-			nut.util.Notify(nut.lang.Get("doors_change_hidden", (hidden and nut.lang.Get("doors_hidden") or nut.lang.Get("doors_show"))), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_change_hidden", (hidden and PLUGIN:GetPluginLanguage("doors_hidden") or PLUGIN:GetPluginLanguage("doors_show"))), client)
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorsethidden")
@@ -187,12 +187,12 @@ nut.command.Register({
 			else
 				PLUGIN:DoorSetOwnable(entity);
 				
-				entity:SetNetVar("title", nut.lang.Get("doors_can_buy"));
-				entity:SetNetVar("desc", nut.lang.Get("doors_buy_desc"));
-				nut.util.Notify(nut.lang.Get("doors_change_ownable"), client);
+				entity:SetNetVar("title", PLUGIN:GetPluginLanguage("doors_can_buy"));
+				entity:SetNetVar("desc", PLUGIN:GetPluginLanguage("doors_buy_desc"));
+				nut.util.Notify(PLUGIN:GetPluginLanguage("doors_change_ownable"), client);
 			end;
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorsetownable")
@@ -209,9 +209,9 @@ nut.command.Register({
 
 		if (IsValid(entity) and PLUGIN:IsDoor(entity)) then
 			PLUGIN:LockDoor(entity)
-			nut.util.Notify(nut.lang.Get("doors_open_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_open_door"), client)
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorlock")
@@ -228,9 +228,9 @@ nut.command.Register({
 
 		if (IsValid(entity) and PLUGIN:IsDoor(entity)) then
 			PLUGIN:UnlockDoor(entity)
-			nut.util.Notify(nut.lang.Get("doors_close_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_close_door"), client)
 		else
-			nut.util.Notify(nut.lang.Get("doors_not_door"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
 		end
 	end
 }, "doorunlock")

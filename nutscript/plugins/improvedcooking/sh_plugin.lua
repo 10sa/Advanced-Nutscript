@@ -6,7 +6,7 @@ PLUGIN.hungerSpeed = nut.config.hungerRestore
 PLUGIN.thirstSpeed = nut.config.thristRestore
 PLUGIN.meActions nut.config.statusMeActions
 
-ATTRIB_COOK = nut.attribs.SetUp(nut.lang.Get("cooking"), nut.lang.Get("cooking_desc"), "cook");
+ATTRIB_COOK = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("cooking"), PLUGIN:GetPluginLanguage("cooking_desc"), "cook");
 
 function PLUGIN:CreateCharVars(character)
 	character:NewVar("hunger", 100, CHAR_PRIVATE, true);

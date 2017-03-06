@@ -1,25 +1,25 @@
 local PLUGIN = PLUGIN
 
 local cookTable = {
-	[0] = nut.lang.Get("cook_food_uncook"),
+	[0] = PLUGIN:GetPluginLanguage("cook_food_uncook"),
 
-	[1] = nut.lang.Get("cook_food_worst"),
-	[2] = nut.lang.Get("cook_food_reallybad"),
-	[3] = nut.lang.Get("cook_food_bad"),
-	[4] = nut.lang.Get("cook_food_notgood"),
+	[1] = PLUGIN:GetPluginLanguage("cook_food_worst"),
+	[2] = PLUGIN:GetPluginLanguage("cook_food_reallybad"),
+	[3] = PLUGIN:GetPluginLanguage("cook_food_bad"),
+	[4] = PLUGIN:GetPluginLanguage("cook_food_notgood"),
 
-	[5] = nut.lang.Get("cook_food_normal"),
+	[5] = PLUGIN:GetPluginLanguage("cook_food_normal"),
 
-	[6] = nut.lang.Get("cook_food_good"),
-	[7] = nut.lang.Get("cook_food_sogood"),
-	[8] = nut.lang.Get("cook_food_reallygood"),
-	[9] = nut.lang.Get("cook_food_best"),
+	[6] = PLUGIN:GetPluginLanguage("cook_food_good"),
+	[7] = PLUGIN:GetPluginLanguage("cook_food_sogood"),
+	[8] = PLUGIN:GetPluginLanguage("cook_food_reallygood"),
+	[9] = PLUGIN:GetPluginLanguage("cook_food_best"),
 }
 
 BASE.name = "Base Food"
 BASE.uniqueID = "base_food"
 BASE.weight = .5
-BASE.category = nut.lang.Get("food")
+BASE.category = PLUGIN:GetPluginLanguage("food")
 BASE.eatsound = "physics/flesh/flesh_bloody_break.wav"
 BASE.eatsoundlevel = 75
 BASE.eatpitch = 200
@@ -39,10 +39,10 @@ function BASE:GetDesc(data)
 	if data then
 		local num = data.usenum
 		if num then
-			text = nut.lang.Get("cook_food_usenum", text, num)
+			text = PLUGIN:GetPluginLanguage("cook_food_usenum", text, num)
 		end
 		if self.cookable then
-			text = nut.lang.Get("cook_food_status", text, (cookTable[data.cooklevel or 0] or "*error*"))
+			text = PLUGIN:GetPluginLanguage("cook_food_status", text, (cookTable[data.cooklevel or 0] or "*error*"))
 		end
 	end
 	return text
@@ -56,7 +56,7 @@ end
 
 BASE.functions = {}
 BASE.functions.Eat = {
-	text = nut.lang.Get("eat"),
+	text = PLUGIN:GetPluginLanguage("eat"),
 	icon = "icon16/cup.png",
 	run = function(itemTable, client, data, entity)
 		if (SERVER) then
@@ -119,7 +119,7 @@ BASE.functions.Eat = {
 }
 
 BASE.functions.Cook = {
-	text = nut.lang.Get("cooking"),
+	text = PLUGIN:GetPluginLanguage("cooking"),
 	icon = "icon16/bomb.png",
 	menuOnly = true,
 	run = function(itemTable, client, data, entity, index)
@@ -133,21 +133,21 @@ BASE.functions.Cook = {
 			local entity = trace.Entity
 			local cooklevel = data.cooklevel or 0
 			
-			if !itemTable.cookable then nut.util.Notify(nut.lang.Get("cook_notice_notcookable", itemTable.name ), client ) return false end
+			if !itemTable.cookable then nut.util.Notify(PLUGIN:GetPluginLanguage("cook_notice_notcookable", itemTable.name ), client ) return false end
 			
 			if ( cooklevel == 0 ) then
 				if (IsValid(entity) and entity:IsStove() ) then
 					if entity:GetNetVar( "active" ) then
-						nut.util.Notify(nut.lang.Get("cook_notice_cooked", itemTable.name ) , client)
+						nut.util.Notify(PLUGIN:GetPluginLanguage("cook_notice_cooked", itemTable.name ) , client)
 						netstream.Start("nut_CookItem", {index, itemTable.uniqueID})
 					else
-						nut.util.Notify(nut.lang.Get("cook_notice_turnonstove", itemTable.name ) , client)
+						nut.util.Notify(PLUGIN:GetPluginLanguage("cook_notice_turnonstove", itemTable.name ) , client)
 					end
 				else
-					nut.util.Notify(nut.lang.Get("cook_notice_havetofacestove", itemTable.name ) , client)
+					nut.util.Notify(PLUGIN:GetPluginLanguage("cook_notice_havetofacestove", itemTable.name ) , client)
 				end
 			else
-				nut.util.Notify(nut.lang.Get("cook_notice_alreadycooked", itemTable.name ) , client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("cook_notice_alreadycooked", itemTable.name ) , client)
 			end
 			
 		end

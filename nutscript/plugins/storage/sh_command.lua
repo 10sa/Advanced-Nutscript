@@ -1,6 +1,6 @@
 nut.command.Register({
 	adminOnly = true,
-	syntax = nut.lang.Get("syntax_bool"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_bool"),
 	onRun = function(client, arguments)
 
 		local dat = {}
@@ -20,7 +20,7 @@ nut.command.Register({
 							entity.world = false
 						end
 					else
-						nut.util.Notify(nut.lang.Get("missing_arg", 1), client)	
+						nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 1), client)	
 						return
 					end
 				else
@@ -28,15 +28,15 @@ nut.command.Register({
 				end
 
 				if entity.world then
-					nut.util.Notify(nut.lang.Get("sr_world_container"), client)		
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_world_container"), client)		
 				else
-					nut.util.Notify(nut.lang.Get("sr_user_container"), client)		
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_user_container"), client)		
 				end	
 			else
-				nut.util.Notify(nut.lang.Get("sr_notstorage"), client)			
+				nut.util.Notify(PLUGIN:GetPluginLanguage("sr_notstorage"), client)			
 			end
 		else
-			nut.util.Notify(nut.lang.Get("sr_notstorage"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("sr_notstorage"), client)
 		end
 		
 	end
@@ -45,7 +45,7 @@ nut.command.Register({
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = nut.lang.Get("syntax_password"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_password"),
 	onRun = function(client, arguments)
 
 		local dat = {}
@@ -62,19 +62,19 @@ nut.command.Register({
 					entity.lock = arguments[1]
 					entity:SetNetVar( "locked", true )
 
-					nut.util.Notify(nut.lang.Get("sr_set_password", entity.lock), client)		
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_set_password", entity.lock), client)		
 				else
 					entity.classic = nil
 					entity.lock = nil
 					entity:SetNetVar( "locked", false )
 
-					nut.util.Notify(nut.lang.Get("sr_lock_unlocked"), client)		
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_lock_unlocked"), client)		
 				end
 			else
-				nut.util.Notify(nut.lang.Get("sr_lock_itsworld"), client)			
+				nut.util.Notify(PLUGIN:GetPluginLanguage("sr_lock_itsworld"), client)			
 			end
 		else
-			nut.util.Notify(nut.lang.Get("sr_notstorage"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("sr_notstorage"), client)
 		end
 		
 	end
@@ -95,15 +95,15 @@ nut.command.Register({
 		if (entity and entity:IsValid()) then
 			if (entity:GetClass() == "nut_container") then
 				if entity.world then
-					nut.util.Notify(nut.lang.Get("sr_world_container"), client)		
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_world_container"), client)		
 				else
-					nut.util.Notify(nut.lang.Get("sr_user_container"), client)		
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_user_container"), client)		
 				end			
 			else
-				nut.util.Notify(nut.lang.Get("sr_notstorage"), client)			
+				nut.util.Notify(PLUGIN:GetPluginLanguage("sr_notstorage"), client)			
 			end
 		else
-			nut.util.Notify(nut.lang.Get("sr_notstorage"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("sr_notstorage"), client)
 		end
 		
 	end

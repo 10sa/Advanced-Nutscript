@@ -10,8 +10,8 @@ function PLUGIN:DrawDoor(entity, eyePos)
 		if(alpha <= 0 or entity:IsEffectActive(EF_NODRAW)) then return end;
 		
 		local owner = entity:GetNetVar("owner");
-		local title = entity:GetNetVar("title", nut.lang.Get("doors_can_buy"));
-		local desc = nut.lang.Get("doors_buy_desc");
+		local title = entity:GetNetVar("title", PLUGIN:GetPluginLanguage("doors_can_buy"));
+		local desc = PLUGIN:GetPluginLanguage("doors_buy_desc");
 		
 		local lastY = -30;
 		local panelAlpha = math.min(alpha + 10, 200);
@@ -22,8 +22,8 @@ function PLUGIN:DrawDoor(entity, eyePos)
 			desc = doorDesc;
 		else
 			if (entity:GetNetVar("unownable")) then
-				title = entity:GetNetVar("title") or nut.lang.Get("doors_cant_buy");
-				desc = entity:GetNetVar("desc") or nut.lang.Get("doors_cant_buy");
+				title = entity:GetNetVar("title") or PLUGIN:GetPluginLanguage("doors_cant_buy");
+				desc = entity:GetNetVar("desc") or PLUGIN:GetPluginLanguage("doors_cant_buy");
 			end
 		end;
 

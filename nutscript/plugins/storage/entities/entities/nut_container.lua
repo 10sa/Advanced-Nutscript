@@ -95,15 +95,15 @@ if (SERVER) then
 		local password = data[3]
 
 		if entity.world then 
-			return nut.util.Notify(nut.lang.Get( "sr_lock_itsworld" ), client)
+			return nut.util.Notify(PLUGIN:GetPluginLanguage( "sr_lock_itsworld" ), client)
 		end
 
 		if !client.nextLock or client.nextLock <= CurTime() then
-			if entity.lock then return nut.util.Notify(nut.lang.Get( "sr_lock_locked" ), client) end
+			if entity.lock then return nut.util.Notify(PLUGIN:GetPluginLanguage( "sr_lock_locked" ), client) end
 			
 			if (classic) then
 				if (!client:HasItem("classic_locker_1")) then 
-					nut.util.Notify(nut.lang.Get("sr_lock_noitem"), client)
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_lock_noitem"), client)
 
 					return false
 				end
@@ -118,7 +118,7 @@ if (SERVER) then
 				client:UpdateInv( "classic_locker_1", -1 )
 			else
 				if (!client:HasItem("digital_locker_1")) then
-					nut.util.Notify(nut.lang.Get("sr_lock_noitem") , client)
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_lock_noitem") , client)
 
 					return false
 				end
@@ -128,7 +128,7 @@ if (SERVER) then
 			end	
 			
 			entity:SetNetVar( "locked", true )
-			nut.util.Notify( nut.lang.Get( "sr_lock_success" ) , client)
+			nut.util.Notify( PLUGIN:GetPluginLanguage( "sr_lock_success" ) , client)
 			entity:EmitSound( "doors/door_metal_thin_open1.wav" )
 			client.nextLock = CurTime() + 10
 		end
@@ -150,7 +150,7 @@ if (SERVER) then
 			OnStorageSend(client, entity)
 			netstream.Start(client, "nut_Storage", entity)
 		else
-			nut.util.Notify( nut.lang.Get( "sr_wrong_password" ), client)	
+			nut.util.Notify( PLUGIN:GetPluginLanguage( "sr_wrong_password" ), client)	
 			entity:EmitSound( "doors/door_metal_thin_open1.wav" )
 		end
 	end)
@@ -162,7 +162,7 @@ if (SERVER) then
 					OnStorageSend(client, entity)
 					netstream.Start(client, "nut_Storage", entity)
 				else
-					nut.util.Notify(nut.lang.Get("sr_lock_try"), client)
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sr_lock_try"), client)
 					entity:EmitSound("doors/door_metal_thin_open1.wav")
 
 					return

@@ -57,7 +57,7 @@ function PLUGIN:CreateCommand(data, command)
 
 	local callback = data.onRun
 	local group = data.group
-	local syntax = data.syntax or nut.lang.Get("syntax_none")
+	local syntax = data.syntax or PLUGIN:GetPluginLanguage("syntax_none")
 	local hasTarget = data.hasTarget
 	local allowDead = data.allowDead
 
@@ -76,7 +76,7 @@ function PLUGIN:CreateCommand(data, command)
 	self.commands[command] = data
 	
 	nut.command.Register({
-		syntax = (hasTarget and nut.lang.Get("syntax_name") or "")..syntax,
+		syntax = (hasTarget and PLUGIN:GetPluginLanguage("syntax_name") or "")..syntax,
 		allowDead = allowDead,
 		hasPermission = function(client)
 			return self:IsAllowed(client, group)
@@ -94,7 +94,7 @@ function PLUGIN:CreateCommand(data, command)
 			end
 
 			if (IsValid(target) and !self:IsAllowed(client, target)) then
-				nut.util.Notify(nut.lang.Get("mr_low_permisson"), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("mr_low_permisson"), client)
 
 				return
 			end
@@ -115,7 +115,7 @@ PLUGIN:CreateCommand({
 	text = "Create Rank",
 	desc = "Create a new rank." ,
 	group = "owner",
-	syntax = nut.lang.Get("syntax_name")..nut.lang.Get("syntax_immunity"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_name")..PLUGIN:GetPluginLanguage("syntax_immunity"),
 	hasTarget = false,
 	onMenu = function( menu, icon, client, command )
 	end,
@@ -124,7 +124,7 @@ PLUGIN:CreateCommand({
 		local immunity = tonumber(arguments[2] or "0") or 0
 
 		if (!name) then
-			nut.util.Notify(nut.lang.Get("mr_bad_rank_name"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_bad_rank_name"), client)
 
 			return
 		end
@@ -132,7 +132,7 @@ PLUGIN:CreateCommand({
 		name = string.lower(name)
 
 		PLUGIN:CreateRank(name, immunity)
-		nut.util.Notify(nut.lang.Get("mr_create_rank", client:Name(), immunity, name))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_create_rank", client:Name(), immunity, name))
 	end
 }, "newrank")
 
@@ -140,7 +140,7 @@ PLUGIN:CreateCommand({
 	text = "Delete Rank",
 	desc = "Delete exisiting rank." ,
 	group = "owner",
-	syntax = nut.lang.Get("syntax_name"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_name"),
 	hasTarget = false,
 	onMenu = function( menu, icon, client, command )
 	end,
@@ -148,7 +148,7 @@ PLUGIN:CreateCommand({
 		local name = arguments[1]
 
 		if (!name) then
-			nut.util.Notify(nut.lang.Get("mr_bad_rank_name"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_bad_rank_name"), client)
 
 			return
 		end
@@ -157,9 +157,9 @@ PLUGIN:CreateCommand({
 		local removed, realName = PLUGIN:RemoveRank(name)
 
 		if (removed) then
-			nut.util.Notify(nut.lang.Get("mr_remove_rank", client:Name(), realName))
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_remove_rank", client:Name(), realName))
 		else
-			nut.util.Notify(nut.lang.Get("mr_exist_rank"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_exist_rank"), client)
 		end
 	end
 }, "delrank")
@@ -168,7 +168,7 @@ PLUGIN:CreateCommand({
 	text = "Slap Player",
 	desc = "Slap player with certain amount of force and damage." ,
 	group = "operator",
-	syntax = nut.lang.Get("syntax_force"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_force"),
 	onRun = function(client, arguments, target)
 		local power = math.Clamp(tonumber(arguments[1] or "128"), 0, 1000)
 		local direction = VectorRand() * power
@@ -179,7 +179,7 @@ PLUGIN:CreateCommand({
 		target:EmitSound("physics/body/body_medium_impact_hard"..math.random(1, 6)..".wav")
 		target:ViewPunch(direction:Angle() * (power / 10000))
 
-		nut.util.Notify(nut.lang.Get("mr_slaped", client:Name(), target:Name(), power))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_slaped", client:Name(), target:Name(), power))
 	end
 }, "slap")
 
@@ -190,7 +190,7 @@ PLUGIN:CreateCommand({
 	onRun = function(client, arguments, target)
 		target:Kill()
 
-		nut.util.Notify(nut.lang.Get("mr_slayed", client:Name(), target:Name()))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_slayed", client:Name(), target:Name()))
 	end
 }, "slay")
 
@@ -201,7 +201,7 @@ PLUGIN:CreateCommand({
 	onRun = function(client, arguments, target)
 		target:Lock()
 
-		nut.util.Notify(nut.lang.Get("mr_freeze", client:Name(), target:Name()))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_freeze", client:Name(), target:Name()))
 	end
 }, "freeze")
 
@@ -212,7 +212,7 @@ PLUGIN:CreateCommand({
 	onRun = function(client, arguments, target)
 		target:UnLock()
 
-		nut.util.Notify(nut.lang.Get("mr_unfreezn", client:Name(), target:Name()))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_unfreezn", client:Name(), target:Name()))
 	end
 }, "unfreeze")
 
@@ -220,12 +220,12 @@ PLUGIN:CreateCommand({
 	text = "Ignite Player",
 	desc = "Set player on fire with moderation power.",
 	group = "admin",
-	syntax = nut.lang.Get("syntax_time"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_time"),
 	onRun = function(client, arguments, target)
 		local time = math.max(tonumber(arguments[1] or "5"), 1)
 		target:Ignite(time)
 
-		nut.util.Notify(nut.lang.Get("mr_ignite", client:Name(), target:Name(), time))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_ignite", client:Name(), target:Name(), time))
 	end
 }, "ignite")
 
@@ -233,11 +233,11 @@ PLUGIN:CreateCommand({
 	text = "Unignite Player",
 	desc = "Extinguish the fire on the player.",
 	group = "admin",
-	syntax = nut.lang.Get("syntax_time"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_time"),
 	onRun = function(client, arguments, target)
 		target:Extinguish()
 
-		nut.util.Notify(nut.lang.Get("mr_unignite", client:Name(), target:Name()))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_unignite", client:Name(), target:Name()))
 	end
 }, "unignite")
 
@@ -245,7 +245,7 @@ PLUGIN:CreateCommand({
 	text = "Set Health",
 	desc = "Set player's health.",
 	group = "operator",
-	syntax = nut.lang.Get("syntax_hp"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_hp"),
 	onMenu = function( menu, icon, client, command )
 		local submenu = menu:AddSubMenu( client:Name() )
 		for i = 1, 10 do
@@ -258,7 +258,7 @@ PLUGIN:CreateCommand({
 		local health = math.max(tonumber(arguments[1] or "100"), 1)
 		target:SetHealth(health)
 
-		nut.util.Notify(nut.lang.Get("mr_set_hp", client:Name(), target:Name(), health))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_set_hp", client:Name(), target:Name(), health))
 	end
 }, "hp")
 
@@ -269,7 +269,7 @@ PLUGIN:CreateCommand({
 	onRun = function(client, arguments, target)
 		target:StripWeapons()
 
-		nut.util.Notify(nut.lang.Get("mr_strip", client:Name(), target:Name()))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_strip", client:Name(), target:Name()))
 	end
 }, "strip")
 
@@ -289,7 +289,7 @@ PLUGIN:CreateCommand({
 		nut.flag.OnSpawn(target)
 		nut.attribs.OnSpawn(target)
 
-		nut.util.Notify(nut.lang.Get("mr_arm", client:Name(), target:Name()))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_arm", client:Name(), target:Name()))
 	end
 }, "arm")
 
@@ -297,7 +297,7 @@ PLUGIN:CreateCommand({
 	text = "Set Armor",
 	desc = "Set player's armor.",
 	group = "operator",
-	syntax = nut.lang.Get("syntax_armor"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_armor"),
 	onMenu = function( menu, icon, client, command )
 		local submenu = menu:AddSubMenu( client:Name() )
 		for i = 1, 10 do
@@ -310,7 +310,7 @@ PLUGIN:CreateCommand({
 		local armor = math.max(tonumber(arguments[1] or "100"), 0)
 		target:SetArmor(armor)
 
-		nut.util.Notify(nut.lang.Get("mr_set_armor", client:Name(), target:Name(), armor))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_set_armor", client:Name(), target:Name(), armor))
 	end
 }, "armor")
 
@@ -318,7 +318,7 @@ PLUGIN:CreateCommand({
 	text = "Teleport Player",
 	desc = "Teleport player A to player B.",
 	group = "admin",
-	syntax = nut.lang.Get("syntax_toaimpos"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_toaimpos"),
 	onRun = function(client, arguments, target)
 		local position = client:GetEyeTraceNoCursor().HitPos
 		local toAimPos = util.tobool(arguments[1])
@@ -335,9 +335,9 @@ PLUGIN:CreateCommand({
 
 		if (position) then
 			target:SetPos(position)
-			nut.util.Notify(nut.lang.Get("mr_tp", client:Name(), target:Name()))
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_tp", client:Name(), target:Name()))
 		else
-			nut.util.Notify(nut.lang.Get("mr_notfound_pos"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_notfound_pos"), client)
 		end
 	end
 }, "tp")
@@ -346,7 +346,7 @@ PLUGIN:CreateCommand({
 	text = "Go to Player",
 	desc = "Go to player.",
 	group = "admin",
-	syntax = nut.lang.Get("syntax_toaimpos"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_toaimpos"),
 	onRun = function(client, arguments, target)
 		local position = target:GetEyeTraceNoCursor().HitPos
 		local toAimPos = util.tobool(arguments[1])
@@ -363,9 +363,9 @@ PLUGIN:CreateCommand({
 
 		if (position) then
 			client:SetPos(position)
-			nut.util.Notify(nut.lang.Get("mr_goto", client:Name(), target:Name()))
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_goto", client:Name(), target:Name()))
 		else
-			nut.util.Notify(nut.lang.Get("mr_notfound_pos"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_notfound_pos"), client)
 		end
 	end
 }, "goto")
@@ -374,7 +374,7 @@ PLUGIN:CreateCommand({
 	text = "Kick Player",
 	desc = "Kick out player from the server.",
 	group = "admin",
-	syntax = nut.lang.Get("syntax_reason"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_reason"),
 	onMenu = function( menu, icon, client, command )
 		local submenu = menu:AddSubMenu( client:Name() )
 		for _, why in pairs( reasons ) do
@@ -384,7 +384,7 @@ PLUGIN:CreateCommand({
 		end
 	end,
 	onRun = function(client, arguments, target)
-		local reason = nut.lang.Get("mr_no_reason")
+		local reason = PLUGIN:GetPluginLanguage("mr_no_reason")
 
 		if (#arguments > 0) then
 			reason = table.concat(arguments, " ")
@@ -393,7 +393,7 @@ PLUGIN:CreateCommand({
 		local name = target:Name()
 
 		target:Kick("Kicked by "..client:Name().." ("..client:SteamID()..") for: "..reason)
-		nut.util.Notify(nut.lang.Get("mr_kick", client:Name(), name))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_kick", client:Name(), name))
 	end
 }, "kick")
 
@@ -402,7 +402,7 @@ PLUGIN:CreateCommand({
 	desc = "Kick out player and disallow rejoin to your server.",
 	group = "admin",
 	hasTarget = false,
-	syntax = nut.lang.Get("syntax_time")..nut.lang.Get("syntax_reason"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_time")..PLUGIN:GetPluginLanguage("syntax_reason"),
 	onMenu = function( menu, icon, client, command )
 		local submenu = menu:AddSubMenu( client:Name() )
 		for _, why in pairs( reasons ) do
@@ -422,12 +422,12 @@ PLUGIN:CreateCommand({
 				targetname = arguments[1]
 				table.remove(arguments, 1)
 			else
-				nut.util.Notify(nut.lang.Get("no_ply"), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("no_ply"), client)
 				return
 			end
 		else
 			if (target == client) then
-				nut.util.Notify(nut.lang.Get("mr_selfban"), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("mr_selfban"), client)
 				return
 			end
 			targetname = target:Name()
@@ -436,19 +436,19 @@ PLUGIN:CreateCommand({
 		local time = PLUGIN:GetTimeByString(arguments[1])
 		table.remove(arguments, 1)
 
-		local reason = nut.lang.Get("mr_no_reason")
+		local reason = PLUGIN:GetPluginLanguage("mr_no_reason")
 		if (#arguments > 0) then
 			reason = table.concat(arguments, " ")
 		end
 		
 		local timetext
 		if time == 0 then
-			timetext = nut.lang.Get("mr_permanently")
+			timetext = PLUGIN:GetPluginLanguage("mr_permanently")
 		else
 			timetext = PLUGIN:SecondsToFormattedString(time)
 		end
 
-		local bantext = nut.lang.Get("mr_ban", client:Name(), targetname, timetext)
+		local bantext = PLUGIN:GetPluginLanguage("mr_ban", client:Name(), targetname, timetext)
 		nut.util.AddLog(bantext, LOG_FILTER_MAJOR)
 		nut.util.Notify(bantext, unpack(player.GetAll()))
 
@@ -466,7 +466,7 @@ PLUGIN:CreateCommand({
 	text = "Change Server's Map",
 	desc = "Change server's map.",
 	group = "superadmin",
-	syntax = nut.lang.Get("syntax_map")..nut.lang.Get("syntax_time"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_map")..PLUGIN:GetPluginLanguage("syntax_time"),
 	hasTarget = false,
 	onMenu = function( menu, icon, client, command )
 	end,
@@ -475,7 +475,7 @@ PLUGIN:CreateCommand({
 		local time = math.Clamp(tonumber(arguments[2] or "5"), 5, 60)
 
 		if (!map) then
-			nut.util.Notify(nut.lang.Get("missing_arg", 1), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 1), client)
 
 			return
 		end
@@ -483,12 +483,12 @@ PLUGIN:CreateCommand({
 		map = string.lower(map)
 
 		if (!file.Exists("maps/"..map..".bsp", "GAME")) then
-			nut.util.Notify(nut.lang.Get("mr_exist_map"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("mr_exist_map"), client)
 
 			return
 		end
 
-		nut.util.Notify(nut.lang.Get("mr_change_map", client:Name(), map, time))
+		nut.util.Notify(PLUGIN:GetPluginLanguage("mr_change_map", client:Name(), map, time))
 
 		timer.Create("nut_ChangeMap", time, 1, function()
 			game.ConsoleCommand("changelevel "..map.."\n")
@@ -501,14 +501,14 @@ PLUGIN:CreateCommand({
 	desc = "Allows to rejoin certain kicked out player.",
 	group = "admin",
 	hasTarget = false,
-	syntax = nut.lang.Get("syntax_map"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_map"),
 	onMenu = function( menu, icon, client, command )
 	end,
 	onRun = function(client, arguments, target)
 		local steamID = arguments[1]
 
 		if (!steamID) then
-			nut.util.Notify(nut.lang.Get("missing_arg", 1), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 1), client)
 
 			return
 		end
@@ -516,11 +516,11 @@ PLUGIN:CreateCommand({
 		local result = PLUGIN:UnbanPlayer(steamID)
 
 		if (result) then
-			local bantext = nut.lang.Get("mr_change_map", client:Name(), steamID)
+			local bantext = PLUGIN:GetPluginLanguage("mr_change_map", client:Name(), steamID)
 			nut.util.AddLog(bantext, LOG_FILTER_MAJOR)
 			nut.util.Notify(bantext, unpack(player.GetAll()))
 		else
-			nut.util.Notify(nut.lang.Get("no_ply"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("no_ply"), client)
 		end
 	end
 }, "unban")
@@ -529,7 +529,7 @@ PLUGIN:CreateCommand({
 	text = "Set Rank",
 	desc = "Set player's rank.",
 	group = "owner",
-	syntax = nut.lang.Get("syntax_name_steamID")..nut.lang.Get("syntax_rank"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_name_steamID")..PLUGIN:GetPluginLanguage("syntax_rank"),
 	hasTarget = false,
 	onMenu = function( menu, icon, client, command )
 		local submenu = menu:AddSubMenu( client:Name() )
@@ -544,7 +544,7 @@ PLUGIN:CreateCommand({
 		local group = arguments[2] or "user"
 
 		if (!steamID) then
-			nut.util.Notify(nut.lang.Get("missing_arg", 1), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 1), client)
 
 			return
 		end

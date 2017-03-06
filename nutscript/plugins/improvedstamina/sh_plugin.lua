@@ -6,8 +6,8 @@ PLUGIN.desc = "지구력과 관련된 능력치를 추가해 줍니다."
 nut.util.Include("sv_hooks.lua")
 
 function PLUGIN:RegisterAttributes()
-	ATTRIB_SPD = nut.attribs.SetUp(nut.lang.Get("speed"), nut.lang.Get("speed_desc"), "spd")
-	ATTRIB_END = nut.attribs.SetUp(nut.lang.Get("stamina"), nut.lang.Get("stamina_desc"), "end")
+	ATTRIB_SPD = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("speed"), PLUGIN:GetPluginLanguage("speed_desc"), "spd")
+	ATTRIB_END = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("stamina"), PLUGIN:GetPluginLanguage("stamina_desc"), "end")
 end
 	
 function PLUGIN:CreateCharVars(character)

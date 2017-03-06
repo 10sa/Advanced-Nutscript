@@ -17,13 +17,13 @@ function PANEL:SetEntity(entity, title, isAddCloseButton)
 	noticePanel:Dock(TOP);
 	noticePanel:DockMargin(5, 5, 5, 0);
 	noticePanel:SetType(7);
-	noticePanel:SetText(nut.lang.Get("craft_menu_tip1"));
+	noticePanel:SetText(PLUGIN:GetPluginLanguage("craft_menu_tip1"));
 		
 	local noticePanel = self:Add("nut_NoticePanel");
 	noticePanel:Dock(TOP);
 	noticePanel:DockMargin(5, 5, 5, 0);
 	noticePanel:SetType(4);
-	noticePanel:SetText(nut.lang.Get("craft_menu_tip2"));
+	noticePanel:SetText(PLUGIN:GetPluginLanguage("craft_menu_tip2"));
 
 	self.list = vgui.Create("AdvNut_ScrollPanel", self);
 	self.list:Dock(FILL);
@@ -39,9 +39,9 @@ end;
 
 function PANEL:SetupFrame(title, isAddCloseButton)
 	if(title) then
-		self:AddTitle(nut.lang.Get("crafting").." - "..title);
+		self:AddTitle(PLUGIN:GetPluginLanguage("crafting").." - "..title);
 	else
-		self:AddTitle(nut.lang.Get("crafting"));
+		self:AddTitle(PLUGIN:GetPluginLanguage("crafting"));
 	end;
 	
 	if(isAddCloseButton) then
@@ -63,7 +63,7 @@ function PANEL:BuildItems()
 	if (table.Count(canCraftingRecipes) <= 0) then
 		local label = vgui.Create("DLabel", self);
 		label:Dock(FILL);
-		label:SetText(nut.lang.Get("norecipes"));
+		label:SetText(PLUGIN:GetPluginLanguage("norecipes"));
 		label:SetColor(color_black);
 		label:SetFont("nut_TargetFont");
 		label:SetContentAlignment(5);
@@ -126,7 +126,7 @@ function PANEL:CreateItemIcon(panel, recipe, class)
 				if (itemTable) then
 					parsingString = string.format(parsingString.."  * %s - %dx\n", itemTable.name, count);
 				else
-					parsingString = string.format(parsingString.."  * %s - %dx\n", nut.lang.Get("notexist", itemID), count);
+					parsingString = string.format(parsingString.."  * %s - %dx\n", PLUGIN:GetPluginLanguage("notexist", itemID), count);
 				end;
 			end;
 		end;
@@ -136,7 +136,7 @@ function PANEL:CreateItemIcon(panel, recipe, class)
 	
 	local request = RecipeTableParsing(recipe.items);
 	local result = RecipeTableParsing(recipe.result);
-	icon:SetToolTip(nut.lang.Get("crft_text", recipe.name, recipe.desc, request, result));
+	icon:SetToolTip(PLUGIN:GetPluginLanguage("crft_text", recipe.name, recipe.desc, request, result));
 	if(isCraft) then
 		icon.DoClick = function(panel)
 			if (icon.disabled) then
@@ -170,7 +170,7 @@ vgui.Register("nut_Crafting", PANEL, "AdvNut_BaseForm");
 local PLUGIN = PLUGIN;
 function PLUGIN:CreateMenuButtons(menu, addButton)
 	if (self.menuEnabled) then
-		addButton("crafting", nut.lang.Get("crafting"), function()
+		addButton("crafting", PLUGIN:GetPluginLanguage("crafting"), function()
 			nut.gui.crafting = vgui.Create("nut_Crafting", menu)
 			nut.gui.crafting:SetSize(AdvNut.util.GetCurrentMenuSize());
 			nut.gui.crafting:SetPos(AdvNut.util.GetCurrentMenuPos());

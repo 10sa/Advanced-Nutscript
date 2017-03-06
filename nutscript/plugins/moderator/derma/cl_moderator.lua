@@ -16,7 +16,7 @@ function PANEL:Init()
 	self.list:Dock(FILL)
 	self.list:SetDrawBackground(true)
 
-	self.catCommands = self.list:Add(nut.lang.Get("command"))
+	self.catCommands = self.list:Add(PLUGIN:GetPluginLanguage("command"))
 	self.catCommands:SetExpanded(true)
 
 	for k, v in SortedPairs(PLUGIN.commands) do
@@ -63,7 +63,7 @@ vgui.Register("nut_Moderator", PANEL, "AdvNut_BaseForm")
 // Not Now. //
 /* function PLUGIN:CreateMenuButtons(menu, addButton)
 	if (LocalPlayer():IsAdmin()) then
-		addButton("mod", nut.lang.Get("mr_moderator"), function()
+		addButton("mod", PLUGIN:GetPluginLanguage("mr_moderator"), function()
 			nut.gui.mod = vgui.Create("nut_Moderator", menu)
 			menu:SetCurrentMenu(nut.gui.mod)
 		end)

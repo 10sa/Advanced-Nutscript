@@ -32,9 +32,9 @@ function ENT:DrawTargetID(x, y, alpha)
 	local mainColor = nut.config.mainColor
 	local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha)
 
-	nut.util.DrawText(x, y, self:GetNetVar("name", nut.lang.Get("no_desc")), color, "AdvNut_EntityTitle");
+	nut.util.DrawText(x, y, self:GetNetVar("name", PLUGIN:GetPluginLanguage("no_desc")), color, "AdvNut_EntityTitle");
 	y = y + nut.config.targetTall
-	nut.util.DrawText(x, y, self:GetNetVar("desc", nut.lang.Get("no_desc")), Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
+	nut.util.DrawText(x, y, self:GetNetVar("desc", PLUGIN:GetPluginLanguage("no_desc")), Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
 end
 
 function ENT:SetAnim()
@@ -129,10 +129,10 @@ else
 				client:TakeMoney(price);
 				entity:SetNetVar("money", entity:GetNetVar( "money", 0 ) + price);
 				netstream.Start(client, "nut_CashUpdate");
-				nut.util.Notify(nut.lang.Get("purchased_for", itemTable.name, nut.currency.GetName(price)), client);
+				nut.util.Notify(PLUGIN:GetPluginLanguage("purchased_for", itemTable.name, nut.currency.GetName(price)), client);
 			end;
 		else
-			nut.util.Notify(nut.lang.Get("no_afford"), client);
+			nut.util.Notify(PLUGIN:GetPluginLanguage("no_afford"), client);
 		end
 	end)
 	---------------------------
@@ -160,7 +160,7 @@ else
 		end
 		
 		if (tonumber( entity:GetNetVar( "money", 0 ) ) < price) then
-			nut.util.Notify(nut.lang.Get("vendor_no_afford"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("vendor_no_afford"), client)
 			return
 		end
 		local inv = client:GetInventory();
@@ -172,15 +172,15 @@ else
 					client:GiveMoney(price);
 					entity:SetNetVar("money", entity:GetNetVar( "money", 0 ) - price);
 					netstream.Start(client, "nut_CashUpdate");
-					nut.util.Notify(nut.lang.Get("sold", itemTable.name, nut.currency.GetName(price)), client);
+					nut.util.Notify(PLUGIN:GetPluginLanguage("sold", itemTable.name, nut.currency.GetName(price)), client);
 				
 					return;
 				end;
 			end;
 			
-			nut.util.Notify(nut.lang.Get("notenoughitem", itemTable.name), client);
+			nut.util.Notify(PLUGIN:GetPluginLanguage("notenoughitem", itemTable.name), client);
 		else
-			nut.util.Notify(nut.lang.Get("notenoughitem", itemTable.name), client);
+			nut.util.Notify(PLUGIN:GetPluginLanguage("notenoughitem", itemTable.name), client);
 		end;
 	end)
 end

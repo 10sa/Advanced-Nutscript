@@ -46,9 +46,9 @@ function PLUGIN:DrawTargetID(entity, x, y, alpha)
 		local mainColor = nut.config.mainColor
 		local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha)
 		
-		nut.util.DrawText(x, y, nut.lang.Get("cook_stove_name"), color, "AdvNut_EntityTitle");
+		nut.util.DrawText(x, y, PLUGIN:GetPluginLanguage("cook_stove_name"), color, "AdvNut_EntityTitle");
 		y = y + nut.config.targetTall
-		local text = nut.lang.Get("cook_stove_desc")
+		local text = PLUGIN:GetPluginLanguage("cook_stove_desc")
 		nut.util.DrawText(x, y, text, Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
 	end
 end

@@ -4,7 +4,7 @@ local RECIPE = {}
 RECIPE.name = "A Skull";
 
 // 레시피 카테고리 //
-RECIPE.category = nut.lang.Get("icat_material");
+RECIPE.category = PLUGIN:GetPluginLanguage("icat_material");
 
 // 레시피 결과물 모델 //
 RECIPE.model = Model("models/Gibs/HGIBS.mdl");

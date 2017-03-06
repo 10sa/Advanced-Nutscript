@@ -7,7 +7,7 @@ end
 function PLUGIN:OnCharChanged(client)
 	for k, v in pairs(ents.GetAll()) do
 		if (v:GetNetVar("owner") == client) then
-			v:SetNetVar("title", nut.lang.Get("doors_can_buy"))
+			v:SetNetVar("title", PLUGIN:GetPluginLanguage("doors_can_buy"))
 			v:SetNetVar("owner", NULL)
 		end
 	end
@@ -100,7 +100,7 @@ function PLUGIN:SaveData()
 		if (IsValid(v)) then
 			local title = v:GetNetVar("title", "")
 
-			if (PLUGIN:IsDoor(v) and (v:GetNetVar("unownable") or v:GetNetVar("hidden") or (title and title != "" and title != nut.lang.Get("doors_can_buy")) or nut.config.saveDefaultDoor)) then
+			if (PLUGIN:IsDoor(v) and (v:GetNetVar("unownable") or v:GetNetVar("hidden") or (title and title != "" and title != PLUGIN:GetPluginLanguage("doors_can_buy")) or nut.config.saveDefaultDoor)) then
 				local owner;
 				if (v:GetNetVar("owner") == nil) then
 					owner = nil;

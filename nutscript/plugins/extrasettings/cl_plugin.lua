@@ -25,9 +25,9 @@ end
 
 
 function PLUGIN:InitSettingOptions()
-	local categoryName = nut.lang.Get("plugin_es_category")
+	local categoryName = PLUGIN:GetPluginLanguage("plugin_es_category")
 	nut.setting.Register({
-		name = nut.lang.Get("plugin_es_drawVignette"),
+		name = PLUGIN:GetPluginLanguage("plugin_es_drawVignette"),
 		var = "isDrawVignette",
 		type = "checker",
 		category = categoryName,
@@ -35,7 +35,7 @@ function PLUGIN:InitSettingOptions()
 	});
 	
 	nut.setting.Register({
-		name = nut.lang.Get("plugin_es_drawBackgroundBlur"),
+		name = PLUGIN:GetPluginLanguage("plugin_es_drawBackgroundBlur"),
 		var = "isDrawBackgroundBlur",
 		type = "checker",
 		category = categoryName,
@@ -43,7 +43,7 @@ function PLUGIN:InitSettingOptions()
 	});
 	
 	nut.setting.Register({
-		name = nut.lang.Get("plugin_es_usingScrollbar"),
+		name = PLUGIN:GetPluginLanguage("plugin_es_usingScrollbar"),
 		var = "isUsingScrollBar",
 		type = "checker",
 		category = categoryName,

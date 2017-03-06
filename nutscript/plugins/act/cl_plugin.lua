@@ -60,7 +60,7 @@ function PLUGIN:AddCharInfoDermaTab(panel)
 	local class = nut.anim.GetClass(string.lower(LocalPlayer():GetModel()))
 	local list = self.sequences[class];
 	if (list) then
-		local actList = panel:AddSubMenu(nut.lang.Get("act_menu"), function() end);
+		local actList = panel:AddSubMenu(PLUGIN:GetPluginLanguage("act_menu"), function() end);
 		for uid, actdata in SortedPairs(list) do
 			if (list) then
 				actList:AddOption((actdata.name or uid), function()

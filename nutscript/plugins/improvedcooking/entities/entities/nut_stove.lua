@@ -1,5 +1,5 @@
 ENT.Type = "anim"
-ENT.PrintName = nut.lang.Get("cook_stove_name")
+ENT.PrintName = PLUGIN:GetPluginLanguage("cook_stove_name")
 ENT.Author = "Black Tea"
 ENT.Spawnable = true
 ENT.AdminOnly = true

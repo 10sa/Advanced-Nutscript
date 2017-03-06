@@ -2,14 +2,14 @@ local PLUGIN = PLUGIN or { };
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = nut.lang.Get("syntax_name")..nut.lang.Get("syntax_area_showtime"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_name")..PLUGIN:GetPluginLanguage("syntax_area_showtime"),
 	onRun = function(client, arguments)
-		local name = arguments[1] or nut.lang.Get("area_area")
+		local name = arguments[1] or PLUGIN:GetPluginLanguage("area_area")
 		local showTime = util.tobool(arguments[2] or "true")
 
 		if (!client:GetNutVar("areaMin")) then
 			if (!name) then
-				nut.util.Notify(nut.lang.Get("missing_arg", 1), client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 1), client)
 
 				return
 			end
@@ -18,7 +18,7 @@ nut.command.Register({
 			client:SetNutVar("areaName", name)
 			client:SetNutVar("areaShowTime", showTime)
 
-			nut.util.Notify(nut.lang.Get("area_pointstart"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("area_pointstart"), client)
 		else
 			local data = {}
 			data.min = client:GetNutVar("areaMin")
@@ -33,7 +33,7 @@ nut.command.Register({
 			table.insert(PLUGIN.areas, data)
 
 			nut.util.WriteTable("areas", PLUGIN.areas)
-			nut.util.Notify(nut.lang.Get("area_add"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("area_add"), client)
 		end
 	end
 }, "areaadd")
@@ -52,6 +52,6 @@ nut.command.Register({
 		end
 
 		nut.util.WriteTable("areas", PLUGIN.areas)
-		nut.util.Notify(nut.lang.Get("area_remove", count), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("area_remove", count), client)
 	end
 }, "arearemove")

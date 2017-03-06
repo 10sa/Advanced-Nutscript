@@ -59,9 +59,9 @@ function PLUGIN:DistPerc()
 end
 
 function PLUGIN:SettingsInit()
-	local categoryName = nut.lang.Get("tp_name")
+	local categoryName = PLUGIN:GetPluginLanguage("tp_name")
 	nut.setting.Register({
-		name = nut.lang.Get("tp_setting"),
+		name = PLUGIN:GetPluginLanguage("tp_setting"),
 		var = "distance",
 		type = "slider",
 		min = 0,
@@ -71,7 +71,7 @@ function PLUGIN:SettingsInit()
 	});
 		
 	nut.setting.Register({
-		name = nut.lang.Get("tp_mousedpi"),
+		name = PLUGIN:GetPluginLanguage("tp_mousedpi"),
 		var = "sensitive",
 		type = "slider",
 		min = 0,
@@ -82,7 +82,7 @@ function PLUGIN:SettingsInit()
 	});
 		
 	nut.setting.Register({
-		name = nut.lang.Get("tp_lefthand"),
+		name = PLUGIN:GetPluginLanguage("tp_lefthand"),
 		var = "changedir",
 		type = "checker",
 		category = categoryName,
@@ -90,7 +90,7 @@ function PLUGIN:SettingsInit()
 	});
 		
 	nut.setting.Register({
-		name = nut.lang.Get("tp_clasic"),
+		name = PLUGIN:GetPluginLanguage("tp_clasic"),
 		var ="classic",
 		type = "checker",
 		category = categoryName,

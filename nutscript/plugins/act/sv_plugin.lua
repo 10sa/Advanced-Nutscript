@@ -2,14 +2,14 @@ local PLUGIN = PLUGIN or { };
 
 function PLUGIN:CanFallOver( client )
 	if (client:GetOverrideSeq()) then
-		nut.util.Notify(nut.lang.Get("act_cant_fallover"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("act_cant_fallover"), client)
 		return false
 	end
 end
 	
 function PLUGIN:PlayerStartSeq(client, sequence)
 	if (client:GetNutVar("nextAct", 0) >= CurTime()) then
-		nut.util.Notify(nut.lang.Get("act_veryfast"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("act_veryfast"), client)
 
 		return
 	end
@@ -23,7 +23,7 @@ function PLUGIN:PlayerStartSeq(client, sequence)
 	local trace = util.TraceHull(data)
 
 	if (!trace.Hit) then
-		nut.util.Notify(nut.lang.Get("act_invoid"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("act_invoid"), client)
 
 		return
 	end
@@ -74,10 +74,10 @@ function PLUGIN:PlayerStartSeq(client, sequence)
 
 			client:SetNutVar("inAct", true)
 		else
-			nut.util.Notify(nut.lang.Get("act_cant_model"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("act_cant_model"), client)
 		end
 	else
-		nut.util.Notify(nut.lang.Get("act_cant_model"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("act_cant_model"), client)
 	end
 end
 

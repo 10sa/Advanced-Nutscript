@@ -52,7 +52,7 @@ function RECIPES:Register(tbl)
 					client:UpdateInv( k, v );
 				end
 			else
-				nut.util.Notify( nut.lang.Get("no_invspace"), client )
+				nut.util.Notify( PLUGIN:GetPluginLanguage("no_invspace"), client )
 			end
 
 		end

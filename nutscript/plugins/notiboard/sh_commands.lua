@@ -1,5 +1,5 @@
 nut.command.Register({
-	syntax = nut.lang.Get("syntax_groupnumber"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_groupnumber"),
 	adminOnly = true,
 	onRun = function(client, arguments)
 		local data = {}
@@ -12,19 +12,19 @@ nut.command.Register({
 
 		if (IsValid(entity) and entity:GetClass() == "nut_notiboard") then
 			entity.group = gp
-			nut.util.Notify(nut.lang.Get("nb_set_group", gp), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("nb_set_group", gp), client)
 		else
-			nut.util.Notify(nut.lang.Get("nb_not_notiborad"), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("nb_not_notiborad"), client)
 		end
 	end
 }, "notisetgroup")
 
 nut.command.Register({
-	syntax = nut.lang.Get("syntax_groupnumber")..nut.lang.Get("syntax_string"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_groupnumber")..PLUGIN:GetPluginLanguage("syntax_string"),
 	adminOnly = true,
 	onRun = function(client, arguments)
 		if #arguments < 2 then 
-			nut.util.Notify(nut.lang.Get("missing_arg", 2), client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 2), client)
 			return
 		end
 		local gp = arguments[1] or ""
@@ -37,6 +37,6 @@ nut.command.Register({
 				count = count + 1
 			end
 		end
-		nut.util.Notify(nut.lang.Get("nb_set_group_text", gp, count, text), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("nb_set_group_text", gp, count, text), client)
 	end
 }, "notisetgrouptext")

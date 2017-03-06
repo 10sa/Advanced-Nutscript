@@ -15,7 +15,7 @@ local function lean(client)
 	local trace = util.TraceLine(data)
 
 	if (!trace.HitWorld) then
-		nut.util.Notify(nut.lang.Get("act_closewall"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("act_closewall"), client)
 
 		return false
 	end

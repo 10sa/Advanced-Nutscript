@@ -10,13 +10,13 @@ nut.command.Register({
 		netstream.Start(nil, "nut_MapScenePos", {data.position, data.angles})
 
 		PLUGIN:SaveData()
-		nut.util.Notify(nut.lang.Get("ms_add"), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("ms_add"), client)
 	end
 }, "mapsceneadd")
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = nut.lang.Get("syntax_radius"),
+	syntax = PLUGIN:GetPluginLanguage("syntax_radius"),
 	onRun = function(client, arguments)
 		local range = tonumber(arguments[1] or "160") or 160
 		local count = 0
@@ -33,6 +33,6 @@ nut.command.Register({
 			PLUGIN:SaveData()
 		end
 
-		nut.util.Notify(nut.lang.Get("ms_remove", range, count), client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("ms_remove", range, count), client)
 	end
 }, "mapsceneremove")
