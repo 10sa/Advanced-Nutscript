@@ -183,6 +183,19 @@ function nut.plugin.Load(directory)
 						nut.config[self.uniqueID][key] = value;
 					end;
 				end;
+			
+				function PLUGIN:IncludeDir(dir, isBase)
+					local path;
+					if (SCHEMA and !isBase) then
+						path = SCHEMA.folderName.."/plugin/"..self.uniqueID.."/"..dir;
+					else
+						path = "nutscript/plugins/"..self.uniqueID.."/"..dir;
+					end;
+				
+					for k, v in pairs(file.Find(path.."/*.lua", "LUA")) do
+						nut.util.Include(path.."/"..v);
+					end
+				end;
 				
 				local pluginDir = directory.."/plugins/"..v
 
@@ -214,24 +227,30 @@ function nut.plugin.Load(directory)
 		if (!blocked) then
 			PLUGIN = nut.plugin.Get(cleanName) or {};
 			PLUGIN.uniqueID = v;
-			function PLUGIN:WriteTable(data, ignoreMap, global)
-				return nut.util.WriteTable(cleanName, data, ignoreMap, global)
-			end;
-
-			function PLUGIN:ReadTable(ignoreMap, forceRefresh)
-				return nut.util.ReadTable(cleanName, ignoreMap, forceRefresh)
-			end;
-				
+			
 			function PLUGIN:WriteTable(data, ignoreMap, global)
 				return nut.util.WriteTable(v, data, ignoreMap, global)
-			end;
+			end
 
 			function PLUGIN:ReadTable(ignoreMap, forceRefresh)
 				return nut.util.ReadTable(v, ignoreMap, forceRefresh)
+			end
+			
+			function PLUGIN:CreatePluginIdentifier(key, caller)
+				return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
+			end;
+				
+			/// Don't use this function. it's private function.
+			function PLUGIN:_GetPluginLanguageIdentifier(key)
+				return self:GetPluginIdentifier("").."Language."..key;
 			end;
 			
-			function PLUGIN:CreatePluginIdentifier(key)
-				return "AdvNut_"..self.uniqueID..key;
+			function PLUGIN:AddPluginLanguage(key, value, language)
+				nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
+			end;
+			
+			function PLUGIN:GetPluginLanguage(key)
+				return nut.lang.Get(self:_GetPluginLanguageIdentifier(key));
 			end;
 				
 			function PLUGIN:GetPluginConfig(key, default)
@@ -249,11 +268,11 @@ function nut.plugin.Load(directory)
 			function PLUGIN:SetPluginConfig(key, value)
 				if(self.uniqueID) then
 					local uniqueID = self.uniqueID;
-					
+						
 					if (!nut.config[uniqueID]) then
 						nut.config[uniqueID] = {};
 					end;
-				
+					
 					nut.config[self.uniqueID][key] = value;
 				end;
 			end;
