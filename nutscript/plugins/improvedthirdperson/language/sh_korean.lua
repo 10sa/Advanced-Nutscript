@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("tp_name", "3인칭 시점 설정", language);
 PLUGIN:AddPluginLanguage("tp_setting", "3인칭 시점", language);

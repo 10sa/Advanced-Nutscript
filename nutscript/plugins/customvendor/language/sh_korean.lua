@@ -1,3 +1,6 @@
+local language = "korean";
+local PLUGIN = PLUGIN;
+
 PLUGIN:AddPluginLanguage("vd_vendor", "상인", language);
 
 PLUGIN:AddPluginLanguage("vd_buy", "구매", language);

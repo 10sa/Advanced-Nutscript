@@ -31,7 +31,7 @@ end;
 local charSpawn = {
 	adminOnly = true,
 	allowDead = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_name"),
+	syntax = nut.lang.Get("syntax_name"),
 	onRun = function(client, arguments)
 		PLUGIN.CommandTemplate(client, arguments, 1, function(target)
 			target:Spawn();
@@ -45,7 +45,7 @@ nut.command.Register(charSpawn, "charspawn");
 local setRank = {
 	superAdminOnly = true,
 	allowDead = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_name").." "..PLUGIN:GetPluginLanguage("syntax_rank"),
+	syntax = nut.lang.Get("syntax_name").." "..nut.lang.Get("syntax_rank"),
 	onRun = function(client, arguments)
 		PLUGIN.CommandTemplate(client, arguments, 2, function(target, arguments)
 			target:SetUserGroup(arguments[2]);
@@ -72,7 +72,7 @@ nut.command.Register(plyKick, "plykick");
 local plyBan = {
 	adminOnly = true,
 	allowDead = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_name").." "..PLUGIN:GetPluginLanguage("syntax_time"),
+	syntax = nut.lang.Get("syntax_name").." "..nut.lang.Get("syntax_time"),
 	onRun = function(client, arguments)
 		PLUGIN.CommandTemplate(client, arguments, 2, function(target)
 			local time = tonumber(arguments[2]);

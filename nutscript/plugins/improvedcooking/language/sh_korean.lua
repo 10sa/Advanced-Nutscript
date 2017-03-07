@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("cook_it", "%s cooks the %s", language);
 

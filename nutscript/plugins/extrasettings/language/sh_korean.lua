@@ -1,4 +1,5 @@
 ﻿local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("plugin_es_category", "클라이언트 설정", language);
 PLUGIN:AddPluginLanguage("plugin_es_drawVignette", "명암 사용 여부", language);

@@ -2,14 +2,14 @@ local PLUGIN = PLUGIN or { };
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_name")..PLUGIN:GetPluginLanguage("syntax_area_showtime"),
+	syntax = nut.lang.Get("syntax_name")..nut.lang.Get("syntax_area_showtime"),
 	onRun = function(client, arguments)
 		local name = arguments[1] or PLUGIN:GetPluginLanguage("area_area")
 		local showTime = util.tobool(arguments[2] or "true")
 
 		if (!client:GetNutVar("areaMin")) then
 			if (!name) then
-				nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 1), client)
+				nut.util.Notify(nut.lang.Get("missing_arg", 1), client)
 
 				return
 			end

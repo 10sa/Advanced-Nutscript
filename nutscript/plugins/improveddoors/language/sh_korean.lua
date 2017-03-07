@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("doors_can_buy", "구매 가능한 문", language);
 PLUGIN:AddPluginLanguage("doors_cant_buy", "구매 불가능한 문", language);

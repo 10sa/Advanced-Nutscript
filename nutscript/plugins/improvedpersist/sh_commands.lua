@@ -1,7 +1,7 @@
 local PLUGIN = PLUGIN or { };
 
 nut.command.Register({
-	syntax = PLUGIN:GetPluginLanguage("syntax_bool"),
+	syntax = nut.lang.Get("syntax_bool"),
 	adminOnly = true,
 	onRun = function(client, arguments)
 		local trace = client:GetEyeTraceNoCursor();

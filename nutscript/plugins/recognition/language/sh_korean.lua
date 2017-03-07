@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("rg_syntax", "<인자 없음|aim|whisper|yell>", language);
 

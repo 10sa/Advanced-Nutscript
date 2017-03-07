@@ -16,7 +16,7 @@ nut.command.Register({
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_radius"),
+	syntax = nut.lang.Get("syntax_radius"),
 	onRun = function(client, arguments)
 		local range = tonumber(arguments[1] or "160") or 160
 		local count = 0

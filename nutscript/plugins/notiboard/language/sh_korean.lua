@@ -1,3 +1,6 @@
+local language = "korean";
+local PLUGIN = PLUGIN;
+
 PLUGIN:AddPluginLanguage("nb_set_title", "타이틀 설정", language);
 PLUGIN:AddPluginLanguage("nb_set_text", "텍스트 설정", language);
 

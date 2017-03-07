@@ -36,3 +36,4 @@ PLUGIN:AddPluginLanguage("mr_unban", "%s 님이 %s 님을 언밴하였습니다.
 PLUGIN:AddPluginLanguage("mr_no_reason", "사유 없음.", language);
 PLUGIN:AddPluginLanguage("mr_permanently", "영구", language);
 PLUGIN:AddPluginLanguage("mr_moderator", "모더레이터", language);
+PLUGIN:AddPluginLanguage("command", "명령어", language);

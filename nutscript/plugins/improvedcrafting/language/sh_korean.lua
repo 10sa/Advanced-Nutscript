@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("crafting", "제작", language);
 PLUGIN:AddPluginLanguage("norecipes", "이 탭에서 제작 가능한 아이템이 없습니다.", language);

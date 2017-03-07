@@ -8,7 +8,6 @@ nut.lang.Add("no_desc", "설정되지 않음", language);
 nut.lang.Add("characters", "캐릭터", language);
 nut.lang.Add("timeout", "응답 시간이 만료되었습니다.", language);
 nut.lang.Add("disabled", "비활성화", language);
-nut.lang.Add("command", "명령어", language);
 nut.lang.Add("cancel", "취소", language);
 nut.lang.Add("wrong_value", "잘못된 값 입니다.", language);
 nut.lang.Add("faction", "팩션", language);
@@ -126,7 +125,7 @@ nut.lang.Add("chat_normal", "%s 님의 말 ", language);
 nut.lang.Add("chat_yell", "%s 님의 외침 ", language);
 nut.lang.Add("chat_whisper", "%s 님의 속삭임 ", language);
 nut.lang.Add("chat_pm", "[귓속말] ", language);
-nut.lang.Add("chat_broadcast", "%s 님의 방송 ", language);
+
 
 nut.lang.Add("chat_ooctime", "OOC 채팅을 사용하려면 %s 초 만큼 더 기다려야 합니다.", language);
 
@@ -147,14 +146,10 @@ nut.lang.Add("attribute_tip2", "신체 능력치는 특정 행동을 통하여 �
 
 // 신체 능력, 능력치
 nut.lang.Add("acrobatics", "곡예", language);
-nut.lang.Add("speed", "속도", language);
-nut.lang.Add("stamina", "지구력", language);
 nut.lang.Add("strength", "힘", language);
 nut.lang.Add("cook", "요리", language);
 
 nut.lang.Add("acrobatics_desc", "이 수치가 높을수록 점프할 수 있는 높이가 더욱 높아집니다.", language);
-nut.lang.Add("speed_desc", "얼마나 빠르게 뛸 수 있는지에 대한 능력치입니다.", language);
-nut.lang.Add("stamina_desc", "얼마나 오래 뛸 수 있는지에 대한 능력치입니다.", language);
 nut.lang.Add("strength_desc", "이 수치가 높을수록 캐릭터의 힘이 강해집니다.", language);
 nut.lang.Add("cooking_desc", "요리한 음식의 결과물을 결정합니다.", language);
 

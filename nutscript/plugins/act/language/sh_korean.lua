@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("act_menu", "모션", language);
 PLUGIN:AddPluginLanguage("act_cant_fallover", "기절한 상태에서는 할 수 없습니다.", language);

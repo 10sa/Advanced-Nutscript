@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("sr_storage", "저장고", language);
 PLUGIN:AddPluginLanguage("sr_usespace", "%s 만큼의 공간 사용 중.", language);
