@@ -37,3 +37,7 @@ PLUGIN:AddPluginLanguage("vd_admin_faction_desc", "%s 팩션에게 접근을 허
 PLUGIN:AddPluginLanguage("vd_admin_tip", "왼쪽 클릭으로 판매 / 구매, 오른쪽 클릭으로 가격을 정합니다.", language);
 PLUGIN:AddPluginLanguage("vd_sell_desc", "이름: %s\n설명: %s\n%s", language);
 PLUGIN:AddPluginLanguage("vd_admin_ask_price", "이 아이템의 가격은?", language);
+
+PLUGIN:AddPluginLanguage("created_vendor", "성공적으로 상인을 생성하였습니다.", language);
+PLUGIN:AddPluginLanguage("removed_vendor", "성공적으로 상인을 삭제하였습니다.", language);
+PLUGIN:AddPluginLanguage("not_trace_vendor", "당신은 상인을 바라보고 있지 않습니다.", language);

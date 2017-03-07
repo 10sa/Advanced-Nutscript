@@ -1,3 +1,5 @@
+local PLUGIN = PLUGIN;
+
 nut.command.Register({
 	adminOnly = true,
 	onRun = function(client, arguments)
@@ -6,15 +8,15 @@ nut.command.Register({
 		angles.p = 0
 		angles.y = angles.y - 180
 
-		local entity = ents.Create("nut_vendor")
-		entity:SetPos(position)
-		entity:SetAngles(angles)
-		entity:Spawn()
-		entity:Activate()
+		local entity = ents.Create("nut_vendor");
+		entity:SetPos(position);
+		entity:SetAngles(angles);
+		entity:Spawn();
+		entity:Activate();
 
-		PLUGIN:SaveData()
+		PLUGIN:SaveData();
 
-		nut.util.Notify("성공적으로 상인을 생성하였습니다.", client)
+		nut.util.Notify(PLUGIN:GetPluginLanguage("created_vendor"), client);
 	end
 }, "vendoradd")
 
@@ -22,17 +24,17 @@ nut.command.Register({
 nut.command.Register({
 	adminOnly = true,
 	onRun = function(client, arguments)
-		local trace = client:GetEyeTraceNoCursor()
-		local entity = trace.Entity
+		local trace = client:GetEyeTraceNoCursor();
+		local entity = trace.Entity;
 
 		if (IsValid(entity) and entity:GetClass() == "nut_vendor") then
-			entity:Remove()
+			entity:Remove();
 
-			PLUGIN:SaveData()
+			PLUGIN:SaveData();
 
-			nut.util.Notify("성공적으로 상인을 삭제하였습니다.", client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("removed_vendor"), client);
 		else
-			nut.util.Notify("당신은 상인을 바라보고 있지 않습니다.", client)
+			nut.util.Notify(PLUGIN:GetPluginLanguage("not_trace_vendor"), client);
 		end
 	end
 }, "vendorremove")
