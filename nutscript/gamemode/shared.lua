@@ -57,6 +57,36 @@ nut.util.IncludeDir("utils", true);
 // Load Cached Configs. //
 AdvNut.util.LoadCachedConfigs();
 
+function AdvNut.hook.Add(hook, hookIdentifier, doFunction)
+	if (CLIENT) then
+		hook.Add(hook, AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT), doFunction);
+	elseif (SERVER) then
+		hook.Add(hook, AdvNut.util.CreateIdentifier(hookIdentifier, SERVER), doFunction);
+	else
+		Error("Wrong Hook Add.");
+	end;
+end;
+
+function AdvNut.hook.Run(hook, hookIdentifier, data)
+	if (CLIENT) then
+		return hook.Run(hook, AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT), data);
+	elseif (SERVER) then
+		return hook.Run(hook, AdvNut.util.CreateIdentifier(hookIdentifier, SERVER), data);
+	else
+		Error("Wrong Hook Add.");
+	end;
+end;
+
+function AdvNut.hook.Remove(hook, hookIdentifier)
+	if (CLIENT) then
+		hook.Remove(hook, AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT));
+	elseif (SERVER) then
+		hook.Remov(hook, AdvNut.util.CreateIdentifier(hookIdentifier, SERVER));
+	else
+		Error("Wrong Hook Add.");
+	end;
+end;
+
 -- Include commands.
 nut.util.Include("sh_commands.lua");
 
