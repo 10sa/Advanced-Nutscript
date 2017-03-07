@@ -1,7 +1,7 @@
 local PANEL = {}
 function PANEL:Init()
 	self:AddTitle(nut.lang.Get("settings"));
-	self:SetPos(ScrW() * 0.225, ScrH() * 0.125)
+	self:SetPos(AdvNut.util.GetCurrentMenuPos())
 	self:SetSize(AdvNut.util.GetCurrentMenuSize());
 	self:MakePopup()
 	

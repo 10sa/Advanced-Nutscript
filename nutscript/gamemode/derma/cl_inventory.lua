@@ -5,7 +5,7 @@ local PANEL = {}
 function PANEL:Init()
 	self:AddTitle(nut.lang.Get("inventory"));
 	self:SetSize(AdvNut.util.GetCurrentMenuSize());
-	self:SetPos(ScrW() * 0.225, ScrH() * 0.125)
+	self:SetPos(AdvNut.util.GetCurrentMenuPos())
 	self:MakePopup()
 
 	self.colmunSheet = vgui.Create("DColumnSheet", self);
