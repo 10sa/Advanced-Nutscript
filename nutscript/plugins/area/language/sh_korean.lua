@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("area_area", "구역", language);
 PLUGIN:AddPluginLanguage("area_pointstart", "구역에 끝에 도착한 다음 다시 명령어를 입력하세요.", language);
