@@ -57,34 +57,30 @@ nut.util.IncludeDir("utils", true);
 // Load Cached Configs. //
 AdvNut.util.LoadCachedConfigs();
 
-function AdvNut.hook.Add(hook, hookIdentifier, doFunction)
+local function AdvNut.hook.Frame(hookIdentifier, doFunction)
 	if (CLIENT) then
-		hook.Add(hook, AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT), doFunction);
+		doFunction(AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT));
 	elseif (SERVER) then
-		hook.Add(hook, AdvNut.util.CreateIdentifier(hookIdentifier, SERVER), doFunction);
+		doFunction(AdvNut.util.CreateIdentifier(hookIdentifier, SERVER));
 	else
 		Error("Wrong Hook Add.");
 	end;
 end;
-
-function AdvNut.hook.Run(hook, hookIdentifier, data)
-	if (CLIENT) then
-		return hook.Run(hook, AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT), data);
-	elseif (SERVER) then
-		return hook.Run(hook, AdvNut.util.CreateIdentifier(hookIdentifier, SERVER), data);
-	else
-		Error("Wrong Hook Add.");
-	end;
+	
+function AdvNut.hook.Add(hook, hookIdentifier, doFunction)
+	AdvNut.hook.Frame(hookIdentifier, function(identifier)
+		hook.Add(hook, identifier, doFunction);
+	end);
 end;
 
 function AdvNut.hook.Remove(hook, hookIdentifier)
-	if (CLIENT) then
-		hook.Remove(hook, AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT));
-	elseif (SERVER) then
-		hook.Remov(hook, AdvNut.util.CreateIdentifier(hookIdentifier, SERVER));
-	else
-		Error("Wrong Hook Add.");
-	end;
+	AdvNut.hook.Frame(hookIdentifier, function(identifier)
+		hook.Remove(hook, identifier);
+	end);
+end;
+
+function AdvNut.hook.Run(hook, data)
+	hook.Run(hook, data);
 end;
 
 -- Include commands.
