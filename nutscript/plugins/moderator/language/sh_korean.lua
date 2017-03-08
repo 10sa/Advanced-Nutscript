@@ -1,4 +1,5 @@
 local language = "korean";
+local PLUGIN = PLUGIN;
 
 PLUGIN:AddPluginLanguage("mr_low_permisson", "권한이 모자랍니다.", language);
 PLUGIN:AddPluginLanguage("mr_exist_rank", "정의되지 않은 랭크입니다.", language);

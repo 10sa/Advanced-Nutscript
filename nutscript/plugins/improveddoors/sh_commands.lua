@@ -77,13 +77,13 @@ nut.command.Register({
 
 		if (IsValid(entity) and PLUGIN:IsDoor(entity) and !entity:GetNetVar("hidden")) then
 			if (!PLUGIN:IsDoorOwned(entity)) then
-				nut.util.Notify("이미 구매 가능한 문입니다.", client);
+				nut.util.Notify(PLUGIN:GetPluginLanguage("already_ownable"), client);
 			else
 				entity:SetNetVar("owner", nil)
 				entity:SetNetVar("title", PLUGIN:GetPluginLanguage("doors_can_buy"));
 				entity:SetNetVar("desc", PLUGIN:GetPluginLanguage("doors_buy_desc"));
 			
-				nut.util.Notify("성공적으로 문을 판매하였습니다.", client)
+				nut.util.Notify(PLUGIN:GetPluginLanguage("successful_selling"), client);
 			end;
 		else
 			nut.util.Notify(PLUGIN:GetPluginLanguage("doors_not_door"), client)
@@ -142,7 +142,7 @@ nut.command.Register({
 
 		if (IsValid(entity) and PLUGIN:IsDoor(entity)) then
 			if (PLUGIN:IsDoorOwned(entity)) then
-				nut.util.Notify("다른 플레이어가 소유중인 문 입니다.", client);
+				nut.util.Notify(PLUGIN:GetPluginLanguage("already_buyed"), client);
 			else
 				local title = PLUGIN:GetPluginLanguage("doors_cant_buy")
 
@@ -183,7 +183,7 @@ nut.command.Register({
 
 		if (IsValid(entity) and PLUGIN:IsDoor(entity)) then
 			if (PLUGIN:IsDoorOwned(entity)) then
-				nut.util.Notify("다른 플레이어가 소유중인 문 입니다.", client);
+				nut.util.Notify(PLUGIN:GetPluginLanguage("already_buyed"), client);
 			else
 				PLUGIN:DoorSetOwnable(entity);
 				

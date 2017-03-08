@@ -25,3 +25,6 @@ PLUGIN:AddPluginLanguage("doors_buyed_door", "구매된 문", language);
 PLUGIN:AddPluginLanguage("doors_owner", "%s 의 소유", language);
 PLUGIN:AddPluginLanguage("doors_not_owner", "이 문은 당신의 소유가 아닙니다.", language);
 PLUGIN:AddPluginLanguage("doors_not_door", "조준점이 문을 바라보고 있지 않습니다.", language);
+PLUGIN:AddPluginLanguage("already_buyed", "다른 플레이어가 소유중인 문 입니다.", language);
+PLUGIN:AddPluginLanguage("already_ownable", "이미 구매 가능한 문입니다.", language);
+PLUGIN:AddPluginLanguage("successful_selling", "성공적으로 문을 판매하였습니다.", language);
