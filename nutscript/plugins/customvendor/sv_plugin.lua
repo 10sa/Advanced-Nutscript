@@ -1,3 +1,5 @@
+local PLUGIN = PLUGIN or {};
+
 function PLUGIN:LoadData()
 	for k, v in pairs(nut.util.ReadTable("vendors")) do
 		local position = v.pos

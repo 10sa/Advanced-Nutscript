@@ -11,6 +11,7 @@ DeriveGamemode("sandbox")
 -- Gamemode variables.
 nut.Name = "Adv_Nutscript"
 nut.Author = "Tensa"
+NSFolderName = AdvNut.FolderName;
 
 -- Include and send needed utility functions.
 include("sh_util.lua");
@@ -46,18 +47,19 @@ nut.util.Include("sh_translations.lua");
 
 -- Other core directories. The second argument is true since they're in the framework.
 -- If they werne't, it'd try to include them from the schema!
+nut.util.IncludeDir("utils", true);
 nut.util.IncludeDir("libs", true);
 
 nut.util.IncludeDir("kernel/netstreams", true);
 nut.util.IncludeDir("kernel", true);
 
 nut.util.IncludeDir("derma", true);
-nut.util.IncludeDir("utils", true);
 
 // Load Cached Configs. //
 AdvNut.util.LoadCachedConfigs();
 
-local function AdvNut.hook.Frame(hookIdentifier, doFunction)
+AdvNut.hook = AdvNut.hook or {};
+function AdvNut.hook.Frame(hookIdentifier, doFunction)
 	if (CLIENT) then
 		doFunction(AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT));
 	elseif (SERVER) then
@@ -85,8 +87,6 @@ end;
 
 -- Include commands.
 nut.util.Include("sh_commands.lua");
-
-NSFolderName = AdvNut.FolderName
 
 if (!SERVER and game.IsDedicated()) then
 	concommand.Remove("gm_save")

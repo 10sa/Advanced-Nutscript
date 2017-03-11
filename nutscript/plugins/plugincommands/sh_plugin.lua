@@ -4,4 +4,3 @@ PLUGIN.desc = "기초적인 명령어를 추가합니다."
 
 AdvNut.util.PluginIncludeDir("language", PLUGIN.uniqueID, true);
 nut.util.Include("sh_commands.lua");
-nut.util.Include("sh_language.lua");

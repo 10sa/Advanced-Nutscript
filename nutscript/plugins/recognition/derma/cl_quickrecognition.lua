@@ -5,7 +5,7 @@ function PANEL:Init()
 	AdvNut.util.DrawBackgroundBlur(self);
 	self:InitDermaMenu();
 	
-	hook.Add("VGUIMousePressed", PLUGIN:CreatePluginIdentifier("QuickRecognitionMenuMousePressed", CLIENT), PANEL.VGUIMousePressed);
+	hook.Add("VGUIMousePressed", PLUGIN:GetPluginIdentifier("QuickRecognitionMenuMousePressed", CLIENT), PANEL.VGUIMousePressed);
 end;
 
 function PANEL:InitDermaMenu()
@@ -48,7 +48,7 @@ function PANEL:Paint(w, h)
 end;
 
 function PANEL:VGUIMousePressed(mouseCode)
-	timer.Simple(0.1, function()PLUGIN:CreatePluginIdentifier("QuickRecognitionMenu", CLIENT)
+	timer.Simple(0.1, function()PLUGIN:GetPluginIdentifier("QuickRecognitionMenu", CLIENT)
 		if (IsValid(nut.gui.QuickRecognition) and nut.gui.QuickRecognition.menu != nil) then
 			nut.gui.QuickRecognition:InitDermaMenu();
 		end;
@@ -58,7 +58,7 @@ end;
 function PANEL:Close()
 	AdvNut.util.RemoveBackgroundBlur(self);
 	
-	hook.Remove("VGUIMousePressed", PLUGIN:CreatePluginIdentifier("QuickRecognitionMenuMousePressed", CLIENT));
+	hook.Remove("VGUIMousePressed", PLUGIN:GetPluginIdentifier("QuickRecognitionMenuMousePressed", CLIENT));
 	self.menu:Remove();
 	self:Remove();
 end;
@@ -70,7 +70,7 @@ function PANEL:PlayerBindPress(bind, pressed)
 		nut.gui.QuickRecognition = vgui.Create("AdvNut_QuickRecognition");
 	end
 end;
-hook.Add("PlayerBindPress", PLUGIN:CreatePluginIdentifier("QuickRecognitionMenu", CLIENT), PANEL.PlayerBindPress);
+hook.Add("PlayerBindPress", PLUGIN:GetPluginIdentifier("QuickRecognitionMenu", CLIENT), PANEL.PlayerBindPress);
 
 
 function PLUGIN:PlayerCanOpenQuickRecognitionMenu()

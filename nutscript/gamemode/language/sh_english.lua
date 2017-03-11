@@ -315,7 +315,7 @@ nut.lang.Add("syntax_customclass", "<커스텀클래스>", language);
 nut.lang.Add("syntax_itemID", "<아이템 코드>", language);
 nut.lang.Add("syntax_password", "<비밀번호>", language);
 
-nut.lang.Add("syntax_bool", "[부울값]")
+nut.lang.Add("syntax_bool", "[부울값]", language);
 nut.lang.Add("syntax_toaimpos", "[(0|1)/바라보는 곳으로]", language);
 nut.lang.Add("syntax_amount", "[값]", language);
 nut.lang.Add("syntax_area_showtime", "[시간 표시 여부]", language);

@@ -2,7 +2,7 @@ local PLUGIN = PLUGIN or { };
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_faction")..PLUGIN:GetPluginLanguage("syntax_class"),
+	syntax = nut.lang.Get("syntax_faction")..nut.lang.Get("syntax_class"),
 	onRun = function(client, arguments)
 		local faction = arguments[1] or ""
 		local class = arguments[2] or ""
@@ -50,7 +50,7 @@ nut.command.Register({
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_radius"),
+	syntax = nut.lang.Get("syntax_radius"),
 	onRun = function(client, arguments)
 		local radius = math.max(tonumber(arguments[1] or "") or 128, 8)
 		local i = 0

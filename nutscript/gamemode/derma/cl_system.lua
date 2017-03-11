@@ -40,7 +40,7 @@ function PANEL:Init()
 					key = line.index,
 					var = castedVar
 				};
-				netstream.Start(AdvNut.util.CreateIdentifier("GetServerConfigs", SERVER), {key = line.index, var = castedVar});
+				netstream.Start(AdvNut.util.CreateIdentifier("SetServerConfigs", SERVER), {key = line.index, var = castedVar});
 				self.noticePanel:SetType(4)
 				self.noticePanel:SetText(nut.lang.Get("system_tip"));
 				
@@ -51,7 +51,6 @@ function PANEL:Init()
 			end;
 		end);
 	end;
-	
 	self:Build();
 end
 

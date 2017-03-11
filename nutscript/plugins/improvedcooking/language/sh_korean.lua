@@ -30,3 +30,7 @@ PLUGIN:AddPluginLanguage("cook_food_good", "좋음.", language);
 PLUGIN:AddPluginLanguage("cook_food_sogood", "맛있음.", language);
 PLUGIN:AddPluginLanguage("cook_food_reallygood", "믿기지 않는 맛.", language);
 PLUGIN:AddPluginLanguage("cook_food_best", "신이 좋아할 맛.", language);
+
+PLUGIN:AddPluginLanguage("cook", "요리", language);
+PLUGIN:AddPluginLanguage("cooking_desc", "요리한 음식의 결과물을 결정합니다.", language);
+PLUGIN:AddPluginLanguage("cooking", "요리하기", language);

@@ -84,4 +84,4 @@ for k, v in pairs(PLUGIN.sequences) do
 end
 
 nut.util.Include("sv_plugin.lua");
-nut.util.Inlcude("cl_plugin.lua");
+nut.util.Include("cl_plugin.lua");

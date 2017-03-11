@@ -147,11 +147,9 @@ nut.lang.Add("attribute_tip2", "신체 능력치는 특정 행동을 통하여 �
 // 신체 능력, 능력치
 nut.lang.Add("acrobatics", "곡예", language);
 nut.lang.Add("strength", "힘", language);
-nut.lang.Add("cook", "요리", language);
 
 nut.lang.Add("acrobatics_desc", "이 수치가 높을수록 점프할 수 있는 높이가 더욱 높아집니다.", language);
 nut.lang.Add("strength_desc", "이 수치가 높을수록 캐릭터의 힘이 강해집니다.", language);
-nut.lang.Add("cooking_desc", "요리한 음식의 결과물을 결정합니다.", language);
 
 // 메뉴, 인벤토리
 nut.lang.Add("inventory", "인벤토리", language);
@@ -230,7 +228,6 @@ nut.lang.Add("item_take", "줍기", language);
 nut.lang.Add("notexist", "%s (정의되지 않음)", language);
 
 // 아이템, 버튼
-nut.lang.Add("cooking", "요리하기", language);
 nut.lang.Add("free", "무료", language);
 nut.lang.Add("eat", "먹기", language);
 nut.lang.Add("open", "열기", language);
@@ -316,7 +313,7 @@ nut.lang.Add("syntax_itemID", "<아이템 코드>", language);
 nut.lang.Add("syntax_password", "<비밀번호>", language);
 
 //,인자 선언 (넘버);
-nut.lang.Add("syntax_bool", "[부울값]")
+nut.lang.Add("syntax_bool", "[부울값]", language);
 nut.lang.Add("syntax_toaimpos", "[(0|1)/바라보는 곳으로]", language);
 nut.lang.Add("syntax_amount", "[값]", language);
 nut.lang.Add("syntax_area_showtime", "[시간 표시 여부]", language);

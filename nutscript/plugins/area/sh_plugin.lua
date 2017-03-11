@@ -7,5 +7,5 @@ PLUGIN.desc = "구역과 관련된 기능을 추가합니다."
 AdvNut.util.Include("language", PLUGIN.uniqueID, true);
 
 nut.util.Include("sv_plugin.lua");
-nut.util.Inlcude("cl_plugin.lua");
+nut.util.Include("cl_plugin.lua");
 nut.util.Include("sh_commands.lua");

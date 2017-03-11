@@ -59,7 +59,7 @@ nut.command.Register(setRank, "setrank");
 local plyKick = {
 	adminOnly = true,
 	allowDead = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_name").." "..PLUGIN:GetPluginLanguage("plugin_pc_syntax_reason"),
+	syntax = nut.lang.Get("syntax_name").." "..PLUGIN:GetPluginLanguage("plugin_pc_syntax_reason"),
 	onRun = function(client, arguments)
 		PLUGIN.CommandTemplate(client, arguments, 1, function(target)
 			target:Kick(arguments[2] or "No Reason");

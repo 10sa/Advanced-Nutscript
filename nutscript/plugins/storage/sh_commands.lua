@@ -1,6 +1,6 @@
 nut.command.Register({
 	adminOnly = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_bool"),
+	syntax = nut.lang.Get("syntax_bool"),
 	onRun = function(client, arguments)
 
 		local dat = {}
@@ -45,7 +45,7 @@ nut.command.Register({
 
 nut.command.Register({
 	adminOnly = true,
-	syntax = PLUGIN:GetPluginLanguage("syntax_password"),
+	syntax = nut.lang.Get("syntax_password"),
 	onRun = function(client, arguments)
 
 		local dat = {}

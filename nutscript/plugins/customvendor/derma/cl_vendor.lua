@@ -1,3 +1,5 @@
+local PLUGIN = PLUGIN;
+
 local PANEL = {}
 	function PANEL:Init()
 		self:SetSize(ScrW() * 0.7, ScrH() * 0.7)

@@ -74,7 +74,7 @@ netstream.Hook(AdvNut.util.CreateIdentifier("GetServerConfigs", SERVER), functio
 	netstream.Start(client, AdvNut.util.CreateIdentifier("GetServerConfigs", CLIENT), configs);
 end);
 
-netstream.Hook(AdvNut.util.CreateIdentifier("GetServerConfigs", SERVER), function(client, data)
+netstream.Hook(AdvNut.util.CreateIdentifier("SetServerConfigs", SERVER), function(client, data)
 	local key = data.key;
 	local var = data.var 
 

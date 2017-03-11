@@ -16,7 +16,7 @@ if (!nut.lang) then
 	include("libs/sh_lang.lua")
 end
 
-nut.util.IncludeDir("language")
+nut.util.IncludeDir("language", true);
 
 -- Start off with English.
 local language = "english"

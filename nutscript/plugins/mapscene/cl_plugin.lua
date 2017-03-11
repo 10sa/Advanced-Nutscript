@@ -1,3 +1,5 @@
+local PLUGIN = PLUGIN or {};
+
 netstream.Hook("nut_MapScenePos", function(data)
 	PLUGIN.position = data[1]
 	PLUGIN.angles = data[2]

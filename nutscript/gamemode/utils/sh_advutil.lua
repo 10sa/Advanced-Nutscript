@@ -13,10 +13,10 @@ function AdvNut.util.GetPlayerTraceEntity(client)
 end;
 	
 function AdvNut.util.CreateIdentifier(subIdentifier, caller)
-	if (Caller) then
-		if (Caller == CLIENT) then
+	if (caller != nil) then
+		if (caller == CLIENT) then
 			return "AdvNut.Client."..subIdentifier;
-		elseif (Caller = SERVER) then
+		elseif (caller == SERVER) then
 			return "AdvNut.Server."..subIdentifier;
 		else
 			error("Wrong Caller.");

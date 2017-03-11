@@ -1,6 +1,7 @@
 local size = 16
 local border = 4
 local distance = size + border
+local PLUGIN = PLUGIN or {};
 
 local PANEL = {}
 function PANEL:Init()

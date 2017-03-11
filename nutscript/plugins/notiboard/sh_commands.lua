@@ -1,5 +1,5 @@
 nut.command.Register({
-	syntax = PLUGIN:GetPluginLanguage("syntax_groupnumber"),
+	syntax = nut.lang.Get("syntax_groupnumber"),
 	adminOnly = true,
 	onRun = function(client, arguments)
 		local data = {}
@@ -20,7 +20,7 @@ nut.command.Register({
 }, "notisetgroup")
 
 nut.command.Register({
-	syntax = PLUGIN:GetPluginLanguage("syntax_groupnumber")..PLUGIN:GetPluginLanguage("syntax_string"),
+	syntax = nut.lang.Get("syntax_groupnumber")..nut.lang.Get("syntax_string"),
 	adminOnly = true,
 	onRun = function(client, arguments)
 		if #arguments < 2 then 
