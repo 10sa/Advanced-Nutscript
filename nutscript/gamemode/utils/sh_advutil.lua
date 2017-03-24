@@ -117,14 +117,6 @@ function AdvNut.util.DrawRoundedBox(panel, corner, x, y, w, h)
 	end;
 end;
 
-function AdvNut.util.PluginIncludeDir(directory, uniqueID, isBasePlugin)
-	local pluginPath = ((!isBasePlugin and SCHEMA.folderName) or "nutscript").."/plugins/"..uniqueID.."/"..directory;
-	
-	for k, v in pairs(file.Find(pluginPath.."/*.lua", "LUA")) do
-		nut.util.Include(pluginPath.."/"..v);
-	end
-end
-
 function AdvNut.util.GetCurrentMenuSize()
 	return (ScrW() * nut.config.menuWidth), (ScrH() * nut.config.menuHeight);
 end;

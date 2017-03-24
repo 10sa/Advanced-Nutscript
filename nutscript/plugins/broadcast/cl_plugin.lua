@@ -1,3 +1,5 @@
+local PLUGIN = PLUGIN;
+
 surface.CreateFont("nut_ChatFontRadio", {
 	font = mainfont,
 	size = AdvNut.util.GetScreenScaleFontSize(7.5),

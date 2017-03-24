@@ -8,6 +8,7 @@ function PANEL:Init()
 	self:SetVisible(false);
 
 	self.name = vgui.Create("DLabel", self);
+	self.name:SetPos(0, 10);
 	self.name:SetFont("nut_LargeFont");
 	self.name:SetTextColor(color_white)
 	self.name:SetExpensiveShadow(1, Color(0, 0, 0, 100))

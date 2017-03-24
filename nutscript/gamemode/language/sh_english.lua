@@ -284,8 +284,6 @@ nut.lang.Add("cant_equip_weapon", "이 무기를 장착한 상태에서는 할�
 
 // Vendor (framework)
 nut.lang.Add("no_afford", "당신은 이 아이템을 구매할 충분한 돈이 없습니다.", language);
-nut.lang.Add("vendor_no_afford", "상인은 이 아이템을 구매하기에 충분한 돈을 가지고 있지 않습니다.", language);
-nut.lang.Add("vendor_cash", "이 상인은 %s을(를) 가지고 있습니다.", language);
 nut.lang.Add("purchased_for", "당신은 %s을(를) %s 에 구매하였습니다.", language);
 nut.lang.Add("sold", "당신은 %s을(를) %s 에 판매하였습니다.", language);
 nut.lang.Add("notenoughitem", "당신은 판매할 %s을(를) 가지고 있지 않습니다.", language);

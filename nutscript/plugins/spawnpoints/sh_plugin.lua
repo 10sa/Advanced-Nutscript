@@ -3,8 +3,9 @@ PLUGIN.name = "스폰 포인트 (Spawn Points)"
 PLUGIN.author = "Chessnut / 번역자 : Tensa"
 PLUGIN.desc = "스폰 포인트의 설정을 가능하게 합니다."
 PLUGIN.points = PLUGIN.points or {}
+PLUGIN.base = true;
 
-AdvNut.util.Include("language", PLUGIN.uniqueID, true);
+AdvNut.util.Include("language");
 
 function PLUGIN:LoadData()
 	self.points = self:ReadTable()

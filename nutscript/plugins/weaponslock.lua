@@ -1,6 +1,7 @@
 ﻿PLUGIN.name = "무기 잠금 (Weapons Lock)"
 PLUGIN.author = "Tensa"
 PLUGIN.desc = "무기를 내린 상태에서는 발포할 수 없도록 합니다."
+PLUGIN.base = true;
 
 function PLUGIN:StartCommand(client, command)
 	local weapon = client:GetActiveWeapon();

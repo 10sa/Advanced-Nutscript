@@ -1,6 +1,7 @@
 PLUGIN.name = "일인칭 시점 다리 (Legs)"
 PLUGIN.author = "robinkooli / 번역자 : ChiNo"
 PLUGIN.desc = "일인칭 시점에서 자신의 캐릭터 다리를 볼 수 있습니다."
+PLUGIN.base = true;
 
 local Legs = CreateClientConVar( "cl_legs", "1", true, false )
 local LegsBool = Legs:GetBool()

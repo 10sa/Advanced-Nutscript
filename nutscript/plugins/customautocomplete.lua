@@ -2,6 +2,7 @@ local PLUGIN = PLUGIN
 PLUGIN.name = "자동 완성 (AdvNS Custom Auto-complete)"
 PLUGIN.author = "Tensa / Atebite and Chessnut"
 PLUGIN.desc = "기존 플러그인을 커스텀한 자동 환성 기능을 추가합니다."
+PLUGIN.base = true;
 
 if (CLIENT) then
 	local chatText = ""

@@ -156,8 +156,8 @@ function nut.plugin.Load(directory)
 					nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
 				end;
 			
-				function PLUGIN:GetPluginLanguage(key)
-					return nut.lang.Get(self:_GetPluginLanguageIdentifier(key));
+				function PLUGIN:GetPluginLanguage(key, ...)
+					return nut.lang.Get(self:_GetPluginLanguageIdentifier(key), ...);
 				end;
 				
 				function PLUGIN:GetPluginConfig(key, default)
@@ -184,9 +184,9 @@ function nut.plugin.Load(directory)
 					end;
 				end;
 			
-				function PLUGIN:IncludeDir(dir, isBase)
+				function PLUGIN:IncludeDir(dir)
 					local path;
-					if (SCHEMA and !isBase) then
+					if (SCHEMA and !self.base) then
 						path = SCHEMA.folderName.."/plugin/"..self.uniqueID.."/"..dir;
 					else
 						path = "nutscript/plugins/"..self.uniqueID.."/"..dir;
@@ -227,55 +227,68 @@ function nut.plugin.Load(directory)
 		if (!blocked) then
 			PLUGIN = nut.plugin.Get(cleanName) or {};
 			PLUGIN.uniqueID = v;
-			
-			function PLUGIN:WriteTable(data, ignoreMap, global)
-				return nut.util.WriteTable(v, data, ignoreMap, global)
-			end
+				
+				function PLUGIN:WriteTable(data, ignoreMap, global)
+					return nut.util.WriteTable(v, data, ignoreMap, global)
+				end
 
-			function PLUGIN:ReadTable(ignoreMap, forceRefresh)
-				return nut.util.ReadTable(v, ignoreMap, forceRefresh)
-			end
+				function PLUGIN:ReadTable(ignoreMap, forceRefresh)
+					return nut.util.ReadTable(v, ignoreMap, forceRefresh)
+				end
 			
-			function PLUGIN:CreatePluginIdentifier(key, caller)
-				return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
-			end;
+				function PLUGIN:GetPluginIdentifier(key, caller)
+					return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
+				end;
 				
-			/// Don't use this function. it's private function.
-			function PLUGIN:_GetPluginLanguageIdentifier(key)
-				return self:GetPluginIdentifier("").."Language."..key;
-			end;
+				/// Don't use this function. it's private function.
+				function PLUGIN:_GetPluginLanguageIdentifier(key)
+					return self:GetPluginIdentifier("").."Language."..key;
+				end;
 			
-			function PLUGIN:AddPluginLanguage(key, value, language)
-				nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
-			end;
+				function PLUGIN:AddPluginLanguage(key, value, language)
+					nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
+				end;
 			
-			function PLUGIN:GetPluginLanguage(key)
-				return nut.lang.Get(self:_GetPluginLanguageIdentifier(key));
-			end;
+				function PLUGIN:GetPluginLanguage(key, ...)
+					return nut.lang.Get(self:_GetPluginLanguageIdentifier(key), ...);
+				end;
 				
-			function PLUGIN:GetPluginConfig(key, default)
-				if (self) then
-					if (nut.config[self.uniqueID]) then
-						return nut.config[self.uniqueID][key] or default;
+				function PLUGIN:GetPluginConfig(key, default)
+					if (self) then
+						if (nut.config[self.uniqueID]) then
+							return nut.config[self.uniqueID][key] or default;
+						else
+							return default;
+						end;
 					else
 						return default;
 					end;
-				else
-					return default;
 				end;
-			end;
 				
-			function PLUGIN:SetPluginConfig(key, value)
-				if(self.uniqueID) then
-					local uniqueID = self.uniqueID;
+				function PLUGIN:SetPluginConfig(key, value)
+					if(self.uniqueID) then
+						local uniqueID = self.uniqueID;
 						
-					if (!nut.config[uniqueID]) then
-						nut.config[uniqueID] = {};
-					end;
+						if (!nut.config[uniqueID]) then
+							nut.config[uniqueID] = {};
+						end;
 					
-					nut.config[self.uniqueID][key] = value;
+						nut.config[self.uniqueID][key] = value;
+					end;
 				end;
-			end;
+			
+				function PLUGIN:IncludeDir(dir)
+					local path;
+					if (SCHEMA and !self.base) then
+						path = SCHEMA.folderName.."/plugin/"..self.uniqueID.."/"..dir;
+					else
+						path = "nutscript/plugins/"..self.uniqueID.."/"..dir;
+					end;
+				
+					for k, v in pairs(file.Find(path.."/*.lua", "LUA")) do
+						nut.util.Include(path.."/"..v);
+					end
+				end;
 				
 			nut.util.Include(directory.."/plugins/"..v, "shared");
 			nut.plugin.buffer[cleanName] = PLUGIN;

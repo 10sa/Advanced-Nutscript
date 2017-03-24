@@ -1,6 +1,7 @@
 PLUGIN.name = "개선된 옵저버 (Improved Observer)"
 PLUGIN.author = "Tensa / Chessnut"
 PLUGIN.desc = "기존 플러그인에 기능을 추가한 옵저버 플러그인입니다."
+PLUGIN.base = true;
 
 // Thanks, Frosty! //
 if (SERVER) then

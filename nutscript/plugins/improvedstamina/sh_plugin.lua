@@ -2,8 +2,9 @@ local PLUGIN = PLUGIN
 PLUGIN.name = "개선된 지구력 (Improved Stamina)"
 PLUGIN.author = "Tensa / Chessnut"
 PLUGIN.desc = "지구력과 관련된 능력치를 추가해 줍니다."
+PLUGIN.base = true;
 
-AdvNut.util.PluginIncludeDir("language", PLUGIN.uniqueID, true);
+PLUGIN:IncludeDir("language");
 nut.util.Include("sv_hooks.lua")
 
 function PLUGIN:RegisterAttributes()

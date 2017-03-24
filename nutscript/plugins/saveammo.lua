@@ -1,6 +1,7 @@
 PLUGIN.name = "탄약 저장 (Save Ammo)"
 PLUGIN.author = "Chessnut / 번역자 : Tensa"
 PLUGIN.desc = "플레이어의 탄약을 저장합니다."
+PLUGIN.base = true;
 
 local AMMO_TYPES = {
 	"ar2",

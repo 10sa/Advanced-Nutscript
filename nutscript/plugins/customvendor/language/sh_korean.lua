@@ -41,3 +41,6 @@ PLUGIN:AddPluginLanguage("vd_admin_ask_price", "이 아이템의 가격은?", la
 PLUGIN:AddPluginLanguage("created_vendor", "성공적으로 상인을 생성하였습니다.", language);
 PLUGIN:AddPluginLanguage("removed_vendor", "성공적으로 상인을 삭제하였습니다.", language);
 PLUGIN:AddPluginLanguage("not_trace_vendor", "당신은 상인을 바라보고 있지 않습니다.", language);
+
+PLUGIN:AddPluginLanguage("vendor_no_afford", "상인은 이 아이템을 구매하기에 충분한 돈을 가지고 있지 않습니다.", language);
+PLUGIN:AddPluginLanguage("vendor_cash", "이 상인은 %s을(를) 가지고 있습니다.", language);

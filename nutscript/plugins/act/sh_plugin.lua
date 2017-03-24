@@ -3,8 +3,9 @@ PLUGIN.name = "플레이어 동작 (Player Acts)"
 PLUGIN.author = "Chessnut and rebel1324 / 번역자 : Tensa and Renée"
 PLUGIN.desc = "플레이어의 행동을 추가시켜 줍니다."
 PLUGIN.sequences = {}
+PLUGIN.base = true;
 
-AdvNut.util.Include("language", PLUGIN.uniqueID, true);
+PLUGIN:IncludeDir("language"); 
 
 local function lean(client)
 	local data = {

@@ -7,7 +7,7 @@ ENT.Category = "Nutscript"
 ENT.RenderGroup 		= RENDERGROUP_BOTH
 ENT.PersistentSave = false;
 
-
+local PLUGIN = PLUGIN;
 if CLIENT then
 	local ftbl = {
 		font = mainFont,
@@ -104,8 +104,8 @@ else
 			SCREEN_OVERLAY:Recompute()
 		end
 		
-		local text = self:GetNetVar("text", PLUGIN:GetPluginLanguage("no_desc"))
-		local title = self:GetNetVar("title", PLUGIN:GetPluginLanguage("no_desc"))
+		local text = self:GetNetVar("text", nut.lang.Get("no_desc"))
+		local title = self:GetNetVar("title", nut.lang.Get("no_desc"))
 
 		if dist <= distance then
 			render.PushCustomClipPlane(up, up:Dot( pos-ch ))

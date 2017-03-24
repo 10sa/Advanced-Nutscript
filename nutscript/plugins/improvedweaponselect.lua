@@ -1,6 +1,7 @@
 ﻿PLUGIN.name = "개선된 무기 탭 (Improved Weapon Selector)"
 PLUGIN.author = "Tensa / Chessnut"
 PLUGIN.desc = "기존 플러그인을 개선한 무기 탭 플러그인입니다."
+PLUGIN.base = true;
 
 if (CLIENT) then
 	PLUGIN.lastSlot = PLUGIN.lastSlot or 1

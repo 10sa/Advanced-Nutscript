@@ -1,8 +1,9 @@
 PLUGIN.name = "인식 (Recognition)"
 PLUGIN.author = "Chessnut / 번역자 : Tensa"
 PLUGIN.desc = "인식 시스템을 추가합니다."
+PLUGIN.base = true;
 
-AdvNut.util.PluginIncludeDir("language", PLUGIN.uniqueID, true);
+PLUGIN:IncludeDir("language");
 
 function PLUGIN:SetRecognized(client, other)
 	local id = client.character:GetVar("id");
@@ -14,4 +15,4 @@ end
 
 nut.util.Include("sh_commands.lua")
 nut.util.Include("cl_plugin.lua");
-AdvNut.util.PluginIncludeDir("derma", PLUGIN.uniqueID, true);
+PLUGIN:IncludeDir("derma");

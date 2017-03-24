@@ -3,10 +3,11 @@ PLUGIN.name = "개선된 제작 (Improved Crafting)"
 PLUGIN.author = "Tensa / Black Tea"
 PLUGIN.desc = "아이템을 제작할 수 있는 기능을 추가합니다."
 
+PLUGIN.base = true;
 PLUGIN.menuEnabled = true;
 PLUGIN.reqireBlueprint = true;
 
-AdvNut.util.PluginIncludeDir("language", PLUGIN.uniqueID, true);
+PLUGIN:IncludeDir("language");
 
 // 저장될 작업대 엔티티 이름(클래스) //
 PLUGIN.craftingTables = 
@@ -60,8 +61,8 @@ function RECIPES:Register(tbl)
 	self.recipes[ tbl.recipeID ] = tbl
 end
 
-AdvNut.util.PluginIncludeDir("recipes", PLUGIN.uniqueID, true);
-AdvNut.util.PluginIncludeDir("derma", PLUGIN.uniqueID, true);
+PLUGIN:IncludeDir("recipes");
+PLUGIN:IncludeDir("derma");
 
 
 function RECIPES:Get(name)

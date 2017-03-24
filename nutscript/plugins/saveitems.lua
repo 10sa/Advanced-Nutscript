@@ -1,6 +1,7 @@
 PLUGIN.name = "아이템 저장 (Save Items)"
 PLUGIN.desc = "월드에 존재하는 아이템을 저장해 줍니다."
 PLUGIN.author = "Chessnut / 번역자 : Tensa"
+PLUGIN.base = true;
 
 if (SERVER) then
 	function PLUGIN:LoadData()

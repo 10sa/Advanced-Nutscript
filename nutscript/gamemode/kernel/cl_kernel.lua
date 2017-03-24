@@ -365,7 +365,7 @@ function GM:HUDPaintTargetID(entity)
 	if (targetIsValid and (!drawnEntities[entity] and entity != client and entity:IsPlayer() or hook.Run("ShouldDrawTargetEntity", entity) == true or entity.DrawTargetID)) then
 		drawnEntities[entity] = true
 	end
-	
+
 	for v in pairs(drawnEntities) do
 		if (IsValid(v) and v != client and (v:IsPlayer() or hook.Run("ShouldDrawTargetEntity", v) == true or v.DrawTargetID)) then
 			local target = 0
