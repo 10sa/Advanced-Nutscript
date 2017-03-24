@@ -56,7 +56,7 @@ end
 
 BASE.functions = {}
 BASE.functions.Eat = {
-	text = PLUGIN:GetPluginLanguage("eat"),
+	text = nut.lang.Get("eat"),
 	icon = "icon16/cup.png",
 	run = function(itemTable, client, data, entity)
 		if (SERVER) then

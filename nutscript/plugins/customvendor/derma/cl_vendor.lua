@@ -141,14 +141,14 @@ local PANEL = {}
 				icon:SetSize(nut.config.iconSize * 0.8, nut.config.iconSize * 0.8);
 
 				local price = itemTable.price or 0
-				local cost = PLUGIN:GetPluginLanguage("item_price", nut.currency.GetName(price))
+				local cost = nut.lang.Get("item_price", nut.currency.GetName(price))
 
 				if (data[class] and data[class].price and data[class].price >= 0) then
 					price = data[class].price
 					if (price == 0) then
-						cost = PLUGIN:GetPluginLanguage("item_price", "무료");
+						cost = nut.lang.Get("item_price", "무료");
 					else
-						cost = PLUGIN:GetPluginLanguage("item_price", nut.currency.GetName(price))
+						cost = nut.lang.Get("item_price", nut.currency.GetName(price))
 					end;
 				end;
 
@@ -207,18 +207,18 @@ local PANEL = {}
 				icon:SetSize(nut.config.iconSize * 0.8, nut.config.iconSize * 0.8);
 
 				local price = itemTable.price or 0
-				local cost = PLUGIN:GetPluginLanguage("item_price", nut.currency.GetName(price))
+				local cost = nut.lang.Get("item_price", nut.currency.GetName(price))
 
 				if (data[class] and data[class].price and data[class].price >= 0) then
 					price = data[class].price
 					if (price == 0) then
-						cost = PLUGIN:GetPluginLanguage("item_price", "무료");
+						cost = nut.lang.Get("item_price", "무료");
 					else
-						cost = PLUGIN:GetPluginLanguage("item_price", nut.currency.GetName(math.Round(price * entity:GetNetVar("buyadjustment", .5))));
+						cost = nut.lang.Get("item_price", nut.currency.GetName(math.Round(price * entity:GetNetVar("buyadjustment", .5))));
 					end;
 				end
 
-				icon:SetToolTip(PLUGIN:GetPluginLanguage("item_info",itemTable.name, itemTable:GetDesc()).."\n"..cost)
+				icon:SetToolTip(nut.lang.Get("item_info",itemTable.name, itemTable:GetDesc()).."\n"..cost)
 				icon.DoClick = function(panel)
 					if (icon.disabled) then
 						return
@@ -412,7 +412,7 @@ local PANEL = {}
 		self.name = vgui.Create("DTextEntry", self.scroll);
 		self.name:Dock(TOP)
 		self.name:DockMargin(3, 3, 3, 3)
-		self.name:SetText(entity:GetNetVar("name", PLUGIN:GetPluginLanguage("no_desc")));
+		self.name:SetText(entity:GetNetVar("name", nut.lang.Get("no_desc")));
 		
 		local action = self.scroll:Add("DLabel")
 		action:SetText(PLUGIN:GetPluginLanguage("vd_admin_action"))
@@ -575,8 +575,8 @@ function PLUGIN:DrawTargetID(entity, x, y, alpha)
 		local mainColor = nut.config.mainColor
 		local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha)
 
-		nut.util.DrawText(x, y, entity:GetNetVar("name", PLUGIN:GetPluginLanguage("no_desc")), color, "AdvNut_EntityTitle");
+		nut.util.DrawText(x, y, entity:GetNetVar("name", nut.lang.Get("no_desc")), color, "AdvNut_EntityTitle");
 			y = y + nut.config.targetTall
-		nut.util.DrawText(x, y, entity:GetNetVar("desc", PLUGIN:GetPluginLanguage("no_desc")), Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
+		nut.util.DrawText(x, y, entity:GetNetVar("desc", nut.lang.Get("no_desc")), Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
 	end
 end
