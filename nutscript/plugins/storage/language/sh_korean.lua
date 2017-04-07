@@ -39,3 +39,6 @@ PLUGIN:AddPluginLanguage("sr_lock_unlocked", "이 저장고의 잠금을 해제�
 
 PLUGIN:AddPluginLanguage("sr_lock_locked", "이미 잠겨져 있는 저장고입니다.", language);
 PLUGIN:AddPluginLanguage("sr_notstorage", "잘못된 저장고입니다.", language);
+
+PLUGIN:AddPluginLanguage("storage", "저장", language);
+PLUGIN:AddPluginLanguage("storage_security", "저장고, 보안", language);

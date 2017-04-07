@@ -1,10 +1,12 @@
+local PLUGIN = PLUGIN;
+
 local PANEL = {}
 	function PANEL:Init()
 		local width = ScrW() * nut.config.menuWidth
 
 		self:SetSize(width, ScrH() * nut.config.menuHeight)
 		self:MakePopup()
-		self:SetTitle(PLUGIN:GetPluginLanguage("inventory"))
+		self:SetTitle(nut.lang.Get("inventory"))
 		self:Center()
 
 		self.list = self:Add("AdvNut_ScrollPanel")
@@ -51,7 +53,7 @@ local PANEL = {}
 		self.inv:SetDrawBackground(true)
 
 		self.invTitle = self.inv:Add("DLabel")
-		self.invTitle:SetText(PLUGIN:GetPluginLanguage("inventory"))
+		self.invTitle:SetText(nut.lang.Get("inventory"))
 		self.invTitle:DockMargin(3, 3, 3, 3)
 		self.invTitle:Dock(TOP)
 		self.invTitle:SetTextColor(Color(60, 60, 60))

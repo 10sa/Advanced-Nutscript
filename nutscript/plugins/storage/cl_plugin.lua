@@ -42,7 +42,7 @@ local storfuncs = {
 	},
 
 	open = {
-		name = PLUGIN:GetPluginLanguage("open"),
+		name = nut.lang.Get("open"),
 		tip = PLUGIN:GetPluginLanguage("sr_open_desc"),
 		cond = function(entity)
 			return true

@@ -32,9 +32,9 @@ function ENT:DrawTargetID(x, y, alpha)
 	local mainColor = nut.config.mainColor
 	local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha)
 
-	nut.util.DrawText(x, y, self:GetNetVar("name", PLUGIN:GetPluginLanguage("no_desc")), color, "AdvNut_EntityTitle");
+	nut.util.DrawText(x, y, self:GetNetVar("name", nut.lang.Get("no_desc")), color, "AdvNut_EntityTitle");
 	y = y + nut.config.targetTall
-	nut.util.DrawText(x, y, self:GetNetVar("desc", PLUGIN:GetPluginLanguage("no_desc")), Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
+	nut.util.DrawText(x, y, self:GetNetVar("desc", nut.lang.Get("no_desc")), Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
 end
 
 function ENT:SetAnim()

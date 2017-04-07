@@ -250,10 +250,8 @@ nut.lang.Add("setup_desc", "아이템을 설치합니다.", language);
 
 // Items, categorys
 nut.lang.Add("c_cooking", "요리", language);
-nut.lang.Add("storage", "저장", language);
 nut.lang.Add("food", "음식", language);
 nut.lang.Add("misc", "잡동사니", language);
-nut.lang.Add("storage_security", "저장고, 보안", language);
 nut.lang.Add("weapon", "무기", language);
 nut.lang.Add("alcohol", "주류", language);
 nut.lang.Add("ammo", "탄약", language);
