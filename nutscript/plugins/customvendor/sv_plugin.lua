@@ -55,7 +55,7 @@ function PLUGIN:SaveData()
 			money = v:GetNetVar("money", 100),
 				
 			name = v:GetNetVar("name", "설정되지 않음"),
-			desc = v:GetNetVar("desc", PLUGIN:GetPluginLanguage("no_desc")),
+			desc = v:GetNetVar("desc", nut.lang.Get("no_desc")),
 			model = v:GetModel()
 		}
 	end
