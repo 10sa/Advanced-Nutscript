@@ -41,18 +41,14 @@ local math_Clamp = math.Clamp
 function PLUGIN:Think()
 	
 	local curTime = CurTime()
-
 	if HUNGER_RATE < curTime then
 		for _, player in pairs( player.GetAll() ) do
-			local character = player.characterlocal hunger_curtime = 0;
-local thirst_curtime = 0;
+			local character = player.character;
+			local thirst_curtime = 0;
 
 			if character then
 				local hunger = character:GetVar("hunger", 0)
-				if(math.random(1, 50) <= 1) then
-					continue
-				end
-					
+				
 				character:SetVar("hunger", math_Clamp( hunger - math.random(1, 3), 0, HUNGER_MAX ))
 					
 				-------------------------------------------------------------------------------
@@ -76,10 +72,7 @@ local thirst_curtime = 0;
 
 			if character then
 				local thirst = character:GetVar("thirst", 0)
-				if(math.random(1, 50) <= 1) then
-					continue
-				end
-					
+				
 				character:SetVar("thirst", math.Clamp( thirst - math.random(1, 3), 0, THIRST_MAX ))
 				
 				-------------------------------------------------------------------------------
