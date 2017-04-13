@@ -8,3 +8,7 @@
 
 # Base Framework
  - https://github.com/Chessnut/NutScript/tree/1.0 - Nutscript 1.0
+
+# Licence Plus
+- This framework will ignore all Nutscript 1.0 licenses below, under the terms of the original author notation.
+- The above has been approved by Nutscript 1.0 developer "Black Tea".
