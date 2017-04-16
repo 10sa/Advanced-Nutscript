@@ -1,64 +1,64 @@
 ﻿local language = "english";
 
 // Global
-nut.lang.Add("return", "돌아가기", language);
-nut.lang.Add("unknow", "알 수 없음", language);
-nut.lang.Add("none", "없음", language);
-nut.lang.Add("no_desc", "설정되지 않음", language);
-nut.lang.Add("characters", "캐릭터", language);
-nut.lang.Add("timeout", "응답 시간이 만료되었습니다.", language);
-nut.lang.Add("disabled", "비활성화", language);
-nut.lang.Add("cancel", "취소", language);
-nut.lang.Add("wrong_value", "잘못된 값 입니다.", language);
-nut.lang.Add("faction", "팩션", language);
+nut.lang.Add("return", "Return", language);
+nut.lang.Add("unknow", "Unknown", language);
+nut.lang.Add("none", "None", language);
+nut.lang.Add("no_desc", "Not Initialized.", language);
+nut.lang.Add("characters", "Character", language);
+nut.lang.Add("timeout", "Timeout", language);
+nut.lang.Add("disabled", "Disabled", language);
+nut.lang.Add("cancel", "Cancel", language);
+nut.lang.Add("wrong_value", "Wrong Value.", language);
+nut.lang.Add("faction", "Faction", language);
 
 nut.lang.Add("nochar_talk_error", "캐릭터를 먼저 만들어야 합니다.", language);
 nut.lang.Add("return_tip", "게임으로 돌아갑니다.", language);
 
-nut.lang.Add("item_price", "가격: %s", language);
+nut.lang.Add("item_price", "Price : %s", language);
 nut.lang.Add("trace_not_player", "조준점이 플레이어를 바라보고 있지 않습니다.", language);
 
 // Framework
-nut.lang.Add("schema_author", "제작자: %s", language);
+nut.lang.Add("schema_author", "Author : %s", language);
 nut.lang.Add("based_framework", "NS 1.0 Base", language);
-nut.lang.Add("auto_refreshed", "넛스트립트가 수정 사항을 자동으로 서버에 적용했습니다.", language);
+nut.lang.Add("auto_refreshed", "Framework is Auto-Refreshed.", language);
 
-nut.lang.Add("loadingData", "로컬 플레이어 기다리는 중", language);
-nut.lang.Add("sendTime", "현재 시간 전송 중", language);
-nut.lang.Add("initchardata", "플레이어 데이터 초기화 중", language);
-nut.lang.Add("loadchar", "캐릭터 불러오는 중", language);
-nut.lang.Add("otherloadchar", "다른 플레이어의 캐릭터 불러오는 중", language);
-nut.lang.Add("charnetworking", "캐릭터 네트워킹...", language);
-nut.lang.Add("website", "서버 그룹", language);
+nut.lang.Add("loadingData", "Loading Data", language);
+nut.lang.Add("sendTime", "Sending Local Time", language);
+nut.lang.Add("initchardata", "Character Data Initializing", language);
+nut.lang.Add("loadchar", "Character Load", language);
+nut.lang.Add("otherloadchar", "Locading Other Player Character", language);
+nut.lang.Add("charnetworking", "Character Networking", language);
+nut.lang.Add("website", "Server Group", language);
 
-nut.lang.Add("unknown_player", "아직 모르는 사람", language);
-nut.lang.Add("spawning", "리스폰 중입니다...", language);
+nut.lang.Add("unknown_player", "Unknown Player", language);
+nut.lang.Add("spawning", "Respawning...", language);
 nut.lang.Add("tied", "묶인 상태에서는 할수 없습니다.", language);
 
-nut.lang.Add("string_request_ok", "확인", language);
-nut.lang.Add("string_request_cancel", "취소", language);
+nut.lang.Add("string_request_ok", "Ok", language);
+nut.lang.Add("string_request_cancel", "Cancel", language);
 
 nut.lang.Add("charMenuTitle", "Advanced Nutscript", language);
 nut.lang.Add("charMenuDesc", "Advanced Nutscript", language);
-nut.lang.Add("framework_version", "Advanced Nutscript Framework<br>프레임워크 버전 : %s\n<br>Developer : Tensa", language);
+nut.lang.Add("framework_version", "Advanced Nutscript Framework<br>Framework Version : %s\n<br>Developer : Tensa", language);
 
 // Title menu
-nut.lang.Add("load", "불러오기", language);
-nut.lang.Add("create", "생성하기", language);
-nut.lang.Add("leave", "나가기", language);
+nut.lang.Add("load", "Load", language);
+nut.lang.Add("create", "Create", language);
+nut.lang.Add("leave", "Leave", language);
 
 nut.lang.Add("leave_tip", "서버에서 나갑니다.", language);
 
 // Character create
-nut.lang.Add("name", "이름", language);
-nut.lang.Add("desc", "설명", language);
-nut.lang.Add("gender", "성별", language);
-nut.lang.Add("model", "모델", language);
-nut.lang.Add("attribs", "신체능력", language);
-nut.lang.Add("male", "남성", language);
-nut.lang.Add("female", "여성", language);
-nut.lang.Add("finish", "완료하기", language);
-nut.lang.Add("char_info", "이름: %s\n설명: %s\n팩션: %s", language);
+nut.lang.Add("name", "Name", language);
+nut.lang.Add("desc", "Desc", language);
+nut.lang.Add("gender", "Gender", language);
+nut.lang.Add("model", "Model", language);
+nut.lang.Add("attribs", "Attribs", language);
+nut.lang.Add("male", "Male", language);
+nut.lang.Add("female", "Female", language);
+nut.lang.Add("finish", "Finsih", language);
+nut.lang.Add("char_info", "Name: %s\nDesc: %s\nFaction: %s", language);
 
 nut.lang.Add("valid_name", "올바르지 않은 이름입니다.", language);
 nut.lang.Add("valid_desc", "올바르지 않은 설명입니다.", language);
