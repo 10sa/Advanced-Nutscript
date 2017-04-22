@@ -50,12 +50,12 @@ end
 function PLUGIN:KeyPress(client, key)
 	if (key == IN_USE) then
 		local entity = AdvNut.util.GetPlayerTraceEntity(client);
-		if (hook.Run("PlayerCanUseDoor", client, entity) == false) then
+		if (AdvNut.hook.Run("PlayerCanUseDoor", client, entity) == false) then
 			return;
 		end
 
 		if (IsValid(entity)) then
-			return hook.Run("PlayerUseDoor", client, entity);
+			return AdvNut.hook.Run("PlayerUseDoor", client, entity);
 		else
 			return;
 		end;

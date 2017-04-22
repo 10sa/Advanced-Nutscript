@@ -18,7 +18,7 @@ function PANEL:Init()
 	self.categories = {}
 	self.nextBuy = 0
 
-	local result = hook.Run("BusinessPrePopulateItems", self)
+	local result = AdvNut.hook.Run("BusinessPrePopulateItems", self)
 
 	if (result != false) then
 		local categories = {}
@@ -41,7 +41,7 @@ function PANEL:Init()
 					end
 				end
 
-				if (allowed and hook.Run("ShouldItemDisplay", itemTable) != false and !itemTable.noBusiness and (!itemTable.ShouldShowOnBusiness or (itemTable.ShouldShowOnBusiness and itemTable:ShouldShowOnBusiness(LocalPlayer()) != false))) then
+				if (allowed and AdvNut.hook.Run("ShouldItemDisplay", itemTable) != false and !itemTable.noBusiness and (!itemTable.ShouldShowOnBusiness or (itemTable.ShouldShowOnBusiness and itemTable:ShouldShowOnBusiness(LocalPlayer()) != false))) then
 					local category = itemTable.category
 					local category2 = string.lower(category)
 
@@ -94,7 +94,7 @@ function PANEL:Init()
 							end
 						category3:InvalidateLayout(true)
 
-						hook.Run("BusinessCategoryCreated", category3)
+						AdvNut.hook.Run("BusinessCategoryCreated", category3)
 
 						self.categories[category2] = {list = list, category = category3, panel = panel}
 					else
@@ -131,14 +131,14 @@ function PANEL:Init()
 							end)
 						end
 
-						hook.Run("BusinessItemCreated", itemTable, icon)			
+						AdvNut.hook.Run("BusinessItemCreated", itemTable, icon)			
 					end
 				end
 			end
 		end
 	end
 
-	hook.Run("BusinessPostPopulateItems", self)
+	AdvNut.hook.Run("BusinessPostPopulateItems", self)
 end
 
 function PANEL:Think()

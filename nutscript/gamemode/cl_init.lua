@@ -209,7 +209,7 @@ timer.Destroy("HintSystem_Annoy1")
 timer.Destroy("HintSystem_Annoy2")
 
 if (!nut.localPlayerValid) then
-	hook.Add("Think", "nut_WaitForLocalPlayer", function()
+	AdvNut.hook.Add("Think", "nut_WaitForLocalPlayer", function()
 		if (IsValid(LocalPlayer())) then
 			netstream.Start("nut_LocalPlayerValid")
 			hook.Remove("Think", "nut_WaitForLocalPlayer")

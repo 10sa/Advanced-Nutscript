@@ -1,3 +1,5 @@
+local PLUGIN = PLUGIN;
+
 nut.chat.Register("broadcast", {
 	onChat = function(speaker, text)
 		surface.PlaySound( "ambient/levels/prison/radio_random" .. math.random( 1, 9 ) ..".wav" )

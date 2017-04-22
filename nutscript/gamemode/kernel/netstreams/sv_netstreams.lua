@@ -1,6 +1,6 @@
 netstream.Hook("nut_LocalPlayerValid", function(client)
 	if (!client:GetNutVar("validated")) then
-		hook.Run("OnLocalPlayerValid", client)
+		AdvNut.hook.Run("OnLocalPlayerValid", client)
 		client:SetNutVar("validated", true)
 	end
 end)

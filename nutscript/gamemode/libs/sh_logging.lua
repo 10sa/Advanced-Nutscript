@@ -85,7 +85,7 @@ if SERVER then
 		end
 	*/
 
-	hook.Add("PlayerSay", "nut_ChatLogging", function(player, text)
+	AdvNut.hook.Add("PlayerSay", "nut_ChatLogging", function(player, text)
 		if nut.config.savechat then
 			nut.util.AddLog(Format("%s: %s", player:Name(), text), LOG_FILTER_CHAT, false)
 		else
@@ -93,7 +93,7 @@ if SERVER then
 		end
 	end)
 
-	hook.Add("ShutDown", "nut_SaveLog", function(player, text)
+	AdvNut.hook.Add("ShutDown", "nut_SaveLog", function(player, text)
 		nut.util.SaveLog()
 	end)
 else

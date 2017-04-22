@@ -195,7 +195,7 @@ if (CLIENT) then
 	-- visible.
 	nut.config.crossAlpha = 150
 	
-	hook.Add("SchemaInitialized", "nut_FontConfig", function()
+	AdvNut.hook.Add("SchemaInitialized", "nut_FontConfig", function()
 		surface.SetFont("nut_TargetFontSmall")
 
 		_, nut.config.targetTall = surface.GetTextSize("W")

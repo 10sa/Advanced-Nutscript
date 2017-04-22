@@ -28,7 +28,7 @@ function PLUGIN:PlayerStartSeq(client, sequence)
 		return
 	end
 
-	if (hook.Run("CanStartSeq", client) == false) then
+	if (AdvNut.hook.Run("CanStartSeq", client) == false) then
 		return
 	end
 

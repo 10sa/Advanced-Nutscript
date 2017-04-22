@@ -45,7 +45,7 @@ if (CLIENT) then
 	--]]
 	function nut.bar.Paint(x, y, width, height)
 		for k, v in pairs(nut.bar.buffer) do
-			if (hook.Run("HUDShouldPaintBar", k) != false and v.getValue) then
+			if (AdvNut.hook.Run("HUDShouldPaintBar", k) != false and v.getValue) then
 				local realValue = v.getValue()
 
 				v.deltaValue = math.Approach(v.deltaValue or 0, realValue, FrameTime() * 80)

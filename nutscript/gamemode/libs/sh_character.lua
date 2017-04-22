@@ -48,20 +48,6 @@ META.__index = META
 CHAR_PUBLIC = 1
 CHAR_PRIVATE = 2
 
-/* // DON'T USE THIS FUNCTION
-function META:GetDBTableValue(key, saveVarKey, isNewVar, state, isSave)
-	local client = self.player;
-	local schemaID = SCHEMA.uniqueID;
-	
-	nut.db.Query("SELECT "..key.." FROM "..nut.config.dbTable.." WHERE steamid = "..(client:SteamID64() or 0).." AND rpschema = '"..schemaID.."'", function(data)
-		if (isNewVar) then
-			self:NewVar(key, data, state, isSave);
-		else
-			self:SetVar(key, data);
-		end;
-	end);
-end;
-// END // */
 
 --[[
 	Purpose: Predefines a variable and places it in the correct table for type
@@ -295,7 +281,7 @@ function nut.char.New(client, send)
 		deltas = {}
 	}, META)
 
-	hook.Run("CreateCharVars", character)
+	AdvNut.hook.Run("CreateCharVars", character)
 
 	if (SERVER and send) then
 		character:Send(nil, nil, true)
@@ -567,7 +553,7 @@ if (SERVER) then
 			character:SetData("skin", skin)
 		end
 
-		hook.Run("CharacterSave", client)
+		AdvNut.hook.Run("CharacterSave", client)
 
 		local customClass = client:GetNetVar("customClass")
 
@@ -673,17 +659,23 @@ if (SERVER) then
 			self.buffer = nut.util.StackInv(self.buffer, class, quantity, data2)
 		end
 
-		hook.Run("GetDefaultInv", inventory, client, charData)
+		AdvNut.hook.Run("GetDefaultInv", inventory, client, charData)
+		
+		if (nut.faction.GetByID(charData.faction).defaultItem != nil && #nut.faction.GetByID(charData.faction).defaultItem > 1 && type(nut.faction.GetByID(charData.faction).defaultItem) == "table") then
+			for k, v in pairs(nut.faction.GetByID(charData.faction).defaultItem) do
+				inventory:Add(v[1], v[2], v[3]);
+			end
+		end
 
 		charData.inv = inventory.buffer
-		charData.money = hook.Run("GetDefaultMoney", client, charData)
+		charData.money = AdvNut.hook.Run("GetDefaultMoney", client, charData)
 
 		nut.char.Create(client, charData, function(id)
 			nut.char.SendInfo(client, id, function()
 				netstream.Start(client, "nut_CharCreateAuthed")
 			end)
 
-			hook.Run("PlayerCreatedChar", client, charData)
+			AdvNut.hook.Run("PlayerCreatedChar", client, charData)
 			
 			nut.util.AddLog("Created new character '"..name.."' for "..client:RealName()..".", LOG_FILTER_MAJOR)
 		end)
@@ -697,7 +689,7 @@ if (SERVER) then
 
 		if (client.character and client.character.index != index) then
 			nut.char.Save(client)
-			hook.Run("OnCharChanged", client)
+			AdvNut.hook.Run("OnCharChanged", client)
 		end
 
 		nut.char.LoadID(client, index, function(sameChar)
@@ -708,9 +700,9 @@ if (SERVER) then
 			netstream.Start(client, "nut_CharMenu", false)
 
 			if (!sameChar) then
-				hook.Run("PlayerLoadedChar", client)
+				AdvNut.hook.Run("PlayerLoadedChar", client)
 					client:Spawn()
-				hook.Run("PostPlayerSpawn", client)
+				AdvNut.hook.Run("PostPlayerSpawn", client)
 			end
 		end)
 	end)
@@ -724,7 +716,7 @@ if (SERVER) then
 		if (client.character and client:GetMoney() < nut.config.startingAmount) then
 			return false
 		end
-		
+
 		if (client.characters and table.HasValue(client.characters, index)) then
 			for k, v in pairs(client.characters) do
 				if (v == index) then
@@ -892,7 +884,7 @@ else
 		local id = tonumber(data[1])
 		local key = data[2]
 		local value = data[3]
-
+		
 		for k, v in pairs(LocalPlayer().characters) do
 			if (v.id == id) then
 				LocalPlayer().characters[k][key] = value

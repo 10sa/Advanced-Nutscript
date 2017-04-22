@@ -114,7 +114,7 @@ function GM:PostRenderVGUI()
 				draw.SimpleText(nut.loadingText[i], "nut_TargetFont", scrW * 0.5, scrH * 0.6 + (i * 36), Color(255, 255, 255, alpha2), 1, 1)
 			end
 
-			hook.Run("DrawLoadingScreen")
+			AdvNut.hook.Run("DrawLoadingScreen")
 
 			do return end
 		end
@@ -131,7 +131,7 @@ function GM:HUDPaint()
 	local health = client:Health();
 	
 	if (health < maxHealth and LocalPlayer().character) then
-		hook.Run("DrawPlayerDamageScreen", 1 - ((1 / maxHealth) * health));
+		AdvNut.hook.Run("DrawPlayerDamageScreen", 1 - ((1 / maxHealth) * health));
 	end;
 	
 	self:DrawVignette();
@@ -169,11 +169,11 @@ function GM:HUDPaint()
 	end
 
 	local entity = client:GetEyeTraceNoCursor().Entity
-	hook.Run("HUDPaintTargetID", entity)
+	AdvNut.hook.Run("HUDPaintTargetID", entity)
 
 	self.BaseClass:PaintWorldTips()
 
-	if (hook.Run("ShouldDrawCrosshair") != false and nut.config.crosshair) then
+	if (AdvNut.hook.Run("ShouldDrawCrosshair") != false and nut.config.crosshair) then
 		local x, y = scrW * 0.5 - 2, scrH * 0.5 - 2
 		local size = nut.config.crossSize or 1
 		local size2 = size + 2
@@ -203,7 +203,7 @@ function GM:HUDPaint()
 	y = nut.bar.Paint(x, y, BAR_WIDTH, BAR_HEIGHT)
 
 	nut.bar.PaintMain()
-	hook.Run("HUDPaintTopLayer");
+	AdvNut.hook.Run("HUDPaintTopLayer");
 end
 
 function GM:DrawPlayerDamageScreen(damageValue)
@@ -215,7 +215,7 @@ function GM:DrawPlayerDamageScreen(damageValue)
 end;
 
 function GM:DrawVignette()
-	if (hook.Run("IsCanDrawingVignette")) then
+	if (AdvNut.hook.Run("IsCanDrawingVignette")) then
 		for i=1, 3, 1 do
 			surface.SetDrawColor(Color(0, 0, 0, 225))
 			surface.SetMaterial(vignette)
@@ -322,7 +322,7 @@ function GM:HUDPaintTargetPlayer(client, x, y, alpha)
 		nut.util.DrawText(x, y - nut.config.targetTall, text, Color(255, 255, 255, alpha), "AdvNut_EntityTitle")
 	end
 
-	nut.util.DrawText(x, y, hook.Run("GetPlayerName", client), color, "AdvNut_EntityTitle");
+	nut.util.DrawText(x, y, AdvNut.hook.Run("GetPlayerName", client), color, "AdvNut_EntityTitle");
 	y = y + nut.config.targetTall
 	color = Color(255, 255, 255, alpha)
 
@@ -362,12 +362,12 @@ function GM:HUDPaintTargetID(entity)
 	local frameTime = FrameTime()
 	local targetIsValid = IsValid(entity)
 
-	if (targetIsValid and (!drawnEntities[entity] and entity != client and entity:IsPlayer() or hook.Run("ShouldDrawTargetEntity", entity) == true or entity.DrawTargetID)) then
+	if (targetIsValid and (!drawnEntities[entity] and entity != client and entity:IsPlayer() or AdvNut.hook.Run("ShouldDrawTargetEntity", entity) == true or entity.DrawTargetID)) then
 		drawnEntities[entity] = true
 	end
 
 	for v in pairs(drawnEntities) do
-		if (IsValid(v) and v != client and (v:IsPlayer() or hook.Run("ShouldDrawTargetEntity", v) == true or v.DrawTargetID)) then
+		if (IsValid(v) and v != client and (v:IsPlayer() or AdvNut.hook.Run("ShouldDrawTargetEntity", v) == true or v.DrawTargetID)) then
 			local target = 0
 			local inRange = false
 
@@ -401,7 +401,7 @@ function GM:HUDPaintTargetID(entity)
 				elseif (v.DrawTargetID) then
 					v:DrawTargetID(x, y, alpha)
 				else
-					local result = hook.Run("DrawTargetID", v, x, y, alpha)
+					local result = AdvNut.hook.Run("DrawTargetID", v, x, y, alpha)
 
 					if (!result) then
 						local client = entity:GetNetVar("player")
@@ -522,7 +522,7 @@ function GM:RenderScreenspaceEffects()
 	color["$pp_colour_mulg"] = 0
 	color["$pp_colour_mulb"] = 0
 
-	hook.Run("ModifyColorCorrection", color)
+	AdvNut.hook.Run("ModifyColorCorrection", color)
 
 	DrawColorModify(color)
 	DrawBloom( 0.45, 0.4, 50, 5, 3, 2, 0.35, 0.3, 0.05 )
@@ -557,7 +557,7 @@ function GM:PlayerCanSeeBusiness()
 	return true
 end
 
-hook.Add("PlayerBindPress", "GettingUpKeyBinding", function(client, bind)
+AdvNut.hook.Add("PlayerBindPress", "GettingUpKeyBinding", function(client, bind)
 	if (!client:GetNetVar("gettingUp") and client:IsRagdolled() and string.find(bind, "+jump")) then
 		RunConsoleCommand("nut", "chargetup")
 	end

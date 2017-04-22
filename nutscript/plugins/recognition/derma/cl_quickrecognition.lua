@@ -5,7 +5,7 @@ function PANEL:Init()
 	AdvNut.util.DrawBackgroundBlur(self);
 	self:InitDermaMenu();
 	
-	hook.Add("VGUIMousePressed", PLUGIN:GetPluginIdentifier("QuickRecognitionMenuMousePressed", CLIENT), PANEL.VGUIMousePressed);
+	AdvNut.hook.Add("VGUIMousePressed", "QuickRecognitionMenuMousePressed", PANEL.VGUIMousePressed);
 end;
 
 function PANEL:InitDermaMenu()
@@ -66,11 +66,11 @@ vgui.Register("AdvNut_QuickRecognition", PANEL, "AdvNut_BaseForm");
 
 
 function PANEL:PlayerBindPress(bind, pressed)
-	if(bind == "gm_showteam" and hook.Run("PlayerCanOpenQuickRecognitionMenu")) then
+	if(bind == "gm_showteam" and AdvNut.hook.Run("PlayerCanOpenQuickRecognitionMenu")) then
 		nut.gui.QuickRecognition = vgui.Create("AdvNut_QuickRecognition");
 	end
 end;
-hook.Add("PlayerBindPress", PLUGIN:GetPluginIdentifier("QuickRecognitionMenu", CLIENT), PANEL.PlayerBindPress);
+AdvNut.hook.Add("PlayerBindPress", PLUGIN:GetPluginIdentifier("QuickRecognitionMenu", CLIENT), PANEL.PlayerBindPress);
 
 
 function PLUGIN:PlayerCanOpenQuickRecognitionMenu()

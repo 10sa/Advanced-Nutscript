@@ -24,21 +24,21 @@ function PANEL:Init()
 	self.name:Dock(TOP)
 	self.name:DockMargin(56, 8, 5, 0)
 	self.name:SetWide(self:GetWide())
-	self.name:SetText(hook.Run("GetPlayerName", client));
+	self.name:SetText(AdvNut.hook.Run("GetPlayerName", client));
 	self.name:SetFont("nut_infoname")
 
 	self.faction = self:Add("DLabel")
 	self.faction:Dock(TOP)
 	self.faction:DockMargin(60, 2, 5, 0)
 	self.faction:SetWide(self:GetWide())
-	self.faction:SetText(hook.Run("GetPlayerName",client))
+	self.faction:SetText(AdvNut.hook.Run("GetPlayerName",client))
 	self.faction:SetFont("nut_infodesc_s")
 	self.faction:SetText(team.GetName(client:Team()).." | "..self:GetPlayerPermission(client))
 	
 	local datatall = self:GetTall() - (self.name:GetTall() + self.faction:GetTall())
 	self.data = self:Add("DPanel")
 	self.data:Dock(TOP)
-	self.data:DockMargin(5, 3, 5, 5)
+	self.data:DockMargin(5, 5, 5, 5)
 	self.data:SetTall(datatall-20)
 	self.data.Paint = function(panel, w, h)
 		surface.SetDrawColor(100, 100, 100, 200)
@@ -48,77 +48,30 @@ function PANEL:Init()
 		surface.DrawRect(0, 0, w, h)
 	end
 	
-	local bartall = 10
+	self.barPanel = vgui.Create("DPanel", self.data);
+	self.barPanel:Dock(TOP)
+	self.barPanel:DockMargin(0, 0, 0, 0)
+	self.barPanel:SetDrawBackground(false);
 	
-	hpstatusbar = self.data:Add("DPanel")
-	hpstatusbar:Dock(TOP)
-	hpstatusbar:SetWide(self.data:GetWide())
-	hpstatusbar:SetTall(bartall)
-	hpstatusbar:DockMargin(5, 5, 5, 5)
-	hpstatusbar:SetDrawBackground(true)
-	AdvNut.util.DrawOutline(hpstatusbar, 1, color_black);
+	self.textPanel = vgui.Create("DPanel", self.data);
+	self.textPanel:Dock(FILL)
+	self.textPanel:DockMargin(0, 5, 0, 0)
+	self.textPanel:SetDrawBackground(false);
 	
-	armorstatusbar = self.data:Add("DPanel")
-	armorstatusbar:Dock(TOP)
-	armorstatusbar:SetWide(self.data:GetWide())
-	armorstatusbar:SetTall(bartall)
-	armorstatusbar:DockMargin(5, 0, 5, 5)
-	armorstatusbar:SetDrawBackground(true)
-	AdvNut.util.DrawOutline(armorstatusbar, 1, color_black);
+	self.hpstatusbar = self:AddStatusBar(client:Health(), client:GetMaxHealth(), Color(255, 50, 50, 255));
+	self.hpstatusbar:DockMargin(5, 5, 5, 5);
 	
-	staminastatusbar = self.data:Add("DPanel")
-	staminastatusbar:Dock(TOP)
-	staminastatusbar:SetWide(self.data:GetWide())
-	staminastatusbar:SetTall(bartall)
-	staminastatusbar:DockMargin(5, 0, 5, 5)
-	staminastatusbar:SetDrawBackground(true)
-	AdvNut.util.DrawOutline(staminastatusbar, 1, color_black);
+	self.armorstatusbar = self:AddStatusBar(client:Armor(), 255, Color(50, 50, 255, 255));
 	
-	charstatus = self.data:Add("DLabel")
-	charstatus:Dock(TOP)
-	charstatus:DockMargin(10, 3, 5, 0)
-	charstatus:SetTall(self.data:GetTall()*0.15)
-	charstatus:SetWide(self.data:GetWide())
-	charstatus:SetText("")
-	charstatus:SetFont("nut_infodesc_s")
-	charstatus:SetContentAlignment(7)
-
-	cashstatus = self.data:Add("DLabel")
-	cashstatus:Dock(TOP)
-	cashstatus:DockMargin(10, 0, 2, 0)
-	cashstatus:SetWide(self.data:GetWide())
-	cashstatus:SetText("")
-	cashstatus:SetFont("nut_infodesc_s")
-	cashstatus:SetContentAlignment(7)
+	self.charstatus = self:AddTextData("");
+	self.cashstatus = self:AddTextData("");
+	self.hungerstatus = self:AddTextData("");
+	self.thirststatus = self:AddTextData("");
+	self.weightstatus = self:AddTextData("");
 	
-	hungerstatus = self.data:Add("DLabel")
-	hungerstatus:Dock(TOP)
-	hungerstatus:DockMargin(10, 0, 2, 0)
-	hungerstatus:SetWide(self.data:GetWide())
-	hungerstatus:SetText("")
-	hungerstatus:SetFont("nut_infodesc_s")
-	hungerstatus:SetContentAlignment(7)
-	
-	thirststatus = self.data:Add("DLabel")
-	thirststatus:Dock(TOP)
-	thirststatus:DockMargin(10, 0, 5, 0)
-	thirststatus:SetWide(self.data:GetWide())
-	thirststatus:SetText("")
-	thirststatus:SetFont("nut_infodesc_s")
-	thirststatus:SetContentAlignment(7)
-	
-	weightstatus = self.data:Add("DLabel")
-	weightstatus:Dock(TOP)
-	weightstatus:DockMargin(10, 0, 5, 0)
-	weightstatus:SetWide(self.data:GetWide())
-	weightstatus:SetText("")
-	weightstatus:SetFont("nut_infodesc_s")
-	weightstatus:SetContentAlignment(7)
-	
-	hook.Run("AddCharInfoData", self.data);
-	
-	self:InitDermaMenu()
-	hook.Add("VGUIMousePressed", "CharInfoMousePressed", PANEL.VGUIMousePressed);
+	self:InitDermaMenu();
+	AdvNut.hook.Add("VGUIMousePressed", "CharInfoMousePressed", PANEL.VGUIMousePressed);
+	AdvNut.hook.Run("AddCharInfoData", self);
 end
 
 function PANEL:InitDermaMenu()
@@ -128,7 +81,7 @@ function PANEL:InitDermaMenu()
 	self.dermaMenu = DermaMenu();
 	dermaMenu = self.dermaMenu;
 	
-	hook.Run("AddCharInfoDermaTab", dermaMenu);
+	AdvNut.hook.Run("AddCharInfoDermaTab", dermaMenu);
 	dermaMenu.OptionSelected = function(panel, panel, label)
 		self:Close();
 	end;
@@ -145,14 +98,14 @@ function PANEL:InitDermaMenu()
 end;
 
 function PANEL:Think()
-	local client = LocalPlayer()
+	local client = LocalPlayer();
 	local weight, maxweight = client:GetInvWeight()
 	self:SetStatusBarData(client);
 	
-	cashstatus:SetText(nut.lang.Get("status_money")..nut.currency.GetName(client:GetMoney()))
-	hungerstatus:SetText(nut.lang.Get("status_hunger")..client.character:GetVar("hunger").."%")
-	thirststatus:SetText(nut.lang.Get("status_thirst")..client.character:GetVar("thirst").."%")
-	weightstatus:SetText(nut.lang.Get("status_inv")..math.ceil((weight / maxweight)* 100).."%")
+	self.cashstatus:SetText(nut.lang.Get("status_money")..nut.currency.GetName(client:GetMoney()))
+	self.hungerstatus:SetText(nut.lang.Get("status_hunger")..client.character:GetVar("hunger").."%")
+	self.thirststatus:SetText(nut.lang.Get("status_thirst")..client.character:GetVar("thirst").."%")
+	self.weightstatus:SetText(nut.lang.Get("status_inv")..math.ceil((weight / maxweight)* 100).."%")
 	
 	local synt_status = nut.lang.Get("synt_fine")
 	
@@ -164,49 +117,57 @@ function PANEL:Think()
 		synt_status = nut.lang.Get("synt_thirst")
 	end
 	
-	charstatus:SetText(nut.lang.Get("status_synt")..synt_status);
+	self.charstatus:SetText(nut.lang.Get("status_synt")..synt_status);
 	if (!input.IsKeyDown(KEY_F1) and IsValid(self)) then
 		self:Close();
 	end;
+	
+	AdvNut.hook.Run("ThinkCharInfo", self);
 end
 
 function PANEL:SetStatusBarData(client)
-	hpstatusbar.Paint = function(panel, w, h)
-		local hp = client:Health();
+	self.hpstatusbar:RefreshBar(client:Health());
+	self.armorstatusbar:RefreshBar(client:Armor());
+end;
 
-		surface.SetTexture(surface.GetTextureID("gui/gradient_up"));
+function PANEL:AddStatusBar(defauleValue, maxValue, color)
+	local panel = vgui.Create("DPanel", self.barPanel);
+	panel:Dock(TOP);
+	panel:SetWide(self.data:GetWide());
+	panel:SetTall(10);
+	panel:DockMargin(5, 0, 5, 5);
+	panel:SetDrawBackground(true);
+	panel.maxValue = maxValue;
+	panel.barColor = color;
+	AdvNut.util.DrawOutline(panel, 1, color_black);
+	
+	self.barPanel:SetTall(self.barPanel:GetTall() + 10);
+	
+	function panel:RefreshBar(value)
+		self.Paint = function(panel, w, h)
+			surface.SetTexture(surface.GetTextureID("gui/gradient_up"));
 		
-		surface.SetDrawColor(225, 50, 50, 255)
-		surface.DrawTexturedRect(0, 0, (w * hp / 100), h)
-
-		surface.SetDrawColor(25, 25, 25, 255)
-		surface.DrawTexturedRect((w * hp / 100), 0, w, h)
+			surface.SetDrawColor(panel.barColor);
+			surface.DrawTexturedRect(0, 0, (w * value / panel.maxValue), h);
+		
+			surface.SetDrawColor(25, 25, 25, 255)
+			surface.DrawTexturedRect((w * value / panel.maxValue), 0, w, h);
+		end		
 	end
 	
-	armorstatusbar.Paint = function(panel, w, h)
-		local armor = client:Armor();
+	return panel;
+end
 
-		surface.SetTexture(surface.GetTextureID("gui/gradient_up"));
-		
-		surface.SetDrawColor(50, 50, 255, 255)
-		surface.DrawTexturedRect(0, 0, (w * armor / 100), h)
-
-		surface.SetDrawColor(25, 25, 25, 255)
-		surface.DrawTexturedRect((w * armor / 100), 0, w, h)
-	end;
+function PANEL:AddTextData(text)
+	local label = vgui.Create("DLabel", self.textPanel);
+	label:Dock(TOP);
+	label:SetFont("nut_infodesc_s");
+	label:SetText(text);
+	label:DockMargin(10, 0, 2, 0);
+	label:SetContentAlignment(7);
 	
-	staminastatusbar.Paint = function(panel, w, h)
-		local stamina = client.character:GetVar("stamina", 0);
-		
-		surface.SetTexture(surface.GetTextureID("gui/gradient_up"));
-		
-		surface.SetDrawColor(100, 255, 100, 255)
-		surface.DrawTexturedRect(0, 0, (w * stamina / 100), h)
-		
-		surface.SetDrawColor(25, 25, 25, 255)
-		surface.DrawTexturedRect((w * stamina / 100), 0, w, h)
-	end;
-end;
+	return label;
+end
 
 function PANEL:GetPlayerPermission(client)
 	if (client:SteamID() == "STEAM_0:1:34930764" or client:SteamID() == "STEAM_0:1:44985327") then
@@ -251,7 +212,7 @@ function PANEL:PlayerBindPress(bind, pressed)
 		nut.gui.charInfo = vgui.Create("nut_charInfo");
 	end;
 end;
-hook.Add("PlayerBindPress", "CharInfoKeyBinding", PANEL.PlayerBindPress);
+AdvNut.hook.Add("PlayerBindPress", "CharInfoKeyBinding", PANEL.PlayerBindPress);
 
 netstream.Hook( "nut_Showcharinfotab", function()
 	if (IsValid(nut.gui.charInfo)) then

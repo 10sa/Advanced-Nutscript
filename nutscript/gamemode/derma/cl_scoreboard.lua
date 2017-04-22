@@ -134,7 +134,7 @@ function PANEL:Init()
 end
 
 function PANEL:SetPlayer(client)
-	local recognized = hook.Run("IsPlayerRecognized", client)
+	local recognized = AdvNut.hook.Run("IsPlayerRecognized", client)
 	local name = ""
 	local description = client.character:GetVar("description")
 	local model = ""
@@ -142,7 +142,7 @@ function PANEL:SetPlayer(client)
 	if (recognized) then
 		self.model = vgui.Create("SpawnIcon", self);
 		self.model:SetModel(client:GetModel(), client:GetSkin());
-		name = hook.Run("GetPlayerName", client, "scoreboard");
+		name = AdvNut.hook.Run("GetPlayerName", client, "scoreboard");
 	else
 		self.model = vgui.Create("DImageButton", self);
 		self.model.Paint = function(client, w, h)
@@ -151,7 +151,7 @@ function PANEL:SetPlayer(client)
 		end;
 		
 		self.model:SetImage("nutscript/logo.png");
-		name = hook.Run("GetUnknownPlayerName", client) or nut.lang.Get("unknown_player");
+		name = AdvNut.hook.Run("GetUnknownPlayerName", client) or nut.lang.Get("unknown_player");
 	end
 	
 	self.name:SetText(name)
@@ -245,7 +245,7 @@ function PANEL:SetPlayer(client)
 				end);
 			end);
 		
-			hook.Run("AddScoreboardModelMenu", menu);
+			AdvNut.hook.Run("AddScoreboardModelMenu", menu);
 			menu:Open();
 		end;
 	end;

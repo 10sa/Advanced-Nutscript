@@ -172,7 +172,7 @@ if (SERVER) then
 		return target
 	end
 else
-	hook.Add("BuildHelpOptions", "nut_CommandHelp", function(data, tree)
+	AdvNut.hook.Add("BuildHelpOptions", "nut_CommandHelp", function(data, tree)
 		local categories = {}
 		local contents = {}
 

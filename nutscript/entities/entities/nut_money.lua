@@ -21,7 +21,7 @@ if (SERVER) then
 			physObj:Wake()
 		end
 
-		hook.Run("MoneyEntityCreated", self)
+		AdvNut.hook.Run("MoneyEntityCreated", self)
 	end
 
 	function ENT:SetMoney(amount)
@@ -35,7 +35,7 @@ if (SERVER) then
 	function ENT:Use(activator)
 		local amount = self:GetNetVar("amount", 0)
 
-		if (amount > 0 and IsValid(activator) and activator.character and hook.Run("PlayerCanPickupMoney", activator, self) != false) then
+		if (amount > 0 and IsValid(activator) and activator.character and AdvNut.hook.Run("PlayerCanPickupMoney", activator, self) != false) then
 			if (self.owner == activator and self.charindex != activator.character.index) then
 				nut.util.Notify("You can't pick up your other character's money.", activator)
 

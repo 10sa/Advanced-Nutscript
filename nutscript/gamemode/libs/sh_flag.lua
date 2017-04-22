@@ -31,7 +31,7 @@ if (SERVER) then
 		end
 	end
 else
-	hook.Add("BuildHelpOptions", "nut_FlagHelp", function(data)
+	AdvNut.hook.Add("BuildHelpOptions", "nut_FlagHelp", function(data)
 		data:AddHelp("플레그", function()
 			local html = ""
 

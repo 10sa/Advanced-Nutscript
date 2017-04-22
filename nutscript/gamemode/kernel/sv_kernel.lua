@@ -4,7 +4,7 @@ function GM:PlayerInitialSpawn(client)
 	client:SetNoDraw(true)
 
 	if (client:IsBot()) then
-		hook.Run("OnLocalPlayerValid", client)
+		AdvNut.hook.Run("OnLocalPlayerValid", client)
 	else
 		netstream.Start(client, "nut_LoadingData", nut.lang.Get("loadingData"))
 	end
@@ -107,7 +107,7 @@ function GM:PlayerLoadedChar(client)
 	end
 
 	if (!client:GetNutVar("sawCredits")) then
-		hook.Run("PlayerFirstLoaded", client)
+		AdvNut.hook.Run("PlayerFirstLoaded", client)
 		client:SetNutVar("sawCredits", true)
 
 		nut.util.SendIntroFade(client)
@@ -125,7 +125,7 @@ function GM:PlayerLoadedChar(client)
 			end)
 		end)
 		
-		hook.Run("PlayerCharacterLoaded", client, client.character);
+		AdvNut.hook.Run("PlayerCharacterLoaded", client, client.character);
 	end
 end
 
@@ -169,7 +169,7 @@ function GM:PlayerSpawn(client)
 		end;
 	end;
 
-	hook.Run("PlayerLoadout", client)
+	AdvNut.hook.Run("PlayerLoadout", client)
 	
 	nut.flag.OnSpawn(client)
 	nut.attribs.OnSpawn(client)
@@ -223,7 +223,7 @@ function GM:ShutDown()
 	end
 
 	self:SaveTime()
-	hook.Run("SaveData")
+	AdvNut.hook.Run("SaveData")
 end
 
 function GM:PlayerSay(client, text, public)
@@ -311,7 +311,7 @@ function GM:RemoveEntitiesByClass(class)
 end
 
 function GM:InitPostEntity()
-	hook.Run("LoadData")
+	AdvNut.hook.Run("LoadData")
 
 	if (nut.config.clearMaps) then
 		self:RemoveEntitiesByClass("item_healthcharger")
@@ -337,7 +337,7 @@ end
 
 function GM:PlayerDeath(victim, weapon, attacker)
 	local time = CurTime() + nut.config.deathTime
-	time = hook.Run("PlayerGetDeathTime", client, time) or time
+	time = AdvNut.hook.Run("PlayerGetDeathTime", client, time) or time
 
 	
 	victim:SetNutVar("deathTime", time)
@@ -364,7 +364,7 @@ function GM:PlayerHurt(client, attacker, health, damage)
 		return true
 	end
 
-	client:EmitSound(hook.Run("PlayerPainSound", client) or "vo/npc/"..client:GetGender().."01/pain0"..math.random(1, 6)..".wav")
+	client:EmitSound(AdvNut.hook.Run("PlayerPainSound", client) or "vo/npc/"..client:GetGender().."01/pain0"..math.random(1, 6)..".wav")
 
 	return true
 end
@@ -441,7 +441,7 @@ function GM:KeyPress(client, key)
 		end
 
 		if (entity:IsPlayer()) then
-			return hook.Run("PlayerInteract", client, entity)
+			return AdvNut.hook.Run("PlayerInteract", client, entity)
 		end
 	elseif (config.holdReloadToToggle and key == IN_RELOAD) then
 		timer.Create("nut_ToggleTime"..client:UniqueID(), config.holdReloadTime, 1, function()

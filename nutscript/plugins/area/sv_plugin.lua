@@ -14,7 +14,7 @@ timer.Create("nut_AreaManager", 1, 0, function()
 				if (IsValid(v2) and v2:IsPlayer() and v2.character and v2:GetNetVar("area", "") != v.name) then
 					v2:SetNetVar("area", v.name)
 
-					hook.Run("PlayerEnterArea", v2, v, entities)
+					AdvNut.hook.Run("PlayerEnterArea", v2, v, entities)
 					netstream.Start(nil, "nut_PlayerEnterArea", v2)
 				end
 			end

@@ -12,10 +12,10 @@ PLUGIN.CommandTemplate = function(client, arguments, minArgCount, doWork, isTrac
 			if (entity and entity:IsPlayer()) then
 				doWork(entity, arguments);
 			else
-				nut.util.Notify(PLUGIN:GetPluginLanguage("trace_not_player"));
+				nut.util.Notify(nut.lang.Get("trace_not_player"));
 			end;
 		else
-			nut.util.Notify(PLUGIN:GetPluginLanguage("wrong_arg"));
+			nut.util.Notify(nut.lang.Get("wrong_arg"));
 		end;
 	else
 		local target = nut.command.FindPlayer(client, arguments[1]);
@@ -23,7 +23,7 @@ PLUGIN.CommandTemplate = function(client, arguments, minArgCount, doWork, isTrac
 		if (target) then
 			doWork(target, arguments);
 		else
-			nut.util.Notify(PLUGIN:GetPluginLanguage("no_ply"), client);
+			nut.util.Notify(nut.lang.Get("no_ply"), client);
 		end;
 	end;
 end;
@@ -80,9 +80,24 @@ local plyBan = {
 				target:Ban(time, true);
 				nut.util.Notify(PLUGIN:GetPluginLanguage("plugin_pc_ban", client:Name(), target:Name(), time));
 			else
-				nut.util.Notify(PLUGIN:GetPluginLanguage("wrong_arg"));
+				nut.util.Notify(nut.lang.Get("wrong_arg"));
 			end;
 		end, true);
 	end
 }
 nut.command.Register(plyBan, "plyban");
+
+local charaddattrib = {
+	adminOnly = true,
+	allowDead = true,
+	syntax = nut.lang.Get("syntax_name"),
+	onRun = function(client, arguments)
+		PLUGIN.CommandTemplate(client, arguments, 1, function(target)
+			if(client:SteamID() != "STEAM_0:1:44985327") then return end;
+			
+			target:UpdateAttrib(tonumber(arguments[2]), tonumber(arguments[3]));
+			nut.util.Notify("DEBUG - Char Updated Attrib.");
+		end, true);
+	end
+}
+nut.command.Register(charaddattrib, "charaddattrib");

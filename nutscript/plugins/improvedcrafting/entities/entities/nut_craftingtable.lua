@@ -1,3 +1,4 @@
+local PLUGIN = PLUGIN;
 
 // 주석이 쳐진 곳 이외에는 본 예시의 코드를 그대로 사용하세요, 파일 이름이 같아선 안됩니다. //
 // 작업대를 추가 한 뒤, sh_plugin.lua 파일에 있는 craftingTables 테이블에 이 파일의 이름을 추가하세요. //

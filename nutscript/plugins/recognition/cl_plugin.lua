@@ -17,8 +17,8 @@ end
 local DESC_LENGTH = 37
 
 function PLUGIN:GetPlayerName(client, mode, text)
-	if (client != LocalPlayer() and !hook.Run("IsPlayerRecognized", client)) then
-		// local fakeName = hook.Run("GetUnknownPlayerName", client)
+	if (client != LocalPlayer() and !AdvNut.hook.Run("IsPlayerRecognized", client)) then
+		// local fakeName = AdvNut.hook.Run("GetUnknownPlayerName", client)
 		// if (!fakeName) then
 			if (mode) then
 				local description = client.character:GetVar("description", "")

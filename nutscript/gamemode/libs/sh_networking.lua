@@ -15,7 +15,7 @@ if (SERVER) then
 		end
 	end
 
-	hook.Add("PlayerInitialSpawn", "nut_SyncVars", function(client)
+	AdvNut.hook.Add("PlayerInitialSpawn", "nut_SyncVars", function(client)
 		timer.Simple(5, function()
 			for k, v in pairs(ents.GetAll()) do
 				if (IsValid(v)) then
@@ -106,7 +106,7 @@ if (SERVER) then
 	end)
 	
 	-- Clean up player vars.
-	hook.Add("PlayerDisconnected", "cn_PlayerVarClean", function(client)
+	AdvNut.hook.Add("PlayerDisconnected", "cn_PlayerVarClean", function(client)
 		netstream.Start(nil, "nut_EntityVarClean", client:EntIndex())
 	end)
 else

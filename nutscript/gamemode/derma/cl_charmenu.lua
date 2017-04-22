@@ -253,14 +253,22 @@ function PANEL:Init()
 			end)
 		end
 
-		if (LocalPlayer().characters and table.Count(LocalPlayer().characters) > (LocalPlayer().character and 1 or 0)) then
+		local charAmount = table.Count(LocalPlayer().characters);
+		for k, v in pairs(LocalPlayer().characters) do
+			if (v.banned) then
+				charAmount = charAmount - 1;
+			end
+		end
+				
+		if (nut.lastCharIndex) then
+			charAmount = charAmount - 1;
+		end;
+		
+		print(charAmount);
+				
+		if (charAmount > 0) then
 			AddButton("load", function()
 				local charSelectCounter = 1;
-				local charAmount = table.Count(LocalPlayer().characters); 
-				
-				if (nut.lastCharIndex) then
-					charAmount = charAmount - 1;
-				end;
 				
 				self.leftButtonCount = 0;
 				self.rightButtonCount = 0;
@@ -272,13 +280,18 @@ function PANEL:Init()
 				self.charStage = {};
 				
 				for k, v in SortedPairsByMemberValue(LocalPlayer().characters, "id") do
+					PrintTable(v);
 					if (k != "__SortedIndex" and !v.banned and v.id != nut.lastCharIndex) then
 						local charSelect = vgui.Create("AdvNut_CharacterSelect", self);
 						local insertIndex = #self.charStage + 1;
 						charSelect:SetCharacter(k, function()
 							if (charSelectCounter <= charAmount) then
-								self.charStage[insertIndex - 1]:Next(charSelect);
-								charSelectCounter = charSelectCounter - 1;
+								if(self.charStage[insertIndex - 1] == nil) then
+									CreateMainButtons();
+								else
+									self.charStage[insertIndex - 1]:Next(charSelect);
+									charSelectCounter = charSelectCounter - 1;
+								end
 							else
 								CreateMainButtons();
 								topButtons:Remove();

@@ -27,7 +27,7 @@ BASE.functions.Equip = {
 			local newData = table.Copy(data)
 			newData.Equipped = true
 			client:UpdateInv(itemTable.uniqueID, 1, newData, true)
-			hook.Run("OnPartEquipped", client, itemTable, true)
+			AdvNut.hook.Run("OnPartEquipped", client, itemTable, true)
 		end
 	end,
 	shouldDisplay = function(itemTable, data, entity)
@@ -45,7 +45,7 @@ BASE.functions.Unequip = {
 			local newData = table.Copy(data)
 			newData.Equipped = false
 			client:UpdateInv(itemTable.uniqueID, 1, newData, true)
-			hook.Run("OnPartEquipped", client, itemTable, false)
+			AdvNut.hook.Run("OnPartEquipped", client, itemTable, false)
 			return true
 		end
 	end,
@@ -79,7 +79,7 @@ function BASE:CanTransfer(client, data)
 end
 
 if (SERVER) then
-	hook.Add("PlayerSpawn", "nut_PartBase", function(client)
+	AdvNut.hook.Add("PlayerSpawn", "nut_PartBase", function(client)
 		timer.Simple(0.1, function()
 			if (!IsValid(client) or !client.character) then
 				return

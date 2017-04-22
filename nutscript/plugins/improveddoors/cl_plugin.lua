@@ -179,7 +179,7 @@ function PLUGIN:PlayerBindPress(bind, pressed)
 		end
 	end;
 end
-hook.Add("PlayerBindPress", "DoorBindPress", PLUGIN.PlayerBindPress);
+AdvNut.hook.Add("PlayerBindPress", "DoorBindPress", PLUGIN.PlayerBindPress);
 
 function PLUGIN:PlayerCanOpenQuickRecognitionMenu()
 	local entity = AdvNut.util.GetPlayerTraceEntity(LocalPlayer());	

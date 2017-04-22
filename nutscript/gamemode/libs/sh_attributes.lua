@@ -90,13 +90,13 @@ do
 			if (attribute) then
 				local current = self.character:GetData("attrib_"..attribute.uniqueID, 0)
 
-				self.character:SetData("attrib_"..attribute.uniqueID, current + value)
+				self.character:SetData("attrib_"..attribute.uniqueID, math.Clamp(current + value, 0, ( attribute.limit or nut.config.maximumPoints )));
 				
 				if (attribute.setup) then
 					attribute.setup(self, math.Clamp( current + value, 0, ( attribute.limit or nut.config.maximumPoints ) ))
 				end
 
-				hook.Run("PlayerAttribUpdated", self, index, value, current + value)
+				AdvNut.hook.Run("PlayerAttribUpdated", self, index, value, current + value)
 			end
 		end
 	end

@@ -235,7 +235,7 @@ if (CLIENT) then
 					netstream.Start("nut_PlayerSay", string.sub(text, 1, nut.config.maxChatLength))
 					table.insert(nut.chat.history, text)
 
-					hook.Run("FinishChat")
+					AdvNut.hook.Run("FinishChat")
 				end
 
 				panel:SetText("")
@@ -270,10 +270,10 @@ if (CLIENT) then
 				panel:DrawTextEntryText(color_white, color, color_white)
 			end
 			entry.OnTextChanged = function(panel)
-				hook.Run("ChatTextChanged", panel:GetText())
+				AdvNut.hook.Run("ChatTextChanged", panel:GetText())
 			end
 
-			hook.Run("ChatOpened")
+			AdvNut.hook.Run("ChatOpened")
 
 			nut.chat.panel.entry = entry
 		end
@@ -328,7 +328,7 @@ else
 			client.nextTalk = CurTime() + 0.5
 
 			-- Hacky method of allowing large text.
-			hook.Run("PlayerSay", client, data, true)
+			AdvNut.hook.Run("PlayerSay", client, data, true)
 		end
 	end)
 end

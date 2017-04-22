@@ -32,5 +32,5 @@ netstream.Hook("nut_FadeIntro", function(data)
 	nut.fadeColorStart = CurTime() + nut.config.introFadeTime + 5;
 	nut.fadeColorFinish = CurTime() + nut.config.introFadeTime + 10;
 
-	hook.Run("DoSchemaIntro")
+	AdvNut.hook.Run("DoSchemaIntro")
 end)

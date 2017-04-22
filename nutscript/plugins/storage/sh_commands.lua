@@ -20,7 +20,7 @@ nut.command.Register({
 							entity.world = false
 						end
 					else
-						nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 1), client)	
+						nut.util.Notify(nut.lang.Get("missing_arg", 1), client)	
 						return
 					end
 				else

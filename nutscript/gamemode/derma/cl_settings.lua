@@ -24,7 +24,7 @@ function PANEL:Init()
 	self.category = {}
 	self.options = {}
 
-	hook.Run("AddSettingOptions", self)
+	AdvNut.hook.Run("AddSettingOptions", self)
 end
 
 function PANEL:AddCategory(name)

@@ -25,7 +25,7 @@ function PANEL:Init()
 		help[key].callback = callback
 	end
 
-	hook.Run("BuildHelpOptions", data, self.tree)
+	AdvNut.hook.Run("BuildHelpOptions", data, self.tree)
 
 	local prefix = [[
 		<head>

@@ -312,7 +312,7 @@ function nut.plugin.Get(uniqueID)
 end
 
 if (CLIENT) then
-	hook.Add("BuildHelpOptions", "nut_PluginHelp", function(data)
+	AdvNut.hook.Add("BuildHelpOptions", "nut_PluginHelp", function(data)
 		data:AddHelp("플러그인", function()
 			local html = ""
 

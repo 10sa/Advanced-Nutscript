@@ -24,7 +24,7 @@ nut.command.Register({
 	adminOnly = true,
 	onRun = function(client, arguments)
 		if #arguments < 2 then 
-			nut.util.Notify(PLUGIN:GetPluginLanguage("missing_arg", 2), client)
+			nut.util.Notify(nut.lang.Get("missing_arg", 2), client)
 			return
 		end
 		local gp = arguments[1] or ""

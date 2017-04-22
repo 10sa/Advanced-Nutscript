@@ -168,5 +168,5 @@ else
 
 
 	end
-	hook.Add( "PostPlayerDraw", "Nut_BlackTea_PartDrawer", DrawPlayerParts ) -- JVS, thanks for letting me know this awesome hook.
+	AdvNut.hook.Add( "PostPlayerDraw", "Nut_BlackTea_PartDrawer", DrawPlayerParts ) -- JVS, thanks for letting me know this awesome hook.
 end

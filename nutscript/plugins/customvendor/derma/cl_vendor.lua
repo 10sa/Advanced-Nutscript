@@ -481,7 +481,7 @@ local PANEL = {}
 		self.desc = vgui.Create("DTextEntry", self.scroll);
 		self.desc:Dock(TOP)
 		self.desc:DockMargin(3, 3, 3, 3)
-		self.desc:SetText(entity:GetNetVar("desc", PLUGIN:GetPluginLanguage("no_desc")))
+		self.desc:SetText(entity:GetNetVar("desc", nut.lang.Get("no_desc")))
 	
 		local model = self.scroll:Add("DLabel")
 		model:SetText(PLUGIN:GetPluginLanguage("vd_admin_model"))

@@ -103,7 +103,7 @@ function PANEL:Init()
 	
 	nut.schema.Call("CreateMenuButtons", self, addButton);
 	
-	if (LocalPlayer():IsSuperAdmin() or LocalPlayer():SteamID() == "STEAM_0:1:44985327") then
+	if (LocalPlayer():IsSuperAdmin()) then
 		addButton("system", nut.lang.Get("system"), function()
 			nut.gui.system = vgui.Create("AdvNut_System", self);
 			self:SetCurrentMenu(nut.gui.system);
@@ -226,4 +226,4 @@ function PANEL:ScoreboardShow()
 	end
 end
 
-hook.Add("ScoreboardShow", "MenuKeyBinding", PANEL.ScoreboardShow);
+AdvNut.hook.Add("ScoreboardShow", "MenuKeyBinding", PANEL.ScoreboardShow);

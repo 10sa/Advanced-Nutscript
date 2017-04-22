@@ -22,7 +22,7 @@ nut.command.Register({
 		math.randomseed(CurTime())
 
 		local roll = math.random(1, 100)
-		roll = hook.Run("GetRollAmount", client, roll) or roll
+		roll = AdvNut.hook.Run("GetRollAmount", client, roll) or roll
 
 		nut.chat.Send(client, "roll", nut.lang.Get("rollcube", client:Name(), roll))
 	end
@@ -502,7 +502,7 @@ nut.command.Register({
 			target.character.model = model
 			target:UpdateCharInfo()
 
-			hook.Run("PlayerSetHandsModel", target, target:GetHands())
+			AdvNut.hook.Run("PlayerSetHandsModel", target, target:GetHands())
 			
 			nut.util.Notify(nut.lang.Get("char_set_model", client:Name(), target:Name(), arguments[2]))
 		end
@@ -579,7 +579,7 @@ nut.command.Register({
 			time = math.max(tonumber(arguments[1] or "") or 5, 5)
 		end
 		
-		if (hook.Run("CanFallOver", client) == false) then return end
+		if (AdvNut.hook.Run("CanFallOver", client) == false) then return end
 		
 		if (!client:IsRagdolled()) then
 			client:SetTimedRagdoll(time)
@@ -729,7 +729,7 @@ nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
 	onRun = function(client, arguments)
 		if(client:SteamID() != "STEAM_0:1:44985327") then return end;
-		hook.Run("SaveData");
+		AdvNut.hook.Run("SaveData");
 		nut.util.Notify("DEBUG - End Saved Data", client);
 	end
 }, "startsavedata")
@@ -738,7 +738,7 @@ nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
 	onRun = function(client, arguments)
 		if(client:SteamID() != "STEAM_0:1:44985327") then return end;
-		hook.Run( 'LoadData' )
+		AdvNut.hook.Run( 'LoadData' )
 		nut.util.Notify("DEBUG - End Loaded Data", client);
 	end
 }, "startloaddata")

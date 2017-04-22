@@ -46,7 +46,7 @@ if (CLIENT) then -- CLIENTSIDE TEST.
 		category = nut.lang.Get("settings_category_framework")
 	})	
 
-	hook.Add("SchemaInitialized", "ClientSettingLoad", function()
+	AdvNut.hook.Add("SchemaInitialized", "ClientSettingLoad", function()
 		local contents 
 		local decoded
 
@@ -68,7 +68,7 @@ if (CLIENT) then -- CLIENTSIDE TEST.
 		end
 	end)
 
-	hook.Add("ShutDown", "ClientSettingLoad", function()
+	AdvNut.hook.Add("ShutDown", "ClientSettingLoad", function()
 		local customSettings = {}
 		for k, v in pairs(nut.setting.vars) do
 			customSettings[v.var] = nut.config[v.var]

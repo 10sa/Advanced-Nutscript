@@ -24,7 +24,7 @@ function PLAYER:Loadout()
 end
 
 function PLAYER:GetHandsModel()
-	local hands = hook.Run("PlayerGetHandsModel", self.Player)
+	local hands = AdvNut.hook.Run("PlayerGetHandsModel", self.Player)
 
 	if (hands) then
 		return hands
@@ -94,7 +94,7 @@ do
 			end
 		end
 
-		hook.Add("PlayerSwitchWeapon", "nut_AutoLower", function(client, oldWeapon, newWeapon)
+		AdvNut.hook.Add("PlayerSwitchWeapon", "nut_AutoLower", function(client, oldWeapon, newWeapon)
 			client:DrawViewModel(newWeapon.DrawViewModel != false)
 
 			if (!newWeapon.AlwaysRaised and !nut.config.alwaysRaised[newWeapon:GetClass()]) then
@@ -302,11 +302,11 @@ do
 			end
 		end
 
-		hook.Add("PlayerDeath", "nut_UnRagdoll", function(client)
+		AdvNut.hook.Add("PlayerDeath", "nut_UnRagdoll", function(client)
 			client:UnRagdoll(true)
 		end)
 
-		hook.Add("EntityTakeDamage", "nut_FallenOver", function(entity, damageInfo)
+		AdvNut.hook.Add("EntityTakeDamage", "nut_FallenOver", function(entity, damageInfo)
 			if (IsValid(entity.player) and (entity.grace or 0) < CurTime()) then
 				damageInfo:ScaleDamage(0.1);
 
@@ -322,7 +322,7 @@ do
 			end
 		end)
 	else
-		hook.Add("CalcView", "nut_RagdollView", function(client, origin, angles, fov)
+		AdvNut.hook.Add("CalcView", "nut_RagdollView", function(client, origin, angles, fov)
 			local ragdolled, entity = client:IsRagdolled()
 
 			if (ragdolled and IsValid(entity)) then

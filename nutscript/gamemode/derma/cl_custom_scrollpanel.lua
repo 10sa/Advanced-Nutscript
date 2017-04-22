@@ -5,7 +5,7 @@ function PANEL:Init()
 end;
 
 function PANEL:IsVisibleScrollBar()
-	if (!hook.Run("IsUsingScrollBar")) then
+	if (!AdvNut.hook.Run("IsUsingScrollBar")) then
 		local bar = self:GetVBar()
 		bar:SetAlpha(0);
 		bar:SetWide(0);

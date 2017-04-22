@@ -210,7 +210,7 @@ function nut.item.Register(itemTable, isBase)
 					client:EmitSound("physics/body/body_medium_impact_soft"..math.random(1, 3)..".wav")
 
 					local entity = nut.item.Spawn(position, client:EyeAngles(), itemTable, data, client)
-					hook.Run("OnItemDropped", client, itemTable, entity)
+					AdvNut.hook.Run("OnItemDropped", client, itemTable, entity)
 				end
 			end,
 			shouldDisplay = function(itemTable, data, entity)
@@ -226,7 +226,7 @@ function nut.item.Register(itemTable, isBase)
 					item.player:EmitSound("physics/body/body_medium_impact_soft"..math.random(5, 7)..".wav")
 					local client = item.player;
 					
-					local result = hook.Run("OnItemTaken", table.Copy(item))
+					local result = AdvNut.hook.Run("OnItemTaken", table.Copy(item))
 						if (result == nil) then
 							if (item.entity.owner == item.player and item.entity.charindex != item.player.character.index) then
 								nut.util.Notify(nut.lang.Get("item_pickup_samechar"), client)
@@ -254,7 +254,7 @@ function nut.item.Register(itemTable, isBase)
 				self.entity = entity
 				self.index = index
 
-				if (hook.Run("PlayerCanUseItem", client, self) == false) then
+				if (AdvNut.hook.Run("PlayerCanUseItem", client, self) == false) then
 					self.player = nil
 					self.itemData = nil
 					self.entity = nil
@@ -862,7 +862,7 @@ do
 
 			local data
 
-			data = hook.Run("GetBusinessItemData", client, itemTable, data)
+			data = AdvNut.hook.Run("GetBusinessItemData", client, itemTable, data)
 
 			if (itemTable.GetBusinessData) then
 				data = itemTable:GetBusinessData(client, data)
@@ -877,7 +877,7 @@ do
 				nut.util.Notify(nut.lang.Get("no_afford"), client)
 			end
 
-			hook.Run("PlayerBoughtItem", client, itemTable)
+			AdvNut.hook.Run("PlayerBoughtItem", client, itemTable)
 
 			if (itemTable.OnBought) then
 				itemTable:OnBought(client)

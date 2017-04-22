@@ -13,6 +13,31 @@ nut.Name = "Adv_Nutscript"
 nut.Author = "Tensa"
 NSFolderName = AdvNut.FolderName;
 
+AdvNut.hook = AdvNut.hook or {};
+function AdvNut.hook.Frame(hookIdentifier, doFunction)
+	if (CLIENT) then
+		doFunction(string.format("AdvNut.Client."..hookIdentifier));
+	elseif (SERVER) then
+		doFunction(string.format("AdvNut.Server."..hookIdentifier));
+	end;
+end;
+
+function AdvNut.hook.Add(event, hookIdentifier, doFunction)
+	AdvNut.hook.Frame(hookIdentifier, function(identifier)
+		hook.Add(event, identifier, doFunction);
+	end);
+end;
+
+function AdvNut.hook.Remove(event, hookIdentifier)
+	AdvNut.hook.Frame(hookIdentifier, function(identifier)
+		hook.Remove(hook, identifier);
+	end);
+end;
+
+function AdvNut.hook.Run(event, ...)
+	return hook.Run(event, ...);
+end;
+
 -- Include and send needed utility functions.
 include("sh_util.lua");
 AddCSLuaFile("sh_util.lua");
@@ -57,33 +82,6 @@ nut.util.IncludeDir("derma", true);
 
 // Load Cached Configs. //
 AdvNut.util.LoadCachedConfigs();
-
-AdvNut.hook = AdvNut.hook or {};
-function AdvNut.hook.Frame(hookIdentifier, doFunction)
-	if (CLIENT) then
-		doFunction(AdvNut.util.CreateIdentifier(hookIdentifier, CLIENT));
-	elseif (SERVER) then
-		doFunction(AdvNut.util.CreateIdentifier(hookIdentifier, SERVER));
-	else
-		Error("Wrong Hook Add.");
-	end;
-end;
-	
-function AdvNut.hook.Add(hook, hookIdentifier, doFunction)
-	AdvNut.hook.Frame(hookIdentifier, function(identifier)
-		hook.Add(hook, identifier, doFunction);
-	end);
-end;
-
-function AdvNut.hook.Remove(hook, hookIdentifier)
-	AdvNut.hook.Frame(hookIdentifier, function(identifier)
-		hook.Remove(hook, identifier);
-	end);
-end;
-
-function AdvNut.hook.Run(hook, data)
-	hook.Run(hook, data);
-end;
 
 -- Include commands.
 nut.util.Include("sh_commands.lua");

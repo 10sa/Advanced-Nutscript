@@ -37,7 +37,7 @@ function nut.schema.Init()
 	
 	nut.item.Load(SCHEMA.folderName.."/gamemode/schema")
 
-	hook.Run("SchemaInitialized")
+	AdvNut.hook.Run("SchemaInitialized")
 end
 
 --[[

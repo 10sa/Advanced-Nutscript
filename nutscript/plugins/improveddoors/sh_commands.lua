@@ -17,7 +17,7 @@ nut.command.Register({
 			local cost = nut.config.doorCost
 
 			if (!client:CanAfford(cost)) then
-				nut.util.Notify(PLUGIN:GetPluginLanguage("no_afford"), client)
+				nut.util.Notify(nut.lang.Get("no_afford"), client)
 
 				return
 			end

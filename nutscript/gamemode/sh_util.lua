@@ -5,7 +5,7 @@
 
 nut.util = {}
 
-hook.Add("EntityKeyValue", "nut_StoreKeyValues", function(entity, key, value)
+AdvNut.hook.Add("EntityKeyValue", "nut_StoreKeyValues", function(entity, key, value)
 	entity.nut_KeyValues = entity.nut_KeyValues or {}
 	entity.nut_KeyValues[key] = value
 end)
@@ -178,7 +178,7 @@ end
 
 if (SERVER) then
 	-- Create needed directories here since using file.Write will no longer autocreate directories.
-	hook.Add("SchemaInitialized", "nut_CreateFiles", function()
+	AdvNut.hook.Add("SchemaInitialized", "nut_CreateFiles", function()
 		file.CreateDir("AdvNutscript")
 		file.CreateDir("AdvNutscript/data")
 		file.CreateDir("AdvNutscript/"..SCHEMA.uniqueID)
@@ -296,7 +296,7 @@ if (SERVER) then
 		Purpose: Sends the schema's intro to the player.
 	--]]
 	function nut.util.SendIntroFade(client)
-		if (hook.Run("PlayerShouldSeeIntro", client) == false) then
+		if (AdvNut.hook.Run("PlayerShouldSeeIntro", client) == false) then
 			return
 		end
 
@@ -412,7 +412,7 @@ else
 		the console.
 	--]]
 	function nut.util.Notify(message)
-		if (hook.Run("NoticeShouldAppear", message) == false) then
+		if (AdvNut.hook.Run("NoticeShouldAppear", message) == false) then
 			return
 		end
 
@@ -435,14 +435,14 @@ else
 				v:MoveTo(ScrW() * 0.3, ScrH() - (k * 28), 0.35, 0, 0.25)
 			end
 
-			hook.Run("NoticeRemoved", notice)
+			AdvNut.hook.Run("NoticeRemoved", notice)
 		end)
 
 		table.insert(nut.notices, notice)
 
 		MsgC(Color(92, 232, 250), message.."\n")
 
-		hook.Run("NoticeCreated", notice)
+		AdvNut.hook.Run("NoticeCreated", notice)
 	end
 
 	--[[
@@ -538,7 +538,7 @@ else
 		end
 	end
 
-	hook.Add("InitPostEntity", "nut_TimeInitialize", function()
+	AdvNut.hook.Add("InitPostEntity", "nut_TimeInitialize", function()
 		nut.connectTime = RealTime()
 	end)
 
@@ -688,7 +688,7 @@ function nut.util.FindClosestPlayer(position)
 end
 
 if (SERVER) then
-	hook.Add("InitPostEntity", "nut_StartTime", function()
+	AdvNut.hook.Add("InitPostEntity", "nut_StartTime", function()
 		nut.initTime = RealTime()
 	end)
 end
@@ -799,7 +799,7 @@ else
 
 		nut.fadeColor = color
 
-		hook.Add("HUDPaint", "nut_FadeIn", function()
+		AdvNut.hook.Add("HUDPaint", "nut_FadeIn", function()
 			local fraction = math.TimeFraction(start, finish, CurTime())
 
 			surface.SetDrawColor(r, g, b, fraction * a)
@@ -816,7 +816,7 @@ else
 			local start = CurTime()
 			local finish = start + time
 
-			hook.Add("HUDPaint", "nut_FadeIn", function()
+			AdvNut.hook.Add("HUDPaint", "nut_FadeIn", function()
 				local fraction = 1 - math.TimeFraction(start, finish, CurTime())
 
 				if (fraction < 0) then

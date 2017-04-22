@@ -32,7 +32,7 @@ do
 						netstream.Start(self, "nut_WhitelistData", self.whitelists)
 					end
 
-					hook.Run("PlayerLoadedData", self)
+					AdvNut.hook.Run("PlayerLoadedData", self)
 				else
 					nut.db.InsertTable({
 						steamid = self:SteamID64() or 0,
@@ -139,24 +139,25 @@ end
 --]]
 function nut.faction.Register(index, uniqueID, faction)
 	if (!faction) then
-		error("Attempt to register faction without an actual faction table!")
+		error("Attempt to register faction without an actual faction table!");
 	end
 	
-	faction.uniqueID = uniqueID
+	faction.uniqueID = uniqueID;
 
 	if (faction.isDefault == nil) then
-		faction.isDefault = true
+		faction.isDefault = true;
 	end
 
-	faction.maxChars = faction.maxChars or 2
-	faction.maleModels = faction.maleModels or MALE_MODELS
-	faction.femaleModels = faction.femaleModels or FEMALE_MODELS
-	faction.pay = faction.pay or 0
-	faction.payTime = faction.payTime or 600
+	faction.maxChars = faction.maxChars or 2;
+	faction.maleModels = faction.maleModels or MALE_MODELS;
+	faction.femaleModels = faction.femaleModels or FEMALE_MODELS;
+	faction.pay = faction.pay or 0;
+	faction.payTime = faction.payTime or 600;
+	faction.defaultItem = faction.defaultItem;
 
-	team.SetUp(index, faction.name, faction.color)
+	team.SetUp(index, faction.name, faction.color);
 	
-	nut.faction.buffer[index] = faction
+	nut.faction.buffer[index] = faction;
 end
 
 --[[
@@ -189,7 +190,7 @@ if (SERVER) then
 				end
 				
 				if (faction.pay > 0 and nextPay < CurTime()) then
-					if (hook.Run("ShouldReceivePay", v) != false) then
+					if (AdvNut.hook.Run("ShouldReceivePay", v) != false) then
 						v:GiveMoney(faction.pay)
 
 						nut.util.Notify(nut.lang.Get("pay_received", nut.currency.GetName(faction.pay)), v)

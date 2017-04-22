@@ -8,7 +8,7 @@ function PANEL:Init()
 	self:SetDrawBackground(false)
 	self:MoveTo(ScrW() - width, 0, 0.25, 0, 0.125)
 
-	hook.Run("CreateSideMenu", self)
+	AdvNut.hook.Run("CreateSideMenu", self)
 end
 
 function PANEL:SlideOut()

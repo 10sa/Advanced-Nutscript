@@ -42,3 +42,4 @@ PLUGIN:AddPluginLanguage("sr_notstorage", "잘못된 저장고입니다.", langu
 
 PLUGIN:AddPluginLanguage("storage", "저장", language);
 PLUGIN:AddPluginLanguage("storage_security", "저장고, 보안", language);
+PLUGIN:AddPluginLanguage("storage_nospace", "저장소에 여유가 없습니다.", language);

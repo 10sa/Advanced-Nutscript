@@ -24,7 +24,7 @@ function GM:Initialize()
 		end
 	end
 
-	hook.Run("SetupAttributes")
+	AdvNut.hook.Run("SetupAttributes")
 end
 
 
@@ -42,8 +42,8 @@ function GM:OnReloaded()
 	end
    
 	timer.Simple(0.5, function()
-		hook.Run("SetupAttributes")
-		hook.Run("Refresh")
+		AdvNut.hook.Run("SetupAttributes")
+		AdvNut.hook.Run("Refresh")
 	end)
 end
 
@@ -56,7 +56,7 @@ function GM:SetupAttributes()
 		end);
    end
 
-   hook.Run("RegisterAttributes")
+   AdvNut.hook.Run("RegisterAttributes")
 end
 
 function GM:CreateCharVars(character)

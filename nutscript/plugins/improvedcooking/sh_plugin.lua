@@ -1,10 +1,10 @@
-PLUGIN.name = "개선된 요리 (Improved Cooking)"
-PLUGIN.author = "Tensa / Black Tea"
-PLUGIN.desc = "배고픔, 목마름과 요리를 추가해 줍니다."
+PLUGIN.name = "개선된 요리 (Improved Cooking)";
+PLUGIN.author = "Tensa / Black Tea";
+PLUGIN.desc = "배고픔, 목마름과 요리를 추가해 줍니다.";
 PLUGIN.base = true;
 
-PLUGIN.hungerSpeed = nut.config.hungerRestore
-PLUGIN.thirstSpeed = nut.config.thristRestore
+PLUGIN.hungerSpeed = nut.config.hungerRestore;
+PLUGIN.thirstSpeed = nut.config.thristRestore;
 PLUGIN.meActions = nut.config.statusMeActions;
 
 PLUGIN:IncludeDir("language");

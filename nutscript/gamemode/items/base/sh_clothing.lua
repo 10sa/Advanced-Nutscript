@@ -62,7 +62,7 @@ BASE.functions.Wear = {
 			client.character.model = model
 			client:SetModel(model)
 			
-			hook.Run("PlayerSetHandsModel", client, client:GetHands())
+			AdvNut.hook.Run("PlayerSetHandsModel", client, client:GetHands())
 
 			if (itemTable.OnWear) then
 				itemTable:OnWear(client, data)
@@ -72,7 +72,7 @@ BASE.functions.Wear = {
 			newData.Equipped = true
 
 			client:UpdateInv(itemTable.uniqueID, 1, newData, true)
-			hook.Run("OnClothEquipped", client, itemTable, true)
+			AdvNut.hook.Run("OnClothEquipped", client, itemTable, true)
 		end
 	end,
 	shouldDisplay = function(itemTable, data, entity)
@@ -91,14 +91,14 @@ BASE.functions.TakeOff = {
 				client.character.model = model
 				client:SetModel(model)
 
-				hook.Run("PlayerSetHandsModel", client, client:GetHands())
+				AdvNut.hook.Run("PlayerSetHandsModel", client, client:GetHands())
 			client.character:SetData("oldModel", nil, nil, true)
 
 			local newData = table.Copy(data)
 			newData.Equipped = false
 
 			client:UpdateInv(itemTable.uniqueID, 1, newData, true)
-			hook.Run("OnClothEquipped", client, itemTable, false)
+			AdvNut.hook.Run("OnClothEquipped", client, itemTable, false)
 
 			return true
 		end

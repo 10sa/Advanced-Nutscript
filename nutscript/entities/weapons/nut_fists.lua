@@ -147,7 +147,7 @@ function SWEP:PrimaryAttack()
 	timer.Simple(0.055, function()
 		if (IsValid(self) and IsValid(self.Owner)) then
 			local damage = self.Primary.Damage
-			local result = hook.Run("PlayerGetFistDamage", self.Owner, damage)
+			local result = AdvNut.hook.Run("PlayerGetFistDamage", self.Owner, damage)
 
 			if (result != nil) then
 				damage = result
@@ -176,7 +176,7 @@ function SWEP:PrimaryAttack()
 				end
 			end
 
-			hook.Run("PlayerThrowPunch", self.Owner, trace.Hit)
+			AdvNut.hook.Run("PlayerThrowPunch", self.Owner, trace.Hit)
 		end
 	end)
 end
@@ -232,7 +232,7 @@ function SWEP:SecondaryAttack()
 		end
 
 		if (string.find(entity:GetClass(), "door")) then
-			if (hook.Run("PlayerCanKnock", self.Owner, entity) == false) then
+			if (AdvNut.hook.Run("PlayerCanKnock", self.Owner, entity) == false) then
 				return
 			end
 

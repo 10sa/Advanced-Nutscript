@@ -121,7 +121,7 @@ function PANEL:SetCharacter(index, deleteCallback)
 		self.model:SetAlpha(banned and 50 or 255)
 		
 		self.delete.DoClick = function(panel)
-			LocalPlayer().characters[self.index] = nil;
+			LocalPlayer().characters[index] = nil;
 			
 			local orignalChoose = self.choose.DoClick;
 			local orignalDelete = self.delete.DoClick;

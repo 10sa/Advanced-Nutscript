@@ -25,7 +25,7 @@ if (string.lower(GetConVarString("gamemode")) == "nutscript") then
 				game.ConsoleCommand("gamemode "..v.."\n")
 				game.ConsoleCommand("bot\n")
 
-				hook.Add("Think", "nut_ChangeLevel", function()
+				AdvNut.hook.Add("Think", "nut_ChangeLevel", function()
 					MsgC(Color(255, 255, 0), "CHANGING MAP TO INITIALIZE THE '"..v.."' SCHEMA...\n")
 					game.ConsoleCommand("changelevel "..game.GetMap().."\n")
 				end)

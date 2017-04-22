@@ -36,7 +36,7 @@ function nut.chat.Register(class, structure)
 	end
 
 	structure.canSay = structure.canSay or function(speaker)
-		local result = hook.Run("ChatClassCanSay", class, structure, speaker)
+		local result = AdvNut.hook.Run("ChatClassCanSay", class, structure, speaker)
 
 		if (result != nil) then
 			return result
@@ -51,7 +51,7 @@ function nut.chat.Register(class, structure)
 		return true
 	end
 
-	hook.Run("ChatClassRegister", class, structure)
+	AdvNut.hook.Run("ChatClassRegister", class, structure)
 	nut.chat.classes[class] = structure
 end
 
@@ -63,7 +63,7 @@ do
 		canHear = nut.config.whisperRange,
 		deadCanTalk = true,
 		onChat = function(speaker, text)
-			chat.AddText(Color(r - 25, g - 25, b - 25), nut.lang.Get("chat_whisper", hook.Run("GetPlayerName", speaker, "whisper", text)).."\""..text.."\"")
+			chat.AddText(Color(r - 25, g - 25, b - 25), nut.lang.Get("chat_whisper", AdvNut.hook.Run("GetPlayerName", speaker, "whisper", text)).."\""..text.."\"")
 		end,
 		prefix = {"/w", "/whisper"},
 		font = "nut_WhisperFont"
@@ -102,14 +102,14 @@ do
 	nut.chat.Register("ic", {
 		canHear = nut.config.chatRange,
 		onChat = function(speaker, text)
-			chat.AddText(Color(r, g, b), nut.lang.Get("chat_normal", hook.Run("GetPlayerName", speaker, "ic", text)).."\""..text.."\"");
+			chat.AddText(Color(r, g, b), nut.lang.Get("chat_normal", AdvNut.hook.Run("GetPlayerName", speaker, "ic", text)).."\""..text.."\"");
 		end
 	})
 
 	nut.chat.Register("yell", {
 		canHear = nut.config.yellRange,
 		onChat = function(speaker, text)
-			chat.AddText(Color(r + 35, g + 35, b + 35), nut.lang.Get("chat_yell", hook.Run("GetPlayerName", speaker, "yell", text)).."\""..text.."\"")
+			chat.AddText(Color(r + 35, g + 35, b + 35), nut.lang.Get("chat_yell", AdvNut.hook.Run("GetPlayerName", speaker, "yell", text)).."\""..text.."\"")
 		end,
 		prefix = {"/y", "/yell", "/외", "/외침", "/외치기", "/ㅛ", "/ㅛ디ㅣ"},
 		font = "nut_YellFont"
@@ -119,7 +119,7 @@ do
 		canHear = nut.config.chatRange,
 		deadCanTalk = true,
 		onChat = function(speaker, text)
-			chat.AddText(Color(r, g, b), "**"..hook.Run("GetPlayerName", speaker, "me", text).." "..text)
+			chat.AddText(Color(r, g, b), "**"..AdvNut.hook.Run("GetPlayerName", speaker, "me", text).." "..text)
 		end,
 		prefix = {"/me", "/action", "/행동", "/ㅡㄷ"},
 		font = "nut_ChatFontAction"
@@ -208,7 +208,7 @@ if (CLIENT) then
 	end
 
 	-- Handle standard game messages.
-	hook.Add("ChatText", "nut_GameMessages", function(index, name, text, messageType)
+	AdvNut.hook.Add("ChatText", "nut_GameMessages", function(index, name, text, messageType)
 		if (index == 0 and name == "Console") then
 			if (isChatFiltered("gamemsg")) then
 				return
@@ -220,19 +220,19 @@ if (CLIENT) then
 		return true
 	end)
 
-	hook.Add("ChatOpened", "nut_Typing", function(teamChat)
+	AdvNut.hook.Add("ChatOpened", "nut_Typing", function(teamChat)
 		if (!nut.config.showTypingText) then
 			netstream.Start("nut_Typing", true)
 		end
 	end)
 
-	hook.Add("FinishChat", "nut_Typing", function(teamChat)
+	AdvNut.hook.Add("FinishChat", "nut_Typing", function(teamChat)
 		netstream.Start("nut_Typing", nil)
 	end)
 
 	local nextSend = 0
 	
-	hook.Add("ChatTextChanged", "nut_Typing", function(text)
+	AdvNut.hook.Add("ChatTextChanged", "nut_Typing", function(text)
 		if (nut.config.showTypingText) then
 			if (string.sub(text, 1, 3) == "/pm") then
 				text = "PM..."
@@ -256,17 +256,17 @@ if (CLIENT) then
 			return
 		end
 
-		if (!hook.Run("ChatClassPreText", class, speaker, text, mode)) then
+		if (!AdvNut.hook.Run("ChatClassPreText", class, speaker, text, mode)) then
 			class.onChat(speaker, text)
 		end
 
-		hook.Run("ChatClassPostText", class, speaker, text, mode)
+		AdvNut.hook.Run("ChatClassPostText", class, speaker, text, mode)
 	end)
 else
 	netstream.Hook("nut_Typing", function(client, data)
 		client:SetNetVar("typing", data, client:GetPos())
 		
-		hook.Run("PlayerTyping", client, data)
+		AdvNut.hook.Run("PlayerTyping", client, data)
 	end)
 
 	-- Returns whether or not a player can use a certain chat class.
@@ -404,7 +404,7 @@ else
 
 		local listeners = nut.chat.GetListeners(client, mode)
 
-		text = hook.Run("PrePlayerSay", client, text, mode, listeners) or text
+		text = AdvNut.hook.Run("PrePlayerSay", client, text, mode, listeners) or text
 		nut.chat.Send(client, mode, text, listeners)
 
 		return ""

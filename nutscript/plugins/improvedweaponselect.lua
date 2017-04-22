@@ -85,12 +85,21 @@ if (CLIENT) then
 		end
 	end
 
+	PLUGIN.PressDelay = false;
 	function PLUGIN:PlayerBindPress(client, bind, pressed)
 		local weapon = client:GetActiveWeapon()
+		if(PressDelay) then
+			return true;
+		end
+		
+		PressDelay = true;
+		timer.Simple(0.05, function()
+			PressDelay = false;
+		end);
 
 		if (!client:InVehicle() and (!IsValid(weapon) or weapon:GetClass() != "weapon_physgun" or !client:KeyDown(IN_ATTACK))) then
 			bind = string.lower(bind)
-
+			
 			if (string.find(bind, "invprev") or string.find(bind, "slot2") and pressed) then
 				self.lastSlot = self.lastSlot - 1
 
@@ -100,7 +109,7 @@ if (CLIENT) then
 
 				self:OnSlotChanged()
 
-				return true
+				return true;
 			elseif (string.find(bind, "invnext") or string.find(bind, "slot1") and pressed) then
 				self.lastSlot = self.lastSlot + 1
 
@@ -110,7 +119,7 @@ if (CLIENT) then
 
 				self:OnSlotChanged()
 
-				return true
+				return true;
 			elseif (string.find(bind, "+attack") and pressed) then
 				if (CurTime() < self.deathTime) then
 					self.lifeTime = 0
@@ -120,12 +129,12 @@ if (CLIENT) then
 						if (k == self.lastSlot) then
 							RunConsoleCommand("nut_selectwep", v:GetClass())
 
-							return true
+							return true;
 						end
 					end
 				end
 			elseif (string.find(bind, "slot") and pressed) then
-				return true
+				return true;
 			end
 		end
 	end

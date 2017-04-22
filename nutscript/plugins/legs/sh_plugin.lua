@@ -319,7 +319,7 @@ if LegsBool then
         end
     end
      
-    hook.Add( "UpdateAnimation", "Legs:UpdateAnimation", function( ply, velocity, maxseqgroundspeed )
+    AdvNut.hook.Add( "UpdateAnimation", "Legs:UpdateAnimation", function( ply, velocity, maxseqgroundspeed )
         if ply == LocalPlayer() then
             if IsValid( Legs.LegEnt ) then
                 Legs:Think( maxseqgroundspeed )
@@ -341,7 +341,7 @@ if LegsBool then
         return LocalPlayer():InVehicle()
     end
      
-    hook.Add( "RenderScreenspaceEffects", "Legs:Render", function()
+    AdvNut.hook.Add( "RenderScreenspaceEffects", "Legs:Render", function()
         cam.Start3D( EyePos(), EyeAngles() )
             if ShouldDrawLegs() then
              

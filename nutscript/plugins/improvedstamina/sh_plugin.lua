@@ -5,7 +5,8 @@ PLUGIN.desc = "지구력과 관련된 능력치를 추가해 줍니다."
 PLUGIN.base = true;
 
 PLUGIN:IncludeDir("language");
-nut.util.Include("sv_hooks.lua")
+nut.util.Include("sv_hooks.lua");
+nut.util.Include("cl_hooks.lua");
 
 function PLUGIN:RegisterAttributes()
 	ATTRIB_SPD = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("speed"), PLUGIN:GetPluginLanguage("speed_desc"), "spd")

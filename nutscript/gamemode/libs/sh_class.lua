@@ -45,7 +45,7 @@ function nut.class.Register(index, classTable)
 			if (model) then
 				client:SetModel(model)
 
-				hook.Run("PlayerSetHandsModel", client, client:GetHands())
+				AdvNut.hook.Run("PlayerSetHandsModel", client, client:GetHands())
 			end
 
 			client:SetSkin(self.skin or 0)
@@ -89,10 +89,10 @@ if (SERVER) then
 	netstream.Hook("nut_ChooseClass", function(client, index)
 		local class = nut.class.Get(index)
 
-		if (class and client:CharClass() != class and class:PlayerCanJoin(client) and hook.Run("PlayerCanJoinClass", client, class) != false) then
-			hook.Run("PlayerPreJoinClass", client, class)
+		if (class and client:CharClass() != class and class:PlayerCanJoin(client) and AdvNut.hook.Run("PlayerCanJoinClass", client, class) != false) then
+			AdvNut.hook.Run("PlayerPreJoinClass", client, class)
 				client:SetCharClass(index)
-			hook.Run("PlayerPostJoinClass", client, class)
+			AdvNut.hook.Run("PlayerPostJoinClass", client, class)
 
 			nut.util.Notify(nut.lang.Get("class_joined", class.name), client)
 		else
@@ -138,8 +138,8 @@ do
 					self.character:SetData("class", index)
 					self:SetSkin(class:GetSkin(self))
 
-					hook.Run("PlayerClassSet", self, index)
-					hook.Run("PlayerSetHandsModel", self, self:GetHands())
+					AdvNut.hook.Run("PlayerClassSet", self, index)
+					AdvNut.hook.Run("PlayerSetHandsModel", self, self:GetHands())
 				end
 			end
 		end

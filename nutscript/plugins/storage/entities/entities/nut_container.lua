@@ -1,3 +1,4 @@
+local PLUGIN = PLUGIN;
 AddCSLuaFile()
 
 ENT.Type = "anim"
@@ -9,7 +10,8 @@ ENT.PersistentSave = false;
 if (SERVER) then
 	function ENT:Initialize()
 		self:SetModel("models/props_lab/filecabinet02.mdl")
-		self:SetNetVar("max", 10)
+		self:SetNetVar("maxWeight", 10);
+		self:SetNetVar("weight", 0);
 		self:SetNetVar("inv", {})
 		self:PhysicsInit(SOLID_VPHYSICS)
 		self:SetMoveType(MOVETYPE_VPHYSICS)
@@ -36,13 +38,19 @@ if (SERVER) then
 		local oldInventory = inventory
 
 		inventory = nut.util.StackInv(inventory, class, quantity, data)
-
+		
+		local itemTable = nut.item.Get(class);
 		local weight, max = self:GetInvWeight()
-
+		
+		if (itemTable.weight < 0 && quantity > 0) then
+			self:SetNetVar("weight", weight - itemTable.weight);
+		else
+			self:SetNetVar("weight", weight);
+		end
+			
 		if (weight > max) then
 			inventory = oldInventory
 		elseif (#self.recipients > 0) then
-			self:SetNetVar("weight", math.ceil((weight / max) * 100))
 			self:SetNetVar("inv", inventory, self.recipients)
 		end
 	end
@@ -189,19 +197,31 @@ if (SERVER) then
 		if (itemTable and IsValid(entity) and entity:GetPos():Distance(client:GetPos()) <= 128 and entity:HasPermission(client, password)) then
 			if (itemTable.CanTransfer and itemTable:CanTransfer(client, data) == false) then
 				return false
-			end
-
+			end			
+			
 			if (quantity > 0 and client:HasItem(class)) then
-				local result = client:UpdateInv(class, -1, data)
+				if(entity:GetNetVar("maxWeight") - entity:GetNetVar("weight") < itemTable.weight) then
+					nut.util.Notify(PLUGIN:GetPluginLanguage("storage_nospace"), client);
+					return false;
+				else
+					local result = client:UpdateInv(class, -1, data)
 
-				if (result) then
-					entity:UpdateInv(class, 1, data)
+					if (result) then
+						entity:UpdateInv(class, 1, data)
+					end
 				end
 			elseif (entity:HasItem(class)) then
-				local result = client:UpdateInv(class, 1, data)
+				local clientWeight, clientMaxWeight = client:GetInvWeight();
+				
+				if ((clientMaxWeight - clientWeight) < itemTable.weight) then
+					nut.util.Notify(nut.lang.Get("no_invspace"), client);
+					return false;
+				else
+					local result = client:UpdateInv(class, 1, data)
 
-				if (result) then
-					entity:UpdateInv(class, -1, data)
+					if (result) then
+						entity:UpdateInv(class, -1, data)
+					end
 				end
 			end
 
@@ -209,7 +229,7 @@ if (SERVER) then
 				itemTable:OnTransfer(client, entity)
 			end
 			
-			hook.Run("OnItemTransfered", client, entity, itemTable)
+			AdvNut.hook.Run("OnItemTransfered", client, entity, itemTable)
 		end
 	end)
 
@@ -255,10 +275,10 @@ else
 	
 	netstream.Hook("nut_Storage", function(entity)
 		if (IsValid(entity)) then
-			hook.Run("ContainerOpened", entity)
+			AdvNut.hook.Run("ContainerOpened", entity)
 			
 			nut.gui.storage = vgui.Create("nut_Storage")
-			nut.gui.storage:SetEntity(entity)
+			nut.gui.storage:SetEntity(entity);
 
 			entity:HookNetVar("inv", function()
 				if (IsValid(nut.gui.storage) and nut.gui.storage:GetEntity() == entity) then
@@ -283,7 +303,7 @@ else
 end
 
 function ENT:GetInvWeight()
-	local weight, maxWeight = 0, self:GetNetVar("max", nut.config.defaultInvWeight)
+	local weight, maxWeight = 0, self:GetNetVar("maxWeight", nut.config.defaultInvWeight)
 	local inventory = self:GetNetVar("inv")
 
 	if (inventory) then

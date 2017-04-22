@@ -17,7 +17,7 @@ if (SERVER) then
 				if itemTable then
 					local entity = nut.item.Spawn(position, angles, itemTable, data)
 
-					hook.Run("ItemRestored", itemTable, entity)
+					AdvNut.hook.Run("ItemRestored", itemTable, entity)
 				end
 			end
 		end
@@ -30,7 +30,7 @@ if (SERVER) then
 				v:SetPersistent(false);
 			end;
 			
-			if (hook.Run("ItemShouldSave", v) != false) then
+			if (AdvNut.hook.Run("ItemShouldSave", v) != false) then
 				data[k] = {
 					position = v:GetPos(),
 					angles = v:GetAngles(),
@@ -38,7 +38,7 @@ if (SERVER) then
 					data = v:GetData()
 				}
 
-				hook.Run("ItemSaved", v)
+				AdvNut.hook.Run("ItemSaved", v)
 			end
 		end
 		nut.util.WriteTable("saveditems", data)

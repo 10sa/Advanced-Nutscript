@@ -43,7 +43,7 @@ function AdvNut.util.DrawOutline(panel, th, color)
 end
 
 function AdvNut.util.DrawBackgroundBlur(panel)
-	if (panel.advnut_bgblur or !hook.Run("IsCanDrawingBackgroundBlur")) then
+	if (panel.advnut_bgblur or !AdvNut.hook.Run("IsCanDrawingBackgroundBlur")) then
 		return;
 	end;
 	

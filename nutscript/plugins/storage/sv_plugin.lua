@@ -54,7 +54,8 @@ function PLUGIN:LoadData()
 				entity:SetNetVar("name", itemTable.name)
 
 				local weight, max = entity:GetInvWeight()
-				entity:SetNetVar("weight", math.ceil((weight / max) * 100))
+				entity:SetNetVar("weight", weight);
+				entity:SetNetVar("maxWeight", max);
 					
 				entity.itemID = v.uniqueID
 				entity.lock = v.lock
@@ -67,7 +68,7 @@ function PLUGIN:LoadData()
 				entity:SetModel(itemTable.model)
 				entity:PhysicsInit(SOLID_VPHYSICS)
 				if (itemTable.maxWeight) then
-					entity:SetNetVar("max", itemTable.maxWeight)
+					entity:SetNetVar("maxWeight", itemTable.maxWeight)
 				end
 				if v.world then
 					local phys = entity:GetPhysicsObject()

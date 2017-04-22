@@ -3,8 +3,8 @@ BASE.uniqueID = "base_storage"
 BASE.category = PLUGIN:GetPluginLanguage("storage")
 BASE.functions = {}
 BASE.functions.Use = {
-	text = PLUGIN:GetPluginLanguage("setup"),
-	tip = PLUGIN:GetPluginLanguage("setup_desc"),
+	text = nut.lang.Get("setup"),
+	tip = nut.lang.Get("setup_desc"),
 	icon = "icon16/weather_sun.png",
 	run = function(itemTable, client, data, entity)
 		if (SERVER) then
@@ -37,7 +37,7 @@ BASE.functions.Use = {
 			entity.itemID = itemTable.uniqueID
 
 			if (itemTable.maxWeight) then
-				entity:SetNetVar("max", itemTable.maxWeight)
+				entity:SetNetVar("maxWeight", itemTable.maxWeight)
 			end
 
 			entity:SetModel(itemTable.model)
