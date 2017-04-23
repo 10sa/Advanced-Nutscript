@@ -264,7 +264,8 @@ if (CLIENT) then
 	end)
 else
 	netstream.Hook("nut_Typing", function(client, data)
-		client:SetNetVar("typing", data, client:GetPos())
+		client:SetNetVar("typing", data);
+		netstream.Start(client, AdvNut.util.CreateIdentifier("ClientChatOpen"), data);
 		
 		AdvNut.hook.Run("PlayerTyping", client, data)
 	end)

@@ -314,6 +314,7 @@ function GM:HUDPaintTargetPlayer(client, x, y, alpha)
 	if (client:IsTyping()) then
 		local text = "입력중..."
 		local typingText = client:GetNetVar("typing")
+		
 
 		if (nut.config.showTypingText and typingText and type(typingText) == "string") then
 			text = "("..typingText..")"

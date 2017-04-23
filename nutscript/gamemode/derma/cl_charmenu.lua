@@ -252,19 +252,21 @@ function PANEL:Init()
 				end, RIGHT)
 			end)
 		end
-
-		local charAmount = table.Count(LocalPlayer().characters);
-		for k, v in pairs(LocalPlayer().characters) do
-			if (v.banned) then
-				charAmount = charAmount - 1;
+		
+		local charAmount = 0;
+		
+		if(LocalPlayer().characters != nil) then
+			charAmount = table.Count(LocalPlayer().characters);
+			for k, v in pairs(LocalPlayer().characters) do
+				if (v.banned) then
+					charAmount = charAmount - 1;
+				end
 			end
 		end
-				
+		
 		if (nut.lastCharIndex) then
 			charAmount = charAmount - 1;
 		end;
-		
-		print(charAmount);
 				
 		if (charAmount > 0) then
 			AddButton("load", function()
@@ -280,7 +282,6 @@ function PANEL:Init()
 				self.charStage = {};
 				
 				for k, v in SortedPairsByMemberValue(LocalPlayer().characters, "id") do
-					PrintTable(v);
 					if (k != "__SortedIndex" and !v.banned and v.id != nut.lastCharIndex) then
 						local charSelect = vgui.Create("AdvNut_CharacterSelect", self);
 						local insertIndex = #self.charStage + 1;
