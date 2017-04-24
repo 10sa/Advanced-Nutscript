@@ -133,82 +133,10 @@ function nut.plugin.Load(directory)
 
 		if (!blocked) then
 			PLUGIN = nut.plugin.Get(v) or {}
-				PLUGIN.uniqueID = v;
-				
-				function PLUGIN:WriteTable(data, ignoreMap, global)
-					return nut.util.WriteTable(v, data, ignoreMap, global)
-				end
-
-				function PLUGIN:ReadTable(ignoreMap, forceRefresh)
-					return nut.util.ReadTable(v, ignoreMap, forceRefresh)
-				end
+			PLUGIN.uniqueID = v;
 			
-				function PLUGIN:GetPluginIdentifier(key, caller)
-					return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
-				end;
-				
-				/// Don't use this function. it's private function.
-				function PLUGIN:_GetPluginLanguageIdentifier(key)
-					return self:GetPluginIdentifier("").."Language."..key;
-				end;
+			nut.plugin.PluginInit(PLUGIN);
 			
-				function PLUGIN:AddPluginLanguage(key, value, language)
-					nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
-				end;
-			
-				function PLUGIN:GetPluginLanguage(key, ...)
-					return nut.lang.Get(self:_GetPluginLanguageIdentifier(key), ...);
-				end;
-				
-				function PLUGIN:GetPluginConfig(key, default)
-					if (self) then
-						if (nut.config[self.uniqueID]) then
-							return nut.config[self.uniqueID][key] or default;
-						else
-							return default;
-						end;
-					else
-						return default;
-					end;
-				end;
-				
-				function PLUGIN:SetPluginConfig(key, value)
-					if(self.uniqueID) then
-						local uniqueID = self.uniqueID;
-						
-						if (!nut.config[uniqueID]) then
-							nut.config[uniqueID] = {};
-						end;
-					
-						nut.config[self.uniqueID][key] = value;
-					end;
-				end;
-			
-				function PLUGIN:IncludeDir(dir)
-					local path;
-					if (SCHEMA and !self.base) then
-						path = SCHEMA.folderName.."/plugin/"..self.uniqueID.."/"..dir;
-					else
-						path = "nutscript/plugins/"..self.uniqueID.."/"..dir;
-					end;
-				
-					for k, v in pairs(file.Find(path.."/*.lua", "LUA")) do
-						nut.util.Include(path.."/"..v);
-					end
-				end;
-				
-				local pluginDir = directory.."/plugins/"..v
-
-				if (file.Exists(pluginDir.."/sh_plugin.lua", "LUA")) then
-					nut.util.Include(pluginDir.."/sh_plugin.lua")
-
-					nut.plugin.IncludeEntities(pluginDir)
-					nut.plugin.IncludeWeapons(pluginDir)
-					nut.plugin.IncludeEffects(pluginDir)
-
-					nut.item.Load(pluginDir)
-					nut.plugin.buffer[v] = PLUGIN
-				end
 			PLUGIN = nil
 		end
 	end
@@ -227,74 +155,93 @@ function nut.plugin.Load(directory)
 		if (!blocked) then
 			PLUGIN = nut.plugin.Get(cleanName) or {};
 			PLUGIN.uniqueID = v;
-				
-				function PLUGIN:WriteTable(data, ignoreMap, global)
-					return nut.util.WriteTable(v, data, ignoreMap, global)
-				end
-
-				function PLUGIN:ReadTable(ignoreMap, forceRefresh)
-					return nut.util.ReadTable(v, ignoreMap, forceRefresh)
-				end
 			
-				function PLUGIN:GetPluginIdentifier(key, caller)
-					return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
-				end;
-				
-				/// Don't use this function. it's private function.
-				function PLUGIN:_GetPluginLanguageIdentifier(key)
-					return self:GetPluginIdentifier("").."Language."..key;
-				end;
-			
-				function PLUGIN:AddPluginLanguage(key, value, language)
-					nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
-				end;
-			
-				function PLUGIN:GetPluginLanguage(key, ...)
-					return nut.lang.Get(self:_GetPluginLanguageIdentifier(key), ...);
-				end;
-				
-				function PLUGIN:GetPluginConfig(key, default)
-					if (self) then
-						if (nut.config[self.uniqueID]) then
-							return nut.config[self.uniqueID][key] or default;
-						else
-							return default;
-						end;
-					else
-						return default;
-					end;
-				end;
-				
-				function PLUGIN:SetPluginConfig(key, value)
-					if(self.uniqueID) then
-						local uniqueID = self.uniqueID;
-						
-						if (!nut.config[uniqueID]) then
-							nut.config[uniqueID] = {};
-						end;
-					
-						nut.config[self.uniqueID][key] = value;
-					end;
-				end;
-			
-				function PLUGIN:IncludeDir(dir)
-					local path;
-					if (SCHEMA and !self.base) then
-						path = SCHEMA.folderName.."/plugin/"..self.uniqueID.."/"..dir;
-					else
-						path = "nutscript/plugins/"..self.uniqueID.."/"..dir;
-					end;
-				
-					for k, v in pairs(file.Find(path.."/*.lua", "LUA")) do
-						nut.util.Include(path.."/"..v);
-					end
-				end;
+			nut.plugin.PluginInit(PLUGIN);
 				
 			nut.util.Include(directory.."/plugins/"..v, "shared");
 			nut.plugin.buffer[cleanName] = PLUGIN;
 			PLUGIN = nil;
 		end
 	end
+end
+
+function nut.plugin.PluginInit(PLUGIN)
+	PLUGIN = nut.plugin.Get(cleanName) or {};
+	PLUGIN.uniqueID = v;
+	
+	if(PLUGIN.desc == nil) then
+		PLUGIN.desc = "";
+	end
+	
+	if(PLUGIN.name == nil) then
+		PLUGIN.name = "";
+	end
+	
+	if(PLUGIN.author == nil) then
+		PLUGIN.author = "";
+	end
+				
+	function PLUGIN:WriteTable(data, ignoreMap, global)
+		return nut.util.WriteTable(v, data, ignoreMap, global)
+	end
+
+	function PLUGIN:ReadTable(ignoreMap, forceRefresh)
+		return nut.util.ReadTable(v, ignoreMap, forceRefresh)
+	end
+			
+	function PLUGIN:GetPluginIdentifier(key, caller)
+		return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
+	end;
+				
+	/// Don't use this function. it's private function.
+	function PLUGIN:_GetPluginLanguageIdentifier(key)
+		return self:GetPluginIdentifier("").."Language."..key;
+	end;
+			
+	function PLUGIN:AddPluginLanguage(key, value, language)
+		nut.lang.Add(self:_GetPluginLanguageIdentifier(key), value, language);
+	end;
+			
+	function PLUGIN:GetPluginLanguage(key, ...)
+		return nut.lang.Get(self:_GetPluginLanguageIdentifier(key), ...);
+	end;
+				
+	function PLUGIN:GetPluginConfig(key, default)
+		if (self) then
+			if (nut.config[self.uniqueID]) then
+				return nut.config[self.uniqueID][key] or default;
+			else
+				return default;
+			end;
+		else
+			return default;
+		end;
+	end;
+				
+	function PLUGIN:SetPluginConfig(key, value)
+		if(self.uniqueID) then
+			local uniqueID = self.uniqueID;
+				
+			if (!nut.config[uniqueID]) then
+				nut.config[uniqueID] = {};
+			end;
+					
+			nut.config[self.uniqueID][key] = value;
+		end;
+	end;
+
+	function PLUGIN:IncludeDir(dir)
+		local path;
+		if (SCHEMA and !self.base) then
+			path = SCHEMA.folderName.."/plugin/"..self.uniqueID.."/"..dir;
+		else
+			path = "nutscript/plugins/"..self.uniqueID.."/"..dir;
+		end;
+				
+		for k, v in pairs(file.Find(path.."/*.lua", "LUA")) do
+			nut.util.Include(path.."/"..v);
+		end
+	end;
 end
 
 --[[
