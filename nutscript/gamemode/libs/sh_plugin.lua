@@ -135,7 +135,20 @@ function nut.plugin.Load(directory)
 			PLUGIN = nut.plugin.Get(v) or {}
 			PLUGIN.uniqueID = v;
 			
-			nut.plugin.PluginInit(PLUGIN);
+			local pluginDir = directory.."/plugins/"..v;
+			
+			if (file.Exists(pluginDir.."/sh_plugin.lua", "LUA")) then
+				nut.plugin.PluginInit(PLUGIN, v);
+				
+				nut.util.Include(pluginDir.."/sh_plugin.lua")
+
+				nut.plugin.IncludeEntities(pluginDir)
+				nut.plugin.IncludeWeapons(pluginDir)
+				nut.plugin.IncludeEffects(pluginDir)
+
+				nut.item.Load(pluginDir);
+				nut.plugin.buffer[v] = PLUGIN
+			end
 			
 			PLUGIN = nil
 		end
@@ -154,9 +167,7 @@ function nut.plugin.Load(directory)
 
 		if (!blocked) then
 			PLUGIN = nut.plugin.Get(cleanName) or {};
-			PLUGIN.uniqueID = v;
-			
-			nut.plugin.PluginInit(PLUGIN);
+			nut.plugin.PluginInit(PLUGIN, v);
 				
 			nut.util.Include(directory.."/plugins/"..v, "shared");
 			nut.plugin.buffer[cleanName] = PLUGIN;
@@ -165,10 +176,10 @@ function nut.plugin.Load(directory)
 	end
 end
 
-function nut.plugin.PluginInit(PLUGIN)
-	PLUGIN = nut.plugin.Get(cleanName) or {};
-	PLUGIN.uniqueID = v;
+function nut.plugin.PluginInit(PLUGIN, uniqueID)
+	PLUGIN.uniqueID = uniqueID;
 	
+	// Send Error Log //
 	if(PLUGIN.desc == nil) then
 		PLUGIN.desc = "";
 	end
@@ -180,20 +191,21 @@ function nut.plugin.PluginInit(PLUGIN)
 	if(PLUGIN.author == nil) then
 		PLUGIN.author = "";
 	end
-				
+	//
+	
 	function PLUGIN:WriteTable(data, ignoreMap, global)
-		return nut.util.WriteTable(v, data, ignoreMap, global)
+		return nut.util.WriteTable(self.uniqueID, data, ignoreMap, global)
 	end
 
 	function PLUGIN:ReadTable(ignoreMap, forceRefresh)
-		return nut.util.ReadTable(v, ignoreMap, forceRefresh)
+		return nut.util.ReadTable(self.uniqueID, ignoreMap, forceRefresh)
 	end
 			
 	function PLUGIN:GetPluginIdentifier(key, caller)
 		return AdvNut.util.CreateIdentifier("", caller).."Plugin."..self.uniqueID.."."..key;
 	end;
 				
-	/// Don't use this function. it's private function.
+	// Private Function. //
 	function PLUGIN:_GetPluginLanguageIdentifier(key)
 		return self:GetPluginIdentifier("").."Language."..key;
 	end;
