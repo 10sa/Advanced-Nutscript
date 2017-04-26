@@ -85,4 +85,10 @@ function PANEL:SetBarColor(color, pointer)
 		surface.DrawRect(0, 0, w, h);
 	end
 end
+
+// For Override //
+function PANEL:Remove()
+	self:Close();
+end
+
 vgui.Register("AdvNut_BaseForm", PANEL, "DPanel");
