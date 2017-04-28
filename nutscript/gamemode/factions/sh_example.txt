@@ -1,0 +1,26 @@
+
+// Faction Name //
+FACTION.name = "Citizen";
+
+// Faction Desc //
+FACTION.desc = "A Simple Example";
+
+// Faction Color //
+FACTION.color = Color(53, 156, 56)
+
+// Faction Prefix ID (It's using '/plywhitelist' Command) //
+FACTION.factionID = "CZ";
+
+// Faction Default Items. //
+FACTION.defaultItem = {
+	{"Item_Unique_ID", Item_Amount, Item_Data}
+}
+
+// Faction Characters Default Max Health Value. (Default : 100) //
+FACTION.defaultMaxHealth = 100;
+
+// Faction Characters Default Armor (0 ~ 255) //
+FACTION.defaultArmor = 0;
+
+// Faction Unique ID. (It's Global, Essential) //
+FACTION_CITIZEN = FACTION.index

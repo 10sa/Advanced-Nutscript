@@ -506,7 +506,20 @@ function GM:GetDefaultMoney(amount) return nut.config.startingAmount end
 function GM:PlayerCreatedChar(client, data) end
 
 -- Purpose: Called after a player has spawned with a character.
-function GM:PostPlayerSpawn(client) end
+function GM:PostPlayerSpawn(client)
+	local factionData = nut.faction.GetByID(client:Team());
+	
+	if(factionData.defaultMaxHealth) then
+		client:SetMaxHealth(defaultMaxHealth);
+		client:SetHealth(defaultMaxHealth);
+	end
+	
+	if(factionData.defaultArmor) then
+		client:SetArmor(factionData.defaultArmor);
+	end
+	
+	return;
+end
 
 -- Purpose: Called to see if a chat mode is allowed to be used. Results are returned
 -- to the player say hook.

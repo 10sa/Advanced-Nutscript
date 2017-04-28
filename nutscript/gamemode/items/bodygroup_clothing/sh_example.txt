@@ -1,0 +1,12 @@
+
+// ITEM Name //
+ITEM.name = "Example Bodygroup Clothing";
+
+// ITEM Unique ID //
+ITEM.uniqueID = "A Simple Example";
+
+// Useable Models //
+ITEM.models = {};
+
+// Bodygroup Index, Value //
+ITEM.bodygroup = {0, 0};

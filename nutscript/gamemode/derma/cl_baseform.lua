@@ -87,8 +87,8 @@ function PANEL:SetBarColor(color, pointer)
 end
 
 // For Override //
-function PANEL:Remove()
-	self:Close();
+function PANEL:Close()
+	self:Remove();
 end
 
 vgui.Register("AdvNut_BaseForm", PANEL, "DPanel");
