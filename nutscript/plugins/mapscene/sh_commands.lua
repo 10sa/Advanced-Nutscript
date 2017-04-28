@@ -1,3 +1,5 @@
+local PLUGIN = PLUGIN;
+
 nut.command.Register({
 	adminOnly = true,
 	onRun = function(client, arguments)
