@@ -27,13 +27,13 @@ function nut.schema.Init()
 	nut.util.IncludeDir("schema/libs")
 	nut.util.Include("schema/sh_schema.lua")
 	
-	nut.faction.Load(SCHEMA.folderName.."/gamemode/schema")
-	nut.class.Load(SCHEMA.folderName.."/gamemode/schema")
-	
 	nut.util.IncludeDir("schema/derma")
 
 	nut.plugin.Load(SCHEMA.folderName)
 	nut.plugin.Load(NSFolderName) -- Load plugins relative to the framework's folder, done here to allow schemas to block base plugins
+	
+	nut.faction.Load(SCHEMA.folderName.."/gamemode/schema")
+	nut.class.Load(SCHEMA.folderName.."/gamemode/schema")
 	
 	nut.item.Load(SCHEMA.folderName.."/gamemode/schema")
 

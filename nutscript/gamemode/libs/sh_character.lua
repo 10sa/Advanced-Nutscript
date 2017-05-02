@@ -601,29 +601,33 @@ if (SERVER) then
 		local model = data.model
 		local faction = data.faction
 		local attributes = data.attribs or {}
+		local factionTable = nut.faction.GetByID(faction);
 		
-		local totalPoints = 0
-
-		for k, v in pairs(attributes) do
-			totalPoints = totalPoints + v
+		local totalPoints = 0;
+		
+		if (factionTable) then
+			for k, v in pairs(attributes) do
+				v = v - factionTable.defaultAttributes[k] or 0;
+				totalPoints = totalPoints + v
+			end 
 		end
 
 		if (!name) then
-			code = 1
+			code = 1;
 		elseif (gender != "male" and gender != "female") then
-			code = 2
+			code = 2;
 		elseif (!desc) then
-			code = 3
+			code = 3;
 		elseif (!model) then
-			code = 4
+			code = 4;
 		elseif (!faction) then
-			code = 5
-		elseif (!nut.faction.GetByID(faction)) then
-			code = 6
+			code = 5;
 		elseif (!attributes) then
-			code = 7
+			code = 7;
 		elseif (totalPoints > nut.config.startingPoints) then
-			code = 8
+			code = 8;
+		elseif (!factionTable) then
+			code = 9;
 		end
 
 		if (code) then
@@ -633,7 +637,7 @@ if (SERVER) then
 		local data = {}
 
 		for k, v in pairs(attributes) do
-			local attribute = nut.attribs.buffer[k]
+			local attribute = nut.attribs.GetAll().k;
 
 			if (attribute) then
 				data["attrib_"..attribute.uniqueID] = v
@@ -661,8 +665,8 @@ if (SERVER) then
 
 		AdvNut.hook.Run("GetDefaultInv", inventory, client, charData)
 		
-		if (nut.faction.GetByID(charData.faction).defaultItem != nil && #nut.faction.GetByID(charData.faction).defaultItem > 1 && type(nut.faction.GetByID(charData.faction).defaultItem) == "table") then
-			for k, v in pairs(nut.faction.GetByID(charData.faction).defaultItem) do
+		if (factionTable.defaultItem != nil && #factionTable.defaultItem > 1 && type(factionTable.defaultItem) == "table") then
+			for k, v in pairs(factionTable.defaultItem) do
 				inventory:Add(v[1], v[2], v[3]);
 			end
 		end

@@ -13,7 +13,7 @@
 -- Russian translations by Shadow Nova (http://steamcommunity.com/profiles/76561197989134302)
 
 if (!nut.lang) then
-	include("libs/sh_lang.lua")
+	include("libs/sh_lang.lua");
 end
 
 nut.util.IncludeDir("language", true);

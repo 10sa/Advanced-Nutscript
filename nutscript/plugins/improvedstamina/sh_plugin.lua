@@ -7,12 +7,10 @@ PLUGIN.base = true;
 PLUGIN:IncludeDir("language");
 nut.util.Include("sv_hooks.lua");
 nut.util.Include("cl_hooks.lua");
+ 
+ATTRIB_SPD = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("speed"), PLUGIN:GetPluginLanguage("speed_desc"), "spd")
+ATTRIB_END = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("stamina"), PLUGIN:GetPluginLanguage("stamina_desc"), "end")
 
-function PLUGIN:RegisterAttributes()
-	ATTRIB_SPD = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("speed"), PLUGIN:GetPluginLanguage("speed_desc"), "spd")
-	ATTRIB_END = nut.attribs.SetUp(PLUGIN:GetPluginLanguage("stamina"), PLUGIN:GetPluginLanguage("stamina_desc"), "end")
-end
-	
 function PLUGIN:CreateCharVars(character)
 	character:NewVar("stamina", 100, CHAR_PRIVATE, true);
 end;

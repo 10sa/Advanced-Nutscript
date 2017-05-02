@@ -88,19 +88,19 @@ if (CLIENT) then
 	PLUGIN.PressDelay = false;
 	function PLUGIN:PlayerBindPress(client, bind, pressed)
 		local weapon = client:GetActiveWeapon()
-		if(PressDelay) then
-			return true;
-		end
-		
-		PressDelay = true;
-		timer.Simple(0.05, function()
-			PressDelay = false;
-		end);
-
 		if (!client:InVehicle() and (!IsValid(weapon) or weapon:GetClass() != "weapon_physgun" or !client:KeyDown(IN_ATTACK))) then
 			bind = string.lower(bind)
 			
 			if (string.find(bind, "invprev") or string.find(bind, "slot2") and pressed) then
+				if(PressDelay) then
+					return true;
+				end
+			
+				PressDelay = true;
+				timer.Simple(0.05, function()
+					PressDelay = false;
+				end);
+		
 				self.lastSlot = self.lastSlot - 1
 
 				if (self.lastSlot <= 0) then
@@ -111,6 +111,15 @@ if (CLIENT) then
 
 				return true;
 			elseif (string.find(bind, "invnext") or string.find(bind, "slot1") and pressed) then
+				if(PressDelay) then
+					return true;
+				end
+			
+				PressDelay = true;
+				timer.Simple(0.05, function()
+					PressDelay = false;
+				end);
+				
 				self.lastSlot = self.lastSlot + 1
 
 				if (self.lastSlot > #client:GetWeapons()) then

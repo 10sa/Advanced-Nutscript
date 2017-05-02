@@ -114,10 +114,14 @@ end
 function PANEL:GetData()
 	local index = self.factionComboBox:GetSelectedID();
 	local factionData = self.factionComboBox:GetOptionData(index);
-	return {
-		faction = factionData.faction.index, 
-		arg = factionData
-	};
+	
+	local dataTable = {
+		factionID = factionData.faction.index
+	}
+	
+	table.Merge(dataTable, factionData);
+	
+	return dataTable;
 end;
 
 function PANEL:ValidCheck()
@@ -272,21 +276,22 @@ function PANEL:NextCallback(data)
 	self.nameEntry:SetEditable(true);
 	self.nameEntry:SetEntryValue("");
 	self.modelLayout:Clear();
-	
-	if (data["arg"]["faction"].GetDefaultName) then
-		local prefix, editable = data["arg"]["faction"]:GetDefaultName(self.nameEntry);
+	self.factionTable = data.faction;
+
+	if (self.factionTable.GetDefaultName) then
+		local prefix, editable = self.factionTable:GetDefaultName(self.nameEntry);
 		self.nameEntry:SetEditable(editable or false);
 		self.nameEntry:SetEntryValue(prefix);
 	end;
 	
 	local maleModels = {};
-	for k, v in pairs(data.arg.faction.maleModels) do
+	for k, v in pairs(self.factionTable.maleModels) do
 		self:AddCharacterModel(v, "male");
 		table.Add(maleModels, {v});
 	end;
 	
 	local femaleModels = {};
-	for k, v in pairs(data.arg.faction.femaleModels) do
+	for k, v in pairs(self.factionTable.femaleModels) do
 		self:AddCharacterModel(v, "female");
 		table.Add(femaleModels, {v});
 	end;
@@ -312,7 +317,8 @@ function PANEL:GetData()
 		name = self.nameEntry.Entry:GetValue(), 
 		desc = self.descEntry.Entry:GetValue(), 
 		model = self.selectedModel.model,
-		gender = self.selectedModel.gender
+		gender = self.selectedModel.gender,
+		faction = self.factionTable
 	};
 	return data;
 end;
@@ -390,7 +396,7 @@ function PANEL:Init()
 		
 		attribsBar.CanChange = function(panel, operator)
 			if (operator) then
-				return true;
+				return leftPoints < nut.config.startingPoints;
 			else
 				return leftPoints > 0;
 			end;
@@ -410,6 +416,18 @@ function PANEL:GetData(data)
 	
 	return {attribs = data};
 end;
+
+function PANEL:NextCallback(data)
+	local factionTable = data.faction;
+	
+	for k, v in pairs(self.attribs) do
+		if(factionTable.defaultAttributes) then
+			if (factionTable.defaultAttributes[k]) then
+				v:SetValue(factionTable.defaultAttributes[k]);
+			end
+		end
+	end
+end
 vgui.Register("AdvNut_charCreateAttributeSet", PANEL, "AdvNut_charCreateBase");
 
 

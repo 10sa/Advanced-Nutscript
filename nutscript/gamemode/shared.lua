@@ -72,8 +72,8 @@ nut.util.Include("sh_translations.lua");
 
 -- Other core directories. The second argument is true since they're in the framework.
 -- If they werne't, it'd try to include them from the schema!
-nut.util.IncludeDir("utils", true);
 nut.util.IncludeDir("libs", true);
+nut.util.IncludeDir("utils", true);
 
 nut.util.IncludeDir("kernel/netstreams", true);
 nut.util.IncludeDir("kernel", true);

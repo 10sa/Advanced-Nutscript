@@ -220,7 +220,7 @@ function PANEL:Init()
 								"gender",
 								"desc",
 								"model",
-								"faction",
+								"factionID",
 								"attribs"
 							};
 							

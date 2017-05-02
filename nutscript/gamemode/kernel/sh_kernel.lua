@@ -55,8 +55,6 @@ function GM:SetupAttributes()
 			client:SetJumpPower(nut.config.jumpPower + points * 0.25);
 		end);
    end
-
-   AdvNut.hook.Run("RegisterAttributes")
 end
 
 function GM:CreateCharVars(character)
