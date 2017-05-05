@@ -27,6 +27,7 @@ function PANEL:Init()
 end
 
 function PANEL:PopulateList()
+	self.list:Clear();
 	self.teamList = {}
 	
 	local players = player.GetAll()
@@ -168,16 +169,18 @@ function PANEL:SetPlayer(client)
 			local client = LocalPlayer();
 		
 			menu:AddOption(nut.lang.Get("sb_menu_change_name"), function()
-				self.stringRequestPanel.changeName = Derma_StringRequest(nut.lang.Get("sb_menu_change_name"), nut.lang.Get("sb_menu_change_desc"), target:Name(), function(name)
+				self.stringRequestPanel.changeName = Derma_StringRequest(nut.lang.Get("sb_menu_change_name"), nut.lang.Get("sb_menu_change_name_desc"), target:Name(), function(name)
 				
 					if (name and string.find(name, "%S")) then
 						local oldName = target.character:GetVar("charname", "ERROR");
-						target.character:SetVar("charname", name);
+						netstream.Start(AdvNut.util.CreateIdentifier("SetCharName", SERVER), {name = name, target = target});
 					
 						nut.util.Notify(nut.lang.Get("char_set_name", client:Name(), oldName, name));
 					else
 						nut.util.Notify(nut.lang.Get("char_bad_name"), client);
 					end;
+					
+					self:Refresh();
 				end);
 			end);
 		
@@ -188,6 +191,8 @@ function PANEL:SetPlayer(client)
 				if (!faction.isDefault) then
 					menu.factionGiveMenu:AddOption(faction.name, function()
 						netstream.Start(AdvNut.util.CreateIdentifier("PlayerGiveWhitelist", SERVER), {factionName = faction.name, factionIndex = faction.index, target = target});
+						
+						self:Refresh();
 					end);
 				end;
 			end;
@@ -201,6 +206,8 @@ function PANEL:SetPlayer(client)
 					local faction = nut.faction.GetByStringID(factionName);
 					menu.factionTakeMenu:AddOption(faction.name, function()
 						netstream.Start(AdvNut.util.CreateIdentifier("PlayerTakeWhitelist", SERVER), {factionName = faction.name, factionIndex = faction.index, target = target});
+						
+						self:Refresh();
 					end);
 				end;
 			end;
@@ -211,12 +218,16 @@ function PANEL:SetPlayer(client)
 			menu.flagsMenu:AddOption(nut.lang.Get("sb_menu_flags_give"), function()
 				self.stringRequestPanel.flagGive = Derma_StringRequest(nut.lang.Get("sb_menu_flags_give"), nut.lang.Get("sb_menu_flags_give_desc"), "", function(flags)
 					netstream.Start(AdvNut.util.CreateIdentifier("PlayerGiveFlags", SERVER), {flags = flags, target = target});
+					
+					self:Refresh();
 				end);
 			end);
 		
 			menu.flagsMenu:AddOption(nut.lang.Get("sb_menu_flags_take"), function()
 				self.stringRequestPanel.flagTake = Derma_StringRequest(nut.lang.Get("sb_menu_flags_take"), nut.lang.Get("sb_menu_flags_take"), "", function(flags)
 					netstream.Start(AdvNut.util.CreateIdentifier("PlayerTakeFlags", SERVER), {flags = flags, target = target});
+					
+					self:Refresh();
 				end);
 			end);
 			// End Flags Sub Menu //
@@ -225,12 +236,16 @@ function PANEL:SetPlayer(client)
 			menu.kickMenu = menu:AddSubMenu(nut.lang.Get("sb_menu_kick"));
 			menu.kickMenu:AddOption(nut.lang.Get("sb_menu_kick"), function()
 				netstream.Start("PlayerKick", {reason = "No Reason", target = target});
+				
+				self:Refresh();
 			end);
 			
 			menu.kickMenu:AddOption(nut.lang.Get("sb_menu_kick_reason"), function()
 				self.stringRequestPanel.kickReason = Derma_StringRequest(nut.lang.Get("sb_menu_kick_reason"), nut.lang.Get("sb_menu_kick_reason_desc"), "", function(reason)
 					netstream.Start("PlayerKick", {reason = reason, target = target});
 				end);
+				
+				self:Refresh();
 			end);
 			// End Kick Sub Menu //
 		
@@ -243,6 +258,8 @@ function PANEL:SetPlayer(client)
 						nut.util.Notify(nut.lang.Get("wrong_value"), client);
 					end;
 				end);
+				
+				self:Refresh();
 			end);
 		
 			AdvNut.hook.Run("AddScoreboardModelMenu", menu);
@@ -265,6 +282,12 @@ end
 
 function PANEL:Think()
 	self.model:SetToolTip(nut.lang.Get("sb_model_tip", LocalPlayer():Ping()));
+end
+
+function PANEL:Refresh()
+	timer.Simple(0.1, function() 
+		nut.gui.sb:PopulateList();
+	end);
 end
 
 function PANEL:Paint(w, h)

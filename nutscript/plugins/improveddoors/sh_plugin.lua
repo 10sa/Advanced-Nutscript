@@ -18,6 +18,7 @@ end
 AdvNut.util.IsDoor = PLUGIN.IsDoor;
 
 local entityMeta = FindMetaTable("Entity")
+
 function entityMeta:IsDoor()
 	local class = string.lower(self:GetClass() or "");
 	
@@ -27,6 +28,22 @@ function entityMeta:IsDoor()
 		return false;
 	end;
 end; 
+
+function entityMeta:GetDoorPartner()
+	if (!self:IsDoor()) then
+		error("Attempt to get partner of a non-door entity.")
+	end
+
+	local partners = {}
+
+	for k, v in pairs(ents.FindInSphere(self:GetPos(), 128)) do
+		if (v != self and v:IsDoor()) then
+			partners[#partners + 1] = v
+		end
+	end
+
+	return partners
+end
 
 function PLUGIN:IsDoorOwned(entity)
 	if (entity:GetNetVar("owner") != nil) then

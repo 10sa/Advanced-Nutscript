@@ -220,8 +220,8 @@ function PANEL:Init()
 								"gender",
 								"desc",
 								"model",
-								"factionID",
-								"attribs"
+								"attribs",
+								"factionID"
 							};
 							
 							for k, v in pairs(self.Stages) do
@@ -242,6 +242,8 @@ function PANEL:Init()
 								self.Stages[#self.Stages]:Prev();
 								CreateMainButtons();
 							end;
+							
+							PrintTable(characterInfo);
 							netstream.Start("nut_CharCreate", characterInfo);
 							
 							timer.Create("timer.charCreate_Timeout", 10, 0, function()

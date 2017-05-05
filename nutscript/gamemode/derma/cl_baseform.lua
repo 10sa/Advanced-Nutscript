@@ -14,11 +14,7 @@ function PANEL:AddCloseButton()
 	self.buttonBase.CloseButton:SetText("X");
 	self.buttonBase.CloseButton:Dock(RIGHT);
 	self.buttonBase.CloseButton.DoClick = function()
-		if(IsValid(self.Close)) then
-			self:Close();
-		else
-			self:Remove();
-		end;
+		self:Close();
 	end;
 	
 	self.buttonBase.CloseButton.Paint = function(panel, w, h)

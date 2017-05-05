@@ -36,9 +36,17 @@ function PLUGIN:PlayerLoadedChar(client)
 			end;
 		end;
 		
-		client:SetRunSpeed(AdvNut.hook.Run("PlayerGetRunSpeed", client, math.Max(nut.config.walkSpeed / 2, (nut.config.runSpeed * 1.25) + (client:GetAttrib(ATTRIB_SPD, 1) * 0.25) - (100 / (math.Max(client.character:GetVar("stamina"), 1) * 0.5)))));
-		client:SetWalkSpeed(AdvNut.hook.Run("PlayerGetWalkSpeed", client, math.Max(nut.config.walkSpeed / 2, (nut.config.walkSpeed * 1.25) + (client:GetAttrib(ATTRIB_SPD, 1) * 0.05) - (100 / (math.Max(client.character:GetVar("stamina"), 1) * 0.5)))));
+		client:SetRunSpeed(AdvNut.hook.Run("PlayerGetRunSpeed", client, PLUGIN:GetDefaultRunSpeed(client)));
+		client:SetWalkSpeed(AdvNut.hook.Run("PlayerGetWalkSpeed", client, PLUGIN:GetDefaultWalkSpeed(client)));
 	end);
+end
+
+function PLUGIN:GetDefaultRunSpeed(client)
+	return math.Max(nut.config.walkSpeed / 2, (nut.config.runSpeed * 1.25) + (client:GetAttrib(ATTRIB_SPD, 1) * 0.25) - (20 / (math.Max(client.character:GetVar("stamina"), 1) * 0.25)));
+end
+
+function PLUGIN:GetDefaultWalkSpeed(client)
+	return math.Max(nut.config.walkSpeed / 2, nut.config.walkSpeed + (client:GetAttrib(ATTRIB_SPD, 1) * 0.05) - (10 / (math.Max(client.character:GetVar("stamina"), 1) * 1.25)));
 end
 
 function PLUGIN:PlayerSpawn(client)

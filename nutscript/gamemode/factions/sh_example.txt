@@ -1,3 +1,5 @@
+// Must be Create schema faction folder, Don't Create in here. //
+
 
 // Faction Name //
 FACTION.name = "Citizen";
@@ -16,11 +18,16 @@ FACTION.defaultItem = {
 	{"Item_Unique_ID", Item_Amount, Item_Data}
 }
 
-// Faction Characters Default Max Health Value. (Default : 100) //
-FACTION.defaultMaxHealth = 100;
+// Faction Default Attributes //
+FACTION.defaultAttributes = {
+	[AttributesIndex] = DefaultValue
+}
 
-// Faction Characters Default Armor (0 ~ 255) //
-FACTION.defaultArmor = 0;
+// Faction Characters Default Max Health Value. (Default : 100) //
+FACTION.defaultMaxHealth = 150;
+
+// Faction Characters Default Armor (0 ~ 255, Default : 0) //
+FACTION.defaultArmor = 100;
 
 // Faction Unique ID. (It's Global, Essential) //
 FACTION_CITIZEN = FACTION.index

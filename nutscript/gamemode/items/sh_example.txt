@@ -1,0 +1,15 @@
+// It's Basic Item Template. //
+
+// Item Name //
+ITEM.name = "Example Item Template";
+
+// Item Unique ID //
+ITEM.uniqueID = "A Simple Example";
+
+// Item Entity Text Color (Options) //
+ITEM.color = Color(255, 255, 255);
+
+// Item data //
+ITEM.data = {
+	Equipped = false
+}

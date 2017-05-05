@@ -599,15 +599,18 @@ if (SERVER) then
 		local gender = string.lower(data.gender)
 		local desc = string.sub(data.desc, 1, nut.config.maxDescLength or 240)
 		local model = data.model
-		local faction = data.faction
+		local faction = data.factionID;
 		local attributes = data.attribs or {}
 		local factionTable = nut.faction.GetByID(faction);
 		
 		local totalPoints = 0;
-		
-		if (factionTable) then
+
+		if (factionTable && factionTable.defaultAttributes) then
 			for k, v in pairs(attributes) do
-				v = v - factionTable.defaultAttributes[k] or 0;
+				if(factionTable.defaultAttributes[k]) then
+					v = v - factionTable.defaultAttributes[k];
+				end
+				
 				totalPoints = totalPoints + v
 			end 
 		end
@@ -633,6 +636,7 @@ if (SERVER) then
 		if (code) then
 			return netstream.Start(client, "nut_CharCreateFault", "Error creating character! ("..code..")")
 		end
+		
 
 		local data = {}
 
@@ -665,12 +669,13 @@ if (SERVER) then
 
 		AdvNut.hook.Run("GetDefaultInv", inventory, client, charData)
 		
-		if (factionTable.defaultItem != nil && #factionTable.defaultItem > 1 && type(factionTable.defaultItem) == "table") then
+		
+		if (factionTable.defaultItem && #factionTable.defaultItem >= 1) then
 			for k, v in pairs(factionTable.defaultItem) do
 				inventory:Add(v[1], v[2], v[3]);
 			end
 		end
-
+		
 		charData.inv = inventory.buffer
 		charData.money = AdvNut.hook.Run("GetDefaultMoney", client, charData)
 
