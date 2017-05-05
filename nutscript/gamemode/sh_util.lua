@@ -624,6 +624,10 @@ function nut.util.StackInv(inventory, class, quantity, data)
 	local stack, index
 	quantity = quantity or 1
 
+	if (!IsValid(data)) then
+		data = { };
+	end
+	
 	inventory[class] = inventory[class] or {}
 	
 	for k, v in pairs(inventory[class]) do

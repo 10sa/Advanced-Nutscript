@@ -664,7 +664,11 @@ if (SERVER) then
 		inventory.buffer = {}
 
 		function inventory:Add(class, quantity, data2)
-			self.buffer = nut.util.StackInv(self.buffer, class, quantity, data2)
+			if (IsValid(nut.item.Get(class))) then
+				self.buffer = nut.util.StackInv(self.buffer, class, quantity, data2);
+			else
+				ErrorNoHalt("Character Default Item missing - Class : "..class.."\n");
+			end
 		end
 
 		AdvNut.hook.Run("GetDefaultInv", inventory, client, charData)
@@ -719,9 +723,9 @@ if (SERVER) then
 	-- Deletes a character from the database if it exists.
 	netstream.Hook("nut_CharDelete", function(client, index)
 		index = tonumber(index)
-
+	
 		if (!index) then return end
-
+		
 		if (client.character and client:GetMoney() < nut.config.startingAmount) then
 			return false
 		end

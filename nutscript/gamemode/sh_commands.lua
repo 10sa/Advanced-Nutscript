@@ -727,8 +727,8 @@ nut.command.Register({
 // DON'T USE THIS COMMAND, ONLY FOR DEBUG //
 nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
+	adminOnly = true,
 	onRun = function(client, arguments)
-		if(client:SteamID() != "STEAM_0:1:44985327") then return end;
 		AdvNut.hook.Run("SaveData");
 		nut.util.Notify("DEBUG - End Saved Data", client);
 	end
@@ -736,12 +736,28 @@ nut.command.Register({
 
 nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
+	adminOnly = true,
 	onRun = function(client, arguments)
-		if(client:SteamID() != "STEAM_0:1:44985327") then return end;
 		AdvNut.hook.Run( 'LoadData' )
 		nut.util.Notify("DEBUG - End Loaded Data", client);
 	end
 }, "startloaddata")
+
+nut.command.Register({
+	syntax = nut.lang.Get("syntax_none"),
+	adminOnly = true,
+	onRun = function(client, arguments)
+		PrintTable(client:GetInventory());
+	end
+}, "printplayerinv")
+
+nut.command.Register({
+	syntax = nut.lang.Get("syntax_none"),
+	adminOnly = true,
+	onRun = function(client, arguments)
+		PrintTable(nut.char.buffer);
+	end
+}, "printcachedcharlist")
 // END //
 
 nut.command.Register({
