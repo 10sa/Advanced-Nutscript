@@ -664,11 +664,7 @@ if (SERVER) then
 		inventory.buffer = {}
 
 		function inventory:Add(class, quantity, data2)
-			if (IsValid(nut.item.Get(class))) then
-				self.buffer = nut.util.StackInv(self.buffer, class, quantity, data2);
-			else
-				ErrorNoHalt("Character Default Item missing - Class : "..class.."\n");
-			end
+			self.buffer = nut.util.StackInv(self.buffer, class, quantity, data2);
 		end
 
 		AdvNut.hook.Run("GetDefaultInv", inventory, client, charData)

@@ -13,7 +13,7 @@ end
 nut.config = nut.config or {}
 
 // Don't Touch This, This's Version Counter. //
-nut.config.frameworkVersion = "Dev-0.21";
+nut.config.frameworkVersion = "Dev-0.21a";
 
 -- What language Nutscript shall use.
 nut.config.language = "korean"

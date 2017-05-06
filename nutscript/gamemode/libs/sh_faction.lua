@@ -153,7 +153,10 @@ function nut.faction.Register(index, uniqueID, faction)
 	faction.femaleModels = faction.femaleModels or FEMALE_MODELS;
 	faction.pay = faction.pay or 0;
 	faction.payTime = faction.payTime or 600;
-	faction.defaultItem = faction.defaultItem;
+	faction.defaultItem = faction.defaultItem or { };
+	faction.defaultAttributes = defaultAttributes or { };
+	faction.defaultMaxHealth = faction.defaultMaxHealth or 100;
+	faction.defaultArmor = faction.defaultArmor or 0;
 
 	team.SetUp(index, faction.name, faction.color);
 	

@@ -121,8 +121,6 @@ function PANEL:SetCharacter(index, deleteCallback)
 		self.model:SetAlpha(banned and 50 or 255)
 		
 		self.delete.DoClick = function(panel)
-			LocalPlayer().characters[index] = nil;
-			
 			local orignalChoose = self.choose.DoClick;
 			local orignalDelete = self.delete.DoClick;
 			
@@ -133,6 +131,8 @@ function PANEL:SetCharacter(index, deleteCallback)
 				
 				self.delete:SetText(nut.lang.Get("delete"));
 				self.delete.DoClick = orignalDelete;
+				
+				LocalPlayer().characters[index] = nil;
 				
 				netstream.Start("nut_CharDelete", self.index);
 				deleteCallback();

@@ -509,9 +509,9 @@ function GM:PlayerCreatedChar(client, data) end
 function GM:PostPlayerSpawn(client)
 	local factionData = nut.faction.GetByID(client:Team());
 	
-	if(factionData.defaultMaxHealth) then
-		client:SetMaxHealth(defaultMaxHealth);
-		client:SetHealth(defaultMaxHealth);
+	if (factionData.defaultMaxHealth) then
+		client:SetMaxHealth(factionData.defaultMaxHealth);
+		client:SetHealth(factionData.defaultMaxHealth);
 	end
 	
 	if(factionData.defaultArmor) then
