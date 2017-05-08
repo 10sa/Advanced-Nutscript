@@ -724,10 +724,10 @@ nut.command.Register({
 	end
 }, "charban")
 
-// DON'T USE THIS COMMAND, ONLY FOR DEBUG //
+// This commands created for Debug. //
 nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
-	adminOnly = true,
+	superAdminOnly = true,
 	onRun = function(client, arguments)
 		AdvNut.hook.Run("SaveData");
 		nut.util.Notify("DEBUG - End Saved Data", client);
@@ -736,16 +736,16 @@ nut.command.Register({
 
 nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
-	adminOnly = true,
+	superAdminOnly = true,
 	onRun = function(client, arguments)
-		AdvNut.hook.Run( 'LoadData' )
+		AdvNut.hook.Run("LoadData");
 		nut.util.Notify("DEBUG - End Loaded Data", client);
 	end
 }, "startloaddata")
 
 nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
-	adminOnly = true,
+	superAdminOnly = true,
 	onRun = function(client, arguments)
 		PrintTable(client:GetInventory());
 	end
@@ -753,7 +753,7 @@ nut.command.Register({
 
 nut.command.Register({
 	syntax = nut.lang.Get("syntax_none"),
-	adminOnly = true,
+	superAdminOnly = true,
 	onRun = function(client, arguments)
 		PrintTable(nut.char.buffer);
 	end

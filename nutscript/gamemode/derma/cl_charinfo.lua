@@ -207,7 +207,7 @@ vgui.Register( "nut_charInfo", PANEL, "DPanel" )
 
 function PANEL:PlayerBindPress(bind, pressed)
 	local client = LocalPlayer();
-	if (bind == "gm_showhelp" and !IsValid(nut.gui.charMenu) and client.character and !IsValid(nut.gui.qucikRecognition)) then
+	if (bind == "gm_showhelp" and !IsValid(nut.gui.charMenu) and client.character and !IsValid(nut.gui.quickRecognition)) then
 		surface.PlaySound("ui/buttonclick.wav");
 		nut.gui.charInfo = vgui.Create("nut_charInfo");
 	end;

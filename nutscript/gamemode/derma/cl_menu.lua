@@ -214,7 +214,7 @@ vgui.Register("nut_menu", PANEL, "DPanel")
 function PANEL:ScoreboardShow()
 	if (IsValid(nut.gui.menu)) then
 		nut.gui.menu:Close();
-	elseif (IsValid(nut.gui.qucikRecognition)) then
+	elseif (IsValid(nut.gui.quickRecognition)) then
 		return;
 	else
 		if (IsValid(nut.gui.charInfo)) then
