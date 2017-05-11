@@ -4,7 +4,7 @@
 nut.lang.Add("return", "Return", language);
 nut.lang.Add("unknow", "Unknown", language);
 nut.lang.Add("none", "None", language);
-nut.lang.Add("no_desc", "Not Initialized.", language);
+nut.lang.Add("no_desc", "Not initialized.", language);
 nut.lang.Add("characters", "Character", language);
 nut.lang.Add("timeout", "Timeout", language);
 nut.lang.Add("disabled", "Disabled", language);
@@ -13,7 +13,7 @@ nut.lang.Add("wrong_value", "Wrong Value.", language);
 nut.lang.Add("faction", "Faction", language);
 
 nut.lang.Add("nochar_talk_error", "캐릭터를 먼저 만들어야 합니다.", language);
-nut.lang.Add("return_tip", "게임으로 돌아갑니다.", language);
+nut.lang.Add("return_tip", "Return to Game.", language);
 
 nut.lang.Add("item_price", "Price : %s", language);
 nut.lang.Add("trace_not_player", "조준점이 플레이어를 바라보고 있지 않습니다.", language);
@@ -47,7 +47,7 @@ nut.lang.Add("load", "Load", language);
 nut.lang.Add("create", "Create", language);
 nut.lang.Add("leave", "Leave", language);
 
-nut.lang.Add("leave_tip", "서버에서 나갑니다.", language);
+nut.lang.Add("leave_tip", "Leave server.", language);
 
 // Character create
 nut.lang.Add("name", "Name", language);
@@ -77,7 +77,7 @@ nut.lang.Add("char_validating", "서버에 데이터를 전송중입니다...", 
 nut.lang.Add("char_creating", "정상적으로 서버가 캐릭터를 생성하였습니다.", language);
 nut.lang.Add("points_left", "%s점 만큼의 투자하지 않은 특성 점수가 있습니다.", language);
 
-nut.lang.Add("next", "다음", language);
+nut.lang.Add("next", "Next", language);
 
 nut.lang.Add("faction_select", "팩션 선택", language);
 nut.lang.Add("faction_select_desc", "이 탭에서는 캐릭터의 팩션을 결정할수 있습니다.", language);
@@ -95,19 +95,19 @@ nut.lang.Add("not_select_model", "모델은 반드시 선택되어야 합니다.
 nut.lang.Add("attribute_setup", "능력치 설정", language);
 nut.lang.Add("attribute_setup_desc", "이 탭에서는 캐릭터의 능력치를 결정할수 있습니다.", language);
 
-nut.lang.Add("charcreate_waiting", "데이터 전송", language);
-nut.lang.Add("charcreate_waiting_desc", "작성된 데이터를 서버에 전송하는 중...", language);
-nut.lang.Add("charcreate_timeout", "정보 전송 시간이 초과되었습니다. \n이 상황이 지속되는 경우 서버 운영자에게 문의하십시요.", language);
+nut.lang.Add("charcreate_waiting", "Data Sending", language);
+nut.lang.Add("charcreate_waiting_desc", "Sending Charactor Data...", language);
+nut.lang.Add("charcreate_timeout", "Sending Timeout. \n이 상황이 지속되는 경우 서버 운영자에게 문의하십시요.", language);
 
 
 // Character Load
-nut.lang.Add("choose", "선택", language);
+nut.lang.Add("choose", "Choose", language);
 
 nut.lang.Add("load_tip", "만들어진 캐릭터를 불러옵니다.", language);
 nut.lang.Add("choose_tip", "플레이 할 캐릭터를 선택합니다.", language);
 
 // Character delete
-nut.lang.Add("delete", "삭제", language);
+nut.lang.Add("delete", "Delete", language);
 
 nut.lang.Add("delete_tip", "케릭터를 삭제합니다.", language);
 nut.lang.Add("delete_question", "정말로 %s 을(를); 삭제 하시겠습니까?", language);
@@ -124,49 +124,49 @@ nut.lang.Add("die_thirst", "%s 심한 갈증으로 인해 쓰러진다.", langua
 nut.lang.Add("chat_normal", "%s 님의 말 ", language);
 nut.lang.Add("chat_yell", "%s 님의 외침 ", language);
 nut.lang.Add("chat_whisper", "%s 님의 속삭임 ", language);
-nut.lang.Add("chat_pm", "[귓속말] ", language);
+nut.lang.Add("chat_pm", "[Private Message] ", language);
 
 
 nut.lang.Add("chat_ooctime", "OOC 채팅을 사용하려면 %s 초 만큼 더 기다려야 합니다.", language);
 
 // Menu, settings
-nut.lang.Add("settings", "설정", language);
+nut.lang.Add("settings", "Settings", language);
 nut.lang.Add("settings_tip", "이 탭을 통해 게임의 각종 설정을 변경할 수 있습니다.", language);
-nut.lang.Add("settings_category_framework", "프레임워크 설정", language);
+nut.lang.Add("settings_category_framework", "Framework Settings", language);
 
-nut.lang.Add("settings_crosshair", "크로스헤어", language);
-nut.lang.Add("settings_crosshair_size", "크로스헤어  크기", language);
-nut.lang.Add("settings_crosshair_spacing", "크로스헤어 간격", language);
-nut.lang.Add("settings_crosshair_alpha", "크로스헤어 투명도", language);
+nut.lang.Add("settings_crosshair", "Crosshair", language);
+nut.lang.Add("settings_crosshair_size", "Crosshair Size", language);
+nut.lang.Add("settings_crosshair_spacing", "Crosshair Spacing", language);
+nut.lang.Add("settings_crosshair_alpha", "Crosshair Alpha", language);
 
 // Menu, attribute
-nut.lang.Add("attribute", "신체 능력", language);
+nut.lang.Add("attribute", "Attribute", language);
 nut.lang.Add("attribute_tip", "이 창은 플레이어의 신체 능력치를 표시합니다.", language);
 nut.lang.Add("attribute_tip2", "신체 능력치는 특정 행동을 통하여 향상시킬 수 있습니다.", language);
 
 // Menu, attaributes
-nut.lang.Add("acrobatics", "곡예", language);
-nut.lang.Add("strength", "힘", language);
-nut.lang.Add("cook", "요리", language);
+nut.lang.Add("acrobatics", "Acrobatics", language);
+nut.lang.Add("strength", "Strength", language);
+nut.lang.Add("cook", "Cook", language);
 
 nut.lang.Add("acrobatics_desc", "이 수치가 높을수록 점프할 수 있는 높이가 더욱 높아집니다.", language);
 nut.lang.Add("strength_desc", "이 수치가 높을수록 캐릭터의 힘이 강해집니다.", language);
 nut.lang.Add("cooking_desc", "요리한 음식의 결과물을 결정합니다.", language);
 
 // Menu, inventory
-nut.lang.Add("inventory", "인벤토리", language);
-nut.lang.Add("equippedinventory", "장비된 아이템", language);
+nut.lang.Add("inventory", "Inventory", language);
+nut.lang.Add("equippedinventory", "Eqquipped", language);
 
 nut.lang.Add("no_invspace", "인벤토리에 여유가 없습니다.", language);
 nut.lang.Add("inv_tip", "이 탭은 당신의 인벤토리의 내용물을 관리합니다.", language);
 
 // Menu, business
-nut.lang.Add("business", "사업", language);
+nut.lang.Add("business", "Business", language);
 
 nut.lang.Add("business_tip", "아이콘을 클릭하여 아이템을 구매할 수 있습니다.", language);
 
 // Menu, scoreboard
-nut.lang.Add("scoreboard", "플레이어 목록", language);
+nut.lang.Add("scoreboard", "Scoreboard", language);
 
 nut.lang.Add("sb_tip", "플레이어 아이콘을 누르면 플레이어에 대한 정보를 볼 수 있습니다.", language);
 nut.lang.Add("sb_avatar_tip", "클릭으로 %s 님의 프로필을 엽니다. | Steam ID : %s", language);
@@ -175,42 +175,42 @@ nut.lang.Add("sb_model_tip", "이 플레이어의 핑 : %s", language);
 nut.lang.Add("sb_menu_change_name", "이름 변경", language);
 nut.lang.Add("sb_menu_change_name_desc", "변경할 캐릭터의 이름을 입력하세요.", language);
 
-nut.lang.Add("sb_menu_faction_give", "팩션 지급", language);
-nut.lang.Add("sb_menu_faction_take", "팩션 제거", language);
+nut.lang.Add("sb_menu_faction_give", "Faction give", language);
+nut.lang.Add("sb_menu_faction_take", "Faction take", language);
 
-nut.lang.Add("sb_menu_flags", "플래그", language);
-nut.lang.Add("sb_menu_flags_give", "플래그 지급", language);
+nut.lang.Add("sb_menu_flags", "Flags", language);
+nut.lang.Add("sb_menu_flags_give", "Flags give", language);
 nut.lang.Add("sb_menu_flags_give_desc", "지급할 플래그를 입력하세요.", language);
 
-nut.lang.Add("sb_menu_flags_take", "플래그 제거", language);
+nut.lang.Add("sb_menu_flags_take", "Flags take", language);
 nut.lang.Add("sb_menu_flags_take_desc", "제거할 플래그를 입력하세요.", language);
 
-nut.lang.Add("sb_menu_kick", "킥", language);
+nut.lang.Add("sb_menu_kick", "Kick", language);
 
-nut.lang.Add("sb_menu_kick_reason", "사유 작성", language);
+nut.lang.Add("sb_menu_kick_reason", "Write reason", language);
 nut.lang.Add("sb_menu_kick_reason_desc", "킥 사유를 작성하세요. (243자 미만)", language);
 
-nut.lang.Add("sb_menu_ban", "밴", language);
+nut.lang.Add("sb_menu_ban", "Ban", language);
 nut.lang.Add("sb_menu_ban_desc", "밴 시간을 입력하세요. (분 단위, 0 입력 시 영구 밴)", language);
 
 // Menu, classes
-nut.lang.Add("classes", "클래스", language);
+nut.lang.Add("classes", "Classes", language);
 nut.lang.Add("class_icon_tip", "클릭으로 %s 클래스에 가입합니다.", language);
 
 nut.lang.Add("class_joined", "%s 클래스에 성공적으로 가입하였습니다.", language);
 nut.lang.Add("class_failed", "당신은 이 클래스에 가입할 수 없습니다.", language);
 
 // Menu, help
-nut.lang.Add("help", "도움말", language);
+nut.lang.Add("help", "Help", language);
 
 // Menu, system
 
-nut.lang.Add("system", "시스템", language);
-nut.lang.Add("system_key", "키", language);
-nut.lang.Add("system_value", "값", language);
+nut.lang.Add("system", "System", language);
+nut.lang.Add("system_key", "Key", language);
+nut.lang.Add("system_value", "Value", language);
 nut.lang.Add("system_tip", "이 탭은 설정 값 변경하게 도와주는 탭 입니다.", language);
 nut.lang.Add("system_second_tip", "라인을 우클릭 하여 값을 변경할 수 있으나, 일부 값은 변경하지 못할수도 있습니다.", language)
-nut.lang.Add("system_set_value", "값 지정", language);
+nut.lang.Add("system_set_value", "Set Value", language);
 nut.lang.Add("system_set_value_desc", "%s 형의 값을 입력하세요.", language);
 nut.lang.Add("system_notify", "%s 님이 '%s' 설정 값을 '%s' 으(로) 변경하였습니다.", language);
 
@@ -223,41 +223,41 @@ nut.lang.Add("no", "아니요.", language);
 nut.lang.Add("yes", "예.", language);
 
 // Items
-nut.lang.Add("item_info", "이름: %s\n설명: %s", language);
-nut.lang.Add("item_icon_desc", "이름: %s\n설명: %s\n%s", language);
-nut.lang.Add("item_drop", "버리기", language);
-nut.lang.Add("item_take", "줍기", language);
-nut.lang.Add("notexist", "%s (정의되지 않음)", language);
+nut.lang.Add("item_info", "Name: %s\nDesc: %s", language);
+nut.lang.Add("item_icon_desc", "Name: %s\nDesc: %s\n%s", language);
+nut.lang.Add("item_drop", "Drop", language);
+nut.lang.Add("item_take", "Take", language);
+nut.lang.Add("notexist", "%s (Not exist)", language);
 
 // Items, buttons
 nut.lang.Add("cooking", "요리하기", language);
 nut.lang.Add("free", "무료", language);
-nut.lang.Add("eat", "먹기", language);
-nut.lang.Add("open", "열기", language);
-nut.lang.Add("lock", "잠구기", language);
-nut.lang.Add("drinking", "마시기", language);
-nut.lang.Add("reload", "장전하기", language);
-nut.lang.Add("b_reading", "읽기", language);
+nut.lang.Add("eat", "Eat", language);
+nut.lang.Add("open", "Open", language);
+nut.lang.Add("lock", "Lock", language);
+nut.lang.Add("drinking", "Drink", language);
+nut.lang.Add("reload", "Reload", language);
+nut.lang.Add("b_reading", "Reading", language);
 
-nut.lang.Add("wp_equip", "장착하기", language);
-nut.lang.Add("wp_unequip", "장착해제", language);
+nut.lang.Add("wp_equip", "Equip", language);
+nut.lang.Add("wp_unequip", "Unequip", language);
 
-nut.lang.Add("wear", "입기", language);
-nut.lang.Add("unwear", "벗기", language);
+nut.lang.Add("wear", "Wear", language);
+nut.lang.Add("unwear", "Unwaer", language);
 
-nut.lang.Add("setup", "설치하기", language);
+nut.lang.Add("setup", "Setup", language);
 nut.lang.Add("setup_desc", "아이템을 설치합니다.", language);
 
 // Items, categorys
-nut.lang.Add("c_cooking", "요리", language);
-nut.lang.Add("food", "음식", language);
-nut.lang.Add("misc", "잡동사니", language);
-nut.lang.Add("weapon", "무기", language);
-nut.lang.Add("alcohol", "주류", language);
-nut.lang.Add("ammo", "탄약", language);
-nut.lang.Add("clothing", "의류", language);
-nut.lang.Add("book", "도서", language);
-nut.lang.Add("part", "장비", language);
+nut.lang.Add("c_cooking", "Cooking", language);
+nut.lang.Add("food", "Food", language);
+nut.lang.Add("misc", "Misc", language);
+nut.lang.Add("weapon", "Weapon", language);
+nut.lang.Add("alcohol", "Alcohol", language);
+nut.lang.Add("ammo", "Ammo", language);
+nut.lang.Add("clothing", "Clothing", language);
+nut.lang.Add("book", "Book", language);
+nut.lang.Add("part", "Part", language);
 
 // Items, clothes
 nut.lang.Add("cant_wear_cl", "이 옷을 입은 상태에서는 할수 없습니다.", language);
@@ -393,24 +393,24 @@ nut.lang.Add("t_giveitem", "%s 님이 %s 개의 %s 아이템을 전달하였습�
 nut.lang.Add("bad_item_id", "잘못된 ID입니다.", language);
 
 // Character status (F1)
-nut.lang.Add("status_money", "돈: ", language);
-nut.lang.Add("status_hunger", "배고픔 수치: ", language);
-nut.lang.Add("status_thirst", "목마름 수치: ", language);
-nut.lang.Add("status_inv", "사용중인 인벤토리: ", language);
-nut.lang.Add("status_synt", "캐릭터 상태: ", language);
+nut.lang.Add("status_money", "Money : ", language);
+nut.lang.Add("status_hunger", "Hunger : ", language);
+nut.lang.Add("status_thirst", "Thirst : ", language);
+nut.lang.Add("status_inv", "Using inventory : ", language);
+nut.lang.Add("status_synt", "Character status: ", language);
 
-nut.lang.Add("status_fallover", "쓰러지기", language);
-nut.lang.Add("status_changedesc", "설명 바꾸기", language);
+nut.lang.Add("status_fallover", "Fall over", language);
+nut.lang.Add("status_changedesc", "Change desc", language);
 
 nut.lang.Add("synt_fine", "괜찮음.", language);
 nut.lang.Add("synt_die", "사망 직전.", language);
 nut.lang.Add("synt_hunger", "매우 배고픔.", language);
 nut.lang.Add("synt_thirst", "매우 목마름.", language);
 
-nut.lang.Add("developer", "개발자", language);
-nut.lang.Add("owner", "오너", language);
-nut.lang.Add("superadmin", "슈퍼 어드민", language);
-nut.lang.Add("admin", "어드민", language);
-nut.lang.Add("operator", "오퍼레이터", language);
-nut.lang.Add("donator", "후원자", language);
-nut.lang.Add("user", "유저", language);
+nut.lang.Add("developer", "Developer", language);
+nut.lang.Add("owner", "Owner", language);
+nut.lang.Add("superadmin", "Superadmin", language);
+nut.lang.Add("admin", "Admin", language);
+nut.lang.Add("operator", "Operator", language);
+nut.lang.Add("donator", "Donator", language);
+nut.lang.Add("user", "User", language);
