@@ -6,206 +6,201 @@
 -- We don't want clients to get our database information.
 if (SERVER) then
 	-- Include server-side configurations like database information.
-	nut.util.Include("sv_config.lua")
+	nut.util.Include("sv_config.lua");
 end
 
--- Defines a table to store all the configurations.
-nut.config = nut.config or {}
+nut.util.Include("libs/sh_config.lua");
 
 // Don't Touch This, This's Version Counter. //
-nut.config.frameworkVersion = "Dev-0.21a";
+nut.config.Register("frameworkVersion", "Dev-0.21a");
 
 -- What language Nutscript shall use.
-nut.config.language = "korean"
+nut.config.Register("language", "korean");
 
 -- 기본 화면에서 스체마의 이름과 설명을 사용할 것인지에 대한 여부입니다.
 -- false 시 sh_korean.lua 의 "charMenuTitle", "charMenuDesc" 를 가져다 사용합니다.
-nut.config.prefixTitle = false;
+nut.config.Register("prefixTitle", false);
 
 -- Website!
-nut.config.website = "http://steamcommunity.com/groups/Advanced_Nutscript";
+nut.config.Register("website", "http://steamcommunity.com/groups/Advanced_Nutscript");
 
 -- The default walk speed.
-nut.config.walkSpeed = 90
+nut.config.Register("walkSpeed", 90);
 
 -- The default run speed.
-nut.config.runSpeed = 200
+nut.config.Register("runSpeed", 200);
 
-nut.config.staminaValue = 5;
+nut.config.Register("staminaValue", 5);
 
 -- Weapons that are always raised and able to shoot.
-nut.config.alwaysRaised = {
-	weapon_physgun = true,
-	gmod_tool = true
-}
+nut.config.Register("alwaysRaised", {
+	weapon_physgun, true,
+	gmod_tool, true
+});
 
 -- 기본 설정의 문을 저장 하는지에 대한 여부.
-nut.config.saveDefaultDoor = false
+nut.config.Register("saveDefaultDoor", false);
 
 -- 배고픔 / 목마름 수치가 낮을시 행동하는 여부.
-nut.config.statusMeActions = true
+nut.config.Register("statusMeActions", true);
 
 -- 배고픔 / 목마름 닳는 속도 (초)
-nut.config.hungerRestore = 120
-nut.config.thristRestore = 100
+nut.config.Register("hungerRestore", 120);
+nut.config.Register("thristRestore", 100);
 
 -- 스테미너의 회복량 입니다.
-nut.config.staminaRestore = 1;
+nut.config.Register("staminaRestore", 1);
 
 -- 인터페이스의 색상값입니다.
-nut.config.colorIntervalValue = 0.5;
+nut.config.Register("colorIntervalValue", 0.5);
 
-nut.config.iconSize = 64;
-
--- override method
-nut.config.ScoreboradOpen = function()
-	return true;
-end;
+nut.config.Register("iconSize", 64);
 
 -- 일반 유저가 스폰 매뉴 (Q)를 열수 있는지에 대한 여부.
-nut.config.userCanOpenSpawnMenu = false;
+nut.config.Register("userCanOpenSpawnMenu", false);
 
 -- 클레스 메뉴의 활성화 여부. (클레스 기능을 끄는게 아님)
-nut.config.classmenuEnabled = false;
+nut.config.Register("classmenuEnabled", false);
 
 -- 사업 메뉴의 활성화 여부.
-nut.config.businessEnabled = false;
+nut.config.Register("businessEnabled", false);
 
 -- 플레이어 목록에 보이지 않게할 팩션.
 -- 예제 : FACTION_CITIZEN, FACTION_CP 팩션을 보이지 않게함.
 --[[ 
-	nut.config.dontshowfactions = { FACTION_CITIZEN, FACTION_CP } 
+	nut.config.Register(dontshowfactions, { FACTION_CITIZEN, FACTION_CP } 
 ]]
-nut.config.dontshowfactions = {}
+nut.config.Register("dontshowfactions", {});
 
 -- 프레임워크의 폼의 뒷배경 색상입니다.
-nut.config.panelBackgroundColor = color_white;
+nut.config.Register("panelBackgroundColor", color_white);
 
 -- If set to true, holding your reload key will toggleraise.
-nut.config.holdReloadToToggle = true
+nut.config.Register("holdReloadToToggle", true);
 
 -- If set to true, nut will register its default attributes.
-nut.config.baseAttributes = true
+nut.config.Register("baseAttributes", true);
 
 -- How many seconds must the player hold reload for to toggleraise.
-nut.config.holdReloadTime = 0.8
+nut.config.Register("holdReloadTime", 0.8);
 
 -- How often database saving should occur for players (in seconds)
-nut.config.saveInterval = 600
+nut.config.Register("saveInterval", 600);
 
--- How wide menus in the F1 menu are. This is a ratio for the screen's width. (0.5 = half of the screen's width)
-nut.config.menuWidth = 0.7
+-- How wide menus in the F1 menu are. This is a ratio for the screen's width. (0.5, half of the screen's width)
+nut.config.Register("menuWidth", 0.7);
 
--- How tall menus in the F1 menu are. This is a ratio for the screen's height. (0.5 = half the screen's height)
-nut.config.menuHeight = 0.8
+-- How tall menus in the F1 menu are. This is a ratio for the screen's height. (0.5, half the screen's height)
+nut.config.Register("menuHeight", 0.8);
 
 -- The main color scheme for buttons and such.
-nut.config.mainColor = Color(145, 145, 145)
+nut.config.Register("mainColor", Color(145, 145, 145));
 
 -- Minimum amount of characters for a description.
-nut.config.descMinChars = 8
+nut.config.Register("descMinChars", 8);
 
-nut.config.nameMinChars = 3;
+nut.config.Register("nameMinChars", 3);
 
 -- How many attribute points a player gets when creating a character.
-nut.config.startingPoints = 20
+nut.config.Register("startingPoints", 20);
 
 -- Caps attribute points a player gets when a character is gaining attribute experience.
-nut.config.maximumPoints = 100;
+nut.config.Register("maximumPoints", 100);
 
 -- The maximum distance in Source units to hear someone whispering.
-nut.config.whisperRange = 160
+nut.config.Register("whisperRange", 160);
 
 -- The maximum distance in Source units to hear someone talk.
-nut.config.chatRange = 540
+nut.config.Register("chatRange", 540);
 
 -- The maximum distance in Source units to hear someone yell.
-nut.config.yellRange = 720
+nut.config.Register("yellRange", 720);
 
 -- The text color for game messages like joining/leaving or console text.
 -- Uses a color object which goes red, green, blue. Each ranges from 0 to 255.
-nut.config.gameMsgColor = Color(230, 230, 230)
+nut.config.Register("gameMsgColor", Color(230, 230, 230));
 
 -- How loud the menu music is out of 100.
-nut.config.menuMusicVol = 40
+nut.config.Register("menuMusicVol", 40);
 
 -- What the actual menu music is. It can be a URL or game sound. Set to false if you
 -- do not want any menu music. This can also be overwritten by the schema.
-nut.config.menuMusic = false
+nut.config.Register("menuMusic", false);
 
 -- How long it takes in seconds for the menu music to fade out.
-nut.config.menuMusicFade = 15
+nut.config.Register("menuMusicFade", 15);
 
 -- The starting weight for inventories.
-nut.config.defaultInvWeight = 20
+nut.config.Register("defaultInvWeight", 20);
 
 -- Shows what other people are typing.
 -- If set to false, it'll just show Typing... above someone's head when they are.
 -- Setting it to true MIGHT cause a little network strain, depending on how many players there are.
-nut.config.showTypingText = true
+nut.config.Register("showTypingText", true);
 
 -- The maximum number of characters.
-nut.config.maxChars = 4
+nut.config.Register("maxChars", 4);
 
 -- The delay between which someone can buy something.
-nut.config.buyDelay = 1
+nut.config.Register("buyDelay", 1);
 
 -- The maximum number of characters in a chat message.
-nut.config.maxChatLength = 500
+nut.config.Register("maxChatLength", 500);
 
 -- The initial date that is used by the time system.
-nut.config.dateStartMonth = 10
-nut.config.dateStartDay = 7
-nut.config.dateStartYear = 2033
+nut.config.Register("dateStartMonth", 10);
+nut.config.Register("dateStartDay", 7);
+nut.config.Register("dateStartYear", 2033);
 
 -- If true, then you can't have multiple rifles, pistols, etc...
-nut.config.noMultipleWepSlots = true
+nut.config.Register("noMultipleWepSlots", true);
 
 -- The maximum number of characters in a name.
-nut.config.maxNameLength = 70
+nut.config.Register("maxNameLength", 70);
 
 -- The maximum number of characters in a description.
-nut.config.maxDescLength = 240
+nut.config.Register("maxDescLength", 240);
 
 -- How many seconds are in a minute.
-nut.config.dateMinuteLength = 60
+nut.config.Register("dateMinuteLength", 60);
 
-nut.config.introFadeTime = 7;
+nut.config.Register("introFadeTime", 7);
 
 if (CLIENT) then
 	-- Whether or not the money is shown in the side menu.
-	nut.config.showMoney = true
+	nut.config.Register("showMoney", true);
 
 	-- Whether or not the time is shown in the side menu.
-	nut.config.showTime = true
+	nut.config.Register("showTime", true);
 
 	-- If set to false, then color correction will not be enabled.
-	nut.config.sadColors = true
+	nut.config.Register("sadColors", true);
 
 	-- Whether or not to enable the crosshair.
-	nut.config.crosshair = false
+	nut.config.Register("crosshair", false);
 
 	-- The dot size of the crosshair.
-	nut.config.crossSize = 1
+	nut.config.Register("crossSize", 1);
 
 	-- The amount of spacing beween each crosshair dot in pixels.
-	nut.config.crossSpacing = 6
+	nut.config.Register("crossSpacing", 6);
 
 	-- How 'see-through' the crosshair is from 0-255, where 0 is invisible and 255 is fully
 	-- visible.
-	nut.config.crossAlpha = 150
+	nut.config.Register("crossAlpha", 150);
+	
+	nut.config.Register("targetTall", 0);
 	
 	AdvNut.hook.Add("SchemaInitialized", "nut_FontConfig", function()
 		surface.SetFont("nut_TargetFontSmall")
 
-		_, nut.config.targetTall = surface.GetTextSize("W")
+		_, tall = surface.GetTextSize("W");
+		nut.config.Set("targetTall", tall);
 
-		if (nut.config.targetTall) then
-			nut.config.targetTall = nut.config.targetTall + 2
+		if (nut.config.Get("targetTall")) then
+			nut.config.Set("targetTall", nut.config.Get("targetTall") + 2);
 		end
 
-		nut.config.targetTall = nut.config.targetTall or 10
+		nut.config.Set("targetTall", nut.config.Get("targetTall") or 10);
 	end)
-
-	nut.config.targetTall = nut.config.targetTall or 10
 end

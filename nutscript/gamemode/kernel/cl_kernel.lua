@@ -639,6 +639,10 @@ function GM:ScoreboardShow()
 	return false;
 end;
 
+function GM:ShowMenuScoreboard()
+	return true;
+end
+
 function GM:SpawnMenuOpen()
 	if(LocalPlayer():IsAdmin() or nut.config.userCanOpenSpawnMenu) then
 		return true;

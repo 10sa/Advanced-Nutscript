@@ -94,7 +94,7 @@ function PANEL:Init()
 		self:SetCurrentMenu(nut.gui.inv)
 	end)
 	
-	if(nut.config.ScoreboradOpen()) then
+	if(AdvNut.hook.Run("ShowMenuScoreboard")) then 
 		addButton("sb", nut.lang.Get("scoreboard"), function()
 			nut.gui.sb = vgui.Create("nut_Scoreboard", self)
 			self:SetCurrentMenu(nut.gui.sb)
