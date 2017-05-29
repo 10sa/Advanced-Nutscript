@@ -16,7 +16,7 @@ PLUGIN.nobob = {
 }
 
 function PLUGIN:SchemaInitialized()
-	local data = AdvNut.util.clReadTable(self.uniqueID);
+	local data = AdvNut.util.ReadTable(self.uniqueID);
 	for key, data in pairs(data) do
 		self:SetPluginConfig(key, data);
 	end;
@@ -30,7 +30,7 @@ function PLUGIN:ShutDown()
 		realisticScale = PLUGIN:GetPluginConfig("realisticScale")
 	}
 	
-	AdvNut.util.clWriteTable(self.uniqueID, data);
+	AdvNut.util.WriteTable(self.uniqueID, data);
 end
 
 function PLUGIN:SettingsInit()

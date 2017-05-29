@@ -5,7 +5,7 @@ PLUGIN:SetPluginConfig(PLUGIN:GetPluginConfig("isDrawBackgroundBlur", true));
 PLUGIN:SetPluginConfig(PLUGIN:GetPluginConfig("isUsingScrollBar", false));
 
 function PLUGIN:SchemaInitialized()
-	local data = AdvNut.util.clReadTable(self.uniqueID);
+	local data = AdvNut.util.ReadTable(self.uniqueID);
 	for key, data in pairs(data) do
 		self:SetPluginConfig(key, data);
 	end;
@@ -20,7 +20,7 @@ function PLUGIN:ShutDown()
 		isUsingScrollBar = PLUGIN:GetPluginConfig("isUsingScrollBar", false);
 	}
 	
-	AdvNut.util.clWriteTable(self.uniqueID, data);
+	AdvNut.util.WriteTable(self.uniqueID, data);
 end
 
 

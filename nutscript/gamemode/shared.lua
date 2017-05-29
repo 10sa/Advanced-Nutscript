@@ -30,7 +30,7 @@ end;
 
 function AdvNut.hook.Remove(event, hookIdentifier)
 	AdvNut.hook.Frame(hookIdentifier, function(identifier)
-		hook.Remove(hook, identifier);
+		hook.Remove(event, identifier);
 	end);
 end;
 

@@ -2,9 +2,7 @@
 nut.config = nut.config or {};
 nut.config.__ConfigStruct = nut.config.__ConfigStruct or {};
 
-CONFIG_NET_TYPE_SERVER = 1;
-CONFIG_NET_TYPE_CLIENT = 2;
-CONFIG_NET_TYPE_SHARE = 3;
+SHARE = 3;
 
 CONFIG_VAR_TYPE_NUMBER = "number";
 CONFIG_VAR_TYPE_STRING = "string";

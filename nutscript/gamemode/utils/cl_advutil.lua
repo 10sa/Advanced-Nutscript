@@ -1,6 +1,6 @@
 AdvNut.util = nut.util or {};
 
-function AdvNut.util.clWriteTable(uniqueID, value)
+function AdvNut.util.WriteTable(uniqueID, value)
 	if (type(value) != "table") then
 		value = {value}
 	end
@@ -10,7 +10,7 @@ function AdvNut.util.clWriteTable(uniqueID, value)
 	file.Write("AdvNutscript/data/"..uniqueID..".txt", encoded);
 end;
 
-function AdvNut.util.clReadTable(uniqueID)
+function AdvNut.util.ReadTable(uniqueID)
 	local data = file.Read("AdvNutscript/data/"..uniqueID..".txt", "DATA");
 	
 	if (data) then
