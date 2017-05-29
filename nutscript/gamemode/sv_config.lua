@@ -61,6 +61,9 @@ nut.config.Register("voice3D", false, SERVER);
 -- The delay between OOC messages for a player in seconds.
 nut.config.Register("oocDelay", 10, SERVER);
 
+-- The delay between LOOC messages for a player in seconds.
+nut.config.Register("loocDelay", 10, SERVER);
+
 -- Clears the map of unwanted entities. ("props, vehicles, etc...)
 nut.config.Register("clearMaps", true, SERVER);
 

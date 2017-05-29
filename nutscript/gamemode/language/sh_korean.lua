@@ -128,6 +128,7 @@ nut.lang.Add("chat_pm", "[귓속말] ", language);
 
 
 nut.lang.Add("chat_ooctime", "OOC 채팅을 사용하려면 %s 초 만큼 더 기다려야 합니다.", language);
+nut.lang.Add("chat_looctime", "LOOC 채팅을 사용하려면 %s 초 만큼 더 기다려야 합니다.", language);
 
 // 메뉴, 설정
 nut.lang.Add("settings", "설정", language);

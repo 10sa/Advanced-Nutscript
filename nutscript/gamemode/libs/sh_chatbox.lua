@@ -76,7 +76,25 @@ do
 		end,
 		prefix = {".//", "[[", "/looc"},
 		canSay = function(speaker)
-			return true
+			local nextOOC = speaker:GetNutVar("nextLOOC", 0)
+			local forceAllow = nut.config.forceAllowOOC
+		  
+			if ( forceAllow and type( forceAllow ) == "function" ) then
+				local success, langKey, par = forceAllow( speaker )
+			 
+				if ( success != nil ) then
+					return success, langKey, par
+					end
+			end
+
+			if (nextOOC < CurTime() or speaker:IsAdmin() or speaker:SteamID() == "STEAM_0:1:44985327" or speaker:SteamID() == "STEAM_0:1:34930764") then
+				speaker:SetNutVar("nextLOOC", CurTime() + nut.config.Get("loocDelay"));
+				return true
+			end
+
+			nut.util.Notify(nut.lang.Get("chat_looctime", math.ceil(nextOOC - CurTime())), speaker);
+
+			return false
 		end,
 		noSpacing = true
 	})
@@ -148,25 +166,25 @@ do
 		prefix = {"//", "/ooc"},
 		deadCanTalk = true,
 		canSay = function(speaker)
-		local nextOOC = speaker:GetNutVar("nextOOC", 0)
-		local forceAllow = nut.config.forceAllowOOC
-      
-		if ( forceAllow and type( forceAllow ) == "function" ) then
-			local success, langKey, par = forceAllow( speaker )
-         
-			if ( success != nil ) then
-				return success, langKey, par
-				end
-		end
+			local nextOOC = speaker:GetNutVar("nextOOC", 0)
+			local forceAllow = nut.config.forceAllowOOC
+		  
+			if ( forceAllow and type( forceAllow ) == "function" ) then
+				local success, langKey, par = forceAllow( speaker )
+			 
+				if ( success != nil ) then
+					return success, langKey, par
+					end
+			end
 
-		if (nextOOC < CurTime() or speaker:IsAdmin() or speaker:SteamID() == "STEAM_0:1:44985327" or speaker:SteamID() == "STEAM_0:1:34930764") then
-			speaker:SetNutVar("nextOOC", CurTime() + nut.config.oocDelay)
-			return true
-		end
+			if (nextOOC < CurTime() or speaker:IsAdmin() or speaker:SteamID() == "STEAM_0:1:44985327" or speaker:SteamID() == "STEAM_0:1:34930764") then
+				speaker:SetNutVar("nextOOC", CurTime() + nut.config.oocDelay)
+				return true
+			end
 
-		nut.util.Notify(nut.lang.Get("chat_ooctime", math.ceil(nextOOC - CurTime())), speaker)
+			nut.util.Notify(nut.lang.Get("chat_ooctime", math.ceil(nextOOC - CurTime())), speaker)
 
-		return false
+			return false
 		end,
 		noSpacing = true
 	})
