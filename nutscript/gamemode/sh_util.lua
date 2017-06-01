@@ -624,7 +624,7 @@ function nut.util.StackInv(inventory, class, quantity, data)
 	local stack, index
 	quantity = quantity or 1
 
-	if (!IsValid(data)) then
+	if (data == nil || type(data) != "table") then
 		data = { };
 	end
 	
