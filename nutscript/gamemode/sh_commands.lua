@@ -7,7 +7,7 @@ nut.command.Register({
 				return
 			end
 
-			if (weapon.AlwaysRaised or nut.config.alwaysRaised[weapon:GetClass()]) then
+			if (weapon.AlwaysRaised or nut.config.Get("alwaysRaised")[weapon:GetClass()]) then
 				return
 			end
 

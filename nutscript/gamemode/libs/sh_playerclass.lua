@@ -97,7 +97,7 @@ do
 		AdvNut.hook.Add("PlayerSwitchWeapon", "nut_AutoLower", function(client, oldWeapon, newWeapon)
 			client:DrawViewModel(newWeapon.DrawViewModel != false)
 
-			if (!newWeapon.AlwaysRaised and !nut.config.alwaysRaised[newWeapon:GetClass()]) then
+			if (!newWeapon.AlwaysRaised and !nut.config.Get("alwaysRaised")[newWeapon:GetClass()]) then
 				client:SetWepRaised(false, newWeapon)
 
 				-- Need this some some SWEPs can override the first time we set it to false.

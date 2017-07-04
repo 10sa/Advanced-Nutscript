@@ -31,8 +31,8 @@ nut.config.Register("staminaValue", 5, SHARE);
 
 -- Weapons that are always raised and able to shoot.
 nut.config.Register("alwaysRaised", {
-	weapon_physgun, true,
-	gmod_tool, true
+	weapon_physgun = true,
+	gmod_tool = true
 }, SHARE);
 
 -- 기본 설정의 문을 저장 하는지에 대한 여부.

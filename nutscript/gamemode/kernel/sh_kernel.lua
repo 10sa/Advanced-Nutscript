@@ -101,14 +101,15 @@ function GM:GrabEarAnimation(client)
 end
 
 function GM:CalcMainActivity(client, velocity)
-	local model = string_lower(client:GetModel())
-	local class = getAnimClass(model)
-	local weapon = client:GetActiveWeapon()
-	local holdType = "normal"
-	local state = WEAPON_LOWERED
-	local action = "idle"
-	local length2D = Length2D(velocity)
-
+	local model = string_lower(client:GetModel());
+	local class = getAnimClass(model);
+	local weapon = client:GetActiveWeapon();
+	local holdType = "normal";
+	local state = WEAPON_LOWERED;
+	local action = "idle";
+	local length2D = Length2D(velocity);
+	local alwaysRaised = nut.config.Get("alwaysRaised");
+	
 	if (length2D >= config.runSpeed - 10) then
 		action = "run"
 	elseif (length2D >= 5) then
@@ -118,7 +119,7 @@ function GM:CalcMainActivity(client, velocity)
 	if (IsValid(weapon)) then
 		holdType = getHoldType(weapon)
 
-		if (weapon.AlwaysRaised or config.alwaysRaised[weapon:GetClass()]) then
+		if (weapon.AlwaysRaised or alwaysRaised[weapon:GetClass()]) then
 			state = WEAPON_RAISED
 		end
 	end
