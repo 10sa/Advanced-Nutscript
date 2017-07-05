@@ -20,13 +20,12 @@ nut.config.Register("crossSpacing", 6, CLIENT);
 -- visible.
 nut.config.Register("crossAlpha", 150, CLIENT);
 
-nut.config.Register("targetTall", 0, CLIENT);
-
 AdvNut.hook.Add("SchemaInitialized", "nut_FontConfig", function()
+	nut.config.Register("targetTall", 0, CLIENT);
 	surface.SetFont("nut_TargetFontSmall");
 
 	_, tall = surface.GetTextSize("W");
-	nut.config.Set("targetTall", tall);
+	nut.config.Set("targetTall", tall or 0);
 
 	if (nut.config.Get("targetTall")) then
 		nut.config.Set("targetTall", nut.config.Get("targetTall") + 2);
