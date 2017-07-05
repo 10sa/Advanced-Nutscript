@@ -58,7 +58,7 @@ else
 		local color = nut.config.mainColor;
 		color.a = alpha;
 		
-		nut.util.DrawText(x, y - nut.config.targetTall, self.PrintName, color, "AdvNut_EntityTitle");
+		nut.util.DrawText(x, y - nut.config.Get("targetTall"), self.PrintName, color, "AdvNut_EntityTitle");
 		nut.util.DrawText(x, y, self.Desc, Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
 	end;
 	

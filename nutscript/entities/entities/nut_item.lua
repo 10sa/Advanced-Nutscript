@@ -69,7 +69,7 @@ if (CLIENT) then
 
 			nut.util.DrawText(x, y, itemTable.name, color, "AdvNut_EntityTitle");
 
-			y = y + nut.config.targetTall
+			y = y + nut.config.Get("targetTall")
 			
 			if(IsValid(itemTable.color)) then
 				color = itemTable.color;
@@ -81,7 +81,7 @@ if (CLIENT) then
 
 			if (itemTable.Paint) then
 				itemTable.data = data
-					itemTable:Paint(self, x, y + nut.config.targetTall, color)
+					itemTable:Paint(self, x, y + nut.config.Get("targetTall"), color)
 				itemTable.data = nil
 			end
 		end

@@ -576,7 +576,7 @@ function PLUGIN:DrawTargetID(entity, x, y, alpha)
 		local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha)
 
 		nut.util.DrawText(x, y, entity:GetNetVar("name", nut.lang.Get("no_desc")), color, "AdvNut_EntityTitle");
-			y = y + nut.config.targetTall
+			y = y + nut.config.Get("targetTall")
 		nut.util.DrawText(x, y, entity:GetNetVar("desc", nut.lang.Get("no_desc")), Color(255, 255, 255, alpha), "AdvNut_EntityDesc");
 	end
 end

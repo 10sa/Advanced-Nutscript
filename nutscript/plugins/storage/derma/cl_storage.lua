@@ -291,7 +291,7 @@ function PLUGIN:DrawTargetID(entity, x, y, alpha)
 		local color = Color(mainColor.r, mainColor.g, mainColor.b, alpha)
 
 		nut.util.DrawText(x, y, entity:GetNetVar("name", "Storage"), color)
-			y = y + nut.config.targetTall
+			y = y + nut.config.Get("targetTall")
 		nut.util.DrawText(x, y, PLUGIN:GetPluginLanguage("sr_usespace", entity:GetNetVar("weight", 0)), Color(255, 255, 255, alpha), "AdvNut_EntityDesc")
 
 		if (entity:GetNetVar("locked", false)) then

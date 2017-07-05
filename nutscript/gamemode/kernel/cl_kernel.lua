@@ -320,11 +320,11 @@ function GM:HUDPaintTargetPlayer(client, x, y, alpha)
 			text = "("..typingText..")"
 		end
 
-		nut.util.DrawText(x, y - nut.config.targetTall, text, Color(255, 255, 255, alpha), "AdvNut_EntityTitle")
+		nut.util.DrawText(x, y - nut.config.Get("targetTall"), text, Color(255, 255, 255, alpha), "AdvNut_EntityTitle")
 	end
 
 	nut.util.DrawText(x, y, AdvNut.hook.Run("GetPlayerName", client), color, "AdvNut_EntityTitle");
-	y = y + nut.config.targetTall
+	y = y + nut.config.Get("targetTall");
 	color = Color(255, 255, 255, alpha)
 
 	local description = client.character:GetVar("description", nut.lang.Get("no_desc"))
