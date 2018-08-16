@@ -1,6 +1,9 @@
 "nutscript"
 {
 	"base"		"sandbox"
-	"title"		"AdvNutscript"
+	"title"		"Advanced Nutscript"
+	"maps"	"^rp_"
+	"desc"	"Nutscript 1.0 based Improved RP Framework."
 	"author"	"Tensa"
+	"version"	"0.22"
 }

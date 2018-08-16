@@ -178,6 +178,19 @@ nut.command.Register({
 nut.command.Register({
 	adminOnly = true,
 	onRun = function(client, arguments)
+		for k, v in pairs(ents.GetAll()) do
+			if (IsValid(v)) then
+				if (PLUGIN:IsDoor(v)) then
+					PLUGIN:DoorSetHidden(v, true);
+				end
+			end
+		end
+	end
+}, "doorssethidden");
+
+nut.command.Register({
+	adminOnly = true,
+	onRun = function(client, arguments)
 		local trace = client:GetEyeTraceNoCursor()
 		local entity = trace.Entity
 

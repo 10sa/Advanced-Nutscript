@@ -167,7 +167,6 @@ end
 --]]
 function META:SetData(key, value, receiver, noSend)
 	self:GetVar("chardata")[key] = value
-
 	if (!noSend) then
 		self:Send("chardata", receiver)
 	end

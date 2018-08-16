@@ -2,7 +2,6 @@ local PLUGIN = PLUGIN;
 
 function PLUGIN:DrawDoor(entity, eyePos)
 	local posData = self:GetDoorDrawPosition(entity);
-	
 	if (self:IsDoor(entity) and !posData.hitWorld) then
 		if (entity:GetNetVar("hidden")) then return; end;
 		

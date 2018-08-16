@@ -9,6 +9,10 @@ resource.AddWorkshop("865625406");
 
 local startTime = SysTime();
 
+include("shared.lua");
+AddCSLuaFile("shared.lua");
+AddCSLuaFile("cl_init.lua");
+
 if (string.lower(GetConVarString("gamemode")) == "nutscript") then
 	MsgC(Color(255, 0, 0), "FATAL WARNING! CHANGE +GAMEMODE TO YOUR SCHEMA, NOT NUTSCRIPT!\n")
 
@@ -35,17 +39,5 @@ if (string.lower(GetConVarString("gamemode")) == "nutscript") then
 
 	return
 end
-
--- Define this so the SCHEMA knows what the baseclass is, since self.BaseClass isn't
--- set in time.
-AdvNut = AdvNut or GM;
-nut = AdvNut or GM;
-
-
--- Needed includes.
-include("shared.lua");
-
-AddCSLuaFile("cl_init.lua");
-AddCSLuaFile("shared.lua");
 
 MsgC(Color(0, 255, 0), "[Advanced Nutscript] "..math.Round(SysTime() - startTime, 3).. " second(s) to initialize.\n");

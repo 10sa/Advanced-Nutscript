@@ -1,7 +1,27 @@
 local PLUGIN = PLUGIN;
 
+PLUGIN.onPlayerSpawnLoaded = false;
 function PLUGIN:PlayerLoadout(client)
 	client:Give("nut_keys")
+end
+
+function PLUGIN:OnReloaded()
+	if (self.data) then
+		self:LoadData();
+	end
+end
+
+function PLUGIN:PlayerSpawn()
+	if (!self.onPlayerSpawnLoaded) then
+		for k, v in pairs(self.data) do
+			PrintTable(v);
+			if (v.locked) then
+				self:LockDoor(ents.GetByIndex(v.index));
+			end
+		end
+		
+		self.onPlayerSpawnLoaded = true;
+	end
 end
 
 function PLUGIN:OnCharChanged(client)
@@ -23,8 +43,8 @@ function PLUGIN:LockDoor(entity)
 		return
 	end
 
-	entity:Fire("close")
-	entity:Fire("lock")
+	entity:Fire("Close")
+	entity:Fire("Lock");
 	entity.locked = true
 end
 
@@ -33,10 +53,10 @@ function PLUGIN:UnlockDoor(entity)
 		return
 	end
 
-	entity:Fire("unlock")
+	entity:Fire("Unlock")
 	entity.locked = false
-end
-
+end 
+ 
 function PLUGIN:DoorSetOwnable(entity)
 	entity:SetNetVar("unownable", nil)
 	self:SaveData()
@@ -56,20 +76,21 @@ function PLUGIN:KeyPress(client, key)
 
 		if (IsValid(entity)) then
 			return AdvNut.hook.Run("PlayerUseDoor", client, entity);
-		else
+		else 
 			return;
 		end;
 	end;
 end;
 
 function PLUGIN:LoadData()
-	self.data = self:ReadTable()
-
+	self.data = self:ReadTable();
+	
 	for k, v in pairs(self.data) do
 		local entity
 
 		if (v.position) then
 			entity = ents.FindInSphere(v.position, 10)[1]
+			self.data[k] = entity.EntIndex();
 		elseif (v.index) then
 			for k2, v2 in pairs(ents.GetAll()) do
 				if (nut.util.GetCreationID(v2) == v.index) then
@@ -79,12 +100,16 @@ function PLUGIN:LoadData()
 				end
 			end
 		end
-
+		
+		if (entity.locked) then
+			entity.locked = nil;
+		end
+		
 		if (IsValid(entity)) then
 			entity:SetNetVar("title", v.title);
 			entity:SetNetVar("desc", v.desc);
 			entity:SetNetVar("unownable", v.ownable);
-			entity:SetNetVar("owner", v.owner);
+			entity:SetNetVar("owner", v.owner); 
 			
 			if (v.hidden) then
 				entity:SetNetVar("hidden", true)
@@ -92,7 +117,7 @@ function PLUGIN:LoadData()
 		end
 	end
 end
-	
+
 function PLUGIN:SaveData()
 	local data = {}
 
@@ -100,7 +125,7 @@ function PLUGIN:SaveData()
 		if (IsValid(v)) then
 			local title = v:GetNetVar("title", "")
 
-			if (PLUGIN:IsDoor(v) and (v:GetNetVar("unownable") or v:GetNetVar("hidden") or (title and title != "" and title != PLUGIN:GetPluginLanguage("doors_can_buy")) or nut.config.saveDefaultDoor)) then
+			if (PLUGIN:IsDoor(v)) then
 				local owner;
 				if (v:GetNetVar("owner") == nil) then
 					owner = nil;
@@ -114,7 +139,8 @@ function PLUGIN:SaveData()
 					desc = v:GetNetVar("desc"),
 					ownable = v:GetNetVar("unownable"),
 					owner = owner,
-					hidden = v:GetNetVar("hidden", false)
+					hidden = v:GetNetVar("hidden", false),
+					locked = v.locked or false
 				}
 			end
 		end

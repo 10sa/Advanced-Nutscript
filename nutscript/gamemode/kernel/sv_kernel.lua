@@ -311,8 +311,7 @@ function GM:RemoveEntitiesByClass(class)
 end
 
 function GM:InitPostEntity()
-	AdvNut.hook.Run("LoadData")
-
+	AdvNut.hook.Run("LoadData");
 	if (nut.config.clearMaps) then
 		self:RemoveEntitiesByClass("item_healthcharger")
 		self:RemoveEntitiesByClass("prop_vehicle*")

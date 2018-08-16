@@ -1,6 +1,8 @@
 ﻿nut.util.Include("sv_kernel.lua");
 nut.util.Include("cl_kernel.lua");
 
+local isCalled = false;
+
 function GM:Initialize()
 	if (SERVER) then
 		local date = nut.util.ReadTable("date", true)
@@ -26,9 +28,6 @@ function GM:Initialize()
 
 	AdvNut.hook.Run("SetupAttributes")
 end
-
-
-local isCalled = false;
 
 function GM:OnReloaded()
 	if (SERVER and !isCalled) then

@@ -63,15 +63,12 @@ function PANEL:Init()
 	
 	self.armorstatusbar = self:AddStatusBar(client:Armor(), 255, Color(50, 50, 255, 255));
 	
-	self.charstatus = self:AddTextData("");
 	self.cashstatus = self:AddTextData("");
-	self.hungerstatus = self:AddTextData("");
-	self.thirststatus = self:AddTextData("");
 	self.weightstatus = self:AddTextData("");
+	AdvNut.hook.Run("AddCharInfoData", self);
 	
 	self:InitDermaMenu();
 	AdvNut.hook.Add("VGUIMousePressed", "CharInfoMousePressed", PANEL.VGUIMousePressed);
-	AdvNut.hook.Run("AddCharInfoData", self);
 end
 
 function PANEL:InitDermaMenu()
@@ -103,26 +100,13 @@ function PANEL:Think()
 	self:SetStatusBarData(client);
 	
 	self.cashstatus:SetText(nut.lang.Get("status_money")..nut.currency.GetName(client:GetMoney()))
-	self.hungerstatus:SetText(nut.lang.Get("status_hunger")..client.character:GetVar("hunger").."%")
-	self.thirststatus:SetText(nut.lang.Get("status_thirst")..client.character:GetVar("thirst").."%")
 	self.weightstatus:SetText(nut.lang.Get("status_inv")..math.ceil((weight / maxweight)* 100).."%")
 	
-	local synt_status = nut.lang.Get("synt_fine")
 	
-	if(client.character:GetVar("hunger") <= 15 or client.character:GetVar("thirst") <= 15 or client:Health() <= 30) then
-		synt_status = nut.lang.Get("synt_die")
-	elseif (client.character:GetVar("hunger") <= 30) then
-		synt_status = nut.lang.Get("synt_hunger")
-	elseif (client.character:GetVar("thirst") <= 30) then
-		synt_status = nut.lang.Get("synt_thirst")
-	end
-	
-	self.charstatus:SetText(nut.lang.Get("status_synt")..synt_status);
+	AdvNut.hook.Run("ThinkCharInfo", self, client);
 	if (!input.IsKeyDown(KEY_F1) and IsValid(self)) then
 		self:Close();
 	end;
-	
-	AdvNut.hook.Run("ThinkCharInfo", self);
 end
 
 function PANEL:SetStatusBarData(client)

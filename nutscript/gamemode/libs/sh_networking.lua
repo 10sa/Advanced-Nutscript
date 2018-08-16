@@ -1,11 +1,14 @@
 local entityMeta = FindMetaTable("Entity")
 
+nut.entity = nut.entity or {};
+nut.entity.sharedVars = {};
+
 if (SERVER) then
 	util.AddNetworkString("nut_InvUpdate")
 
 	function entityMeta:SyncVars(client, noDelta)
-		if (self.nut_NetVars) then
-			for k, v in pairs(self.nut_NetVars) do
+		if (nut.entity.sharedVars[self:EntIndex()]) then
+			for k, v in pairs(nut.entity.sharedVars[self:EntIndex()]) do
 				if (self.nut_NetReceiver and self.nut_NetReceiver[k]) then
 					continue
 				end
@@ -18,9 +21,7 @@ if (SERVER) then
 	AdvNut.hook.Add("PlayerInitialSpawn", "nut_SyncVars", function(client)
 		timer.Simple(5, function()
 			for k, v in pairs(ents.GetAll()) do
-				if (IsValid(v)) then
-					v:SyncVars(client, true)
-				end
+				v:SyncVars(client, true);
 			end
 		end)
 	end)
@@ -44,10 +45,10 @@ if (SERVER) then
 	end
 
 	function entityMeta:SendVar(key, receiver, noHandShake, noDelta)
-		if (self.nut_NetVars and self.nut_NetVars[key] != nil) then
+		if (nut.entity.sharedVars[self:EntIndex()] and nut.entity.sharedVars[self:EntIndex()][key] != nil) then
 			self.nut_NetDeltas = self.nut_NetDeltas or {}
 
-			local value = self.nut_NetVars[key]
+			local value = nut.entity.sharedVars[self:EntIndex()][key]
 
 			if (!noDelta and type(value) == "table") then
 				local oldValue = value
@@ -77,17 +78,17 @@ if (SERVER) then
 					end
 				end
 			end
-		elseif (self.nut_NetVars) then
+		elseif (nut.entity.sharedVars[self:EntIndex()]) then
 			netstream.Start(receiver, "nut_EntityNilVar", {self:EntIndex(), key})
 		end
 	end
 
 	function entityMeta:SetNetVar(key, value, receiver)
-		self.nut_NetVars = self.nut_NetVars or {}
-		self.nut_NetVars[key] = value
-		self.nut_NetReceiver = self.nut_NetReceiver or {}
-		self.nut_NetReceiver[key] = receiver
-
+		nut.entity.sharedVars[self:EntIndex()] = nut.entity.sharedVars[self:EntIndex()] or {};
+		nut.entity.sharedVars[self:EntIndex()][key] = value;
+		self.nut_NetReceiver = self.nut_NetReceiver or {};
+		self.nut_NetReceiver[key] = receiver;
+		
 		self:CallOnRemove("CleanNetVar", function()
 			netstream.Start(nil, "nut_EntityVarClean", self:EntIndex())
 		end)
@@ -178,8 +179,8 @@ function entityMeta:HookNetVar(key, callback)
 end
 
 function entityMeta:GetNetVar(key, default)
-	if (SERVER and self.nut_NetVars) then
-		local value = self.nut_NetVars[key]
+	if (SERVER and nut.entity.sharedVars[self:EntIndex()]) then
+		local value = nut.entity.sharedVars[self:EntIndex()][key]
 
 		if (value == nil) then
 			return default

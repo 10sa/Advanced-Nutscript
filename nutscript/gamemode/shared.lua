@@ -6,10 +6,13 @@
 local startTime = CurTime()
 
 -- Allows us to use the spawn menu and toolgun.
-DeriveGamemode("sandbox")
+DeriveGamemode("sandbox");
+
+AdvNut = AdvNut or GM;
+nut = AdvNut or GM;
 
 -- Gamemode variables.
-nut.Name = "Adv_Nutscript"
+nut.Name = "Advanced Nutscript"
 nut.Author = "Tensa"
 NSFolderName = AdvNut.FolderName;
 
