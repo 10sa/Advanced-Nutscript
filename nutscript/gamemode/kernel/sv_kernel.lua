@@ -311,13 +311,14 @@ function GM:RemoveEntitiesByClass(class)
 end
 
 function GM:InitPostEntity()
-	AdvNut.hook.Run("LoadData");
 	if (nut.config.clearMaps) then
 		self:RemoveEntitiesByClass("item_healthcharger")
 		self:RemoveEntitiesByClass("prop_vehicle*")
 		self:RemoveEntitiesByClass("weapon_*")
 		self:RemoveEntitiesByClass("item_suitcharger")
 	end
+	
+	AdvNut.hook.Run("LoadData");
 end
 
 local limbs = {}
@@ -337,7 +338,7 @@ end
 function GM:PlayerDeath(victim, weapon, attacker)
 	local time = CurTime() + nut.config.deathTime
 	time = AdvNut.hook.Run("PlayerGetDeathTime", client, time) or time
-
+	time = CurTime();
 	
 	victim:SetNutVar("deathTime", time)
 

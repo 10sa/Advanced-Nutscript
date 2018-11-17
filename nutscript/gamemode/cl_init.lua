@@ -18,91 +18,111 @@ include("shared.lua")
 -- Create out fonts here that are going to be used.
 
 -- Quick variable to change all the fonts.
-local mainFont = "Segoe UI"
-local subFont = "Arial";
+local mainFont = "NanumGothic"
+local subFont = "NanumGothic";
+
+surface.CreateFont("DermaDefault", {
+	font = mainFont,
+	size = AdvNut.util.GetScreenScaleFontSize(4.5),
+	weight = 500,
+	antialias = true,
+	extended = true
+});
 
 surface.CreateFont("nut_TitleFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(48),
 	weight = 1000,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_SubTitleFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(20),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_ScoreTeamFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(7),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_HeaderFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(18),
 	weight = 1000,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_MenuButtonFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(9),
-	weight = 600,
-	antialias = true
+	weight = 500,
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_BigMenuButtonFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(9),
-	weight = 600,
-	antialias = true
+	weight = 500,
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_BigThinFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(11),
 	weight = 1000,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_TargetFont", {
 	font = subFont,
 	size = AdvNut.util.GetScreenScaleFontSize(10),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_PingFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(5),
 	weight = 1000,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_TargetFontSmall", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(8),
 	weight = 800,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_WhisperFont", {
 	font = subFont,
 	size = AdvNut.util.GetScreenScaleFontSize(6),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_ChatFont", {
 	font = subFont,
-	size = AdvNut.util.GetScreenScaleFontSize(7.5),
+	size = AdvNut.util.GetScreenScaleFontSize(7),
 	weight = 500,
 	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_BoldChatFont", {
@@ -110,13 +130,15 @@ surface.CreateFont("nut_BoldChatFont", {
 	size = AdvNut.util.GetScreenScaleFontSize(7.5),
 	weight = 700,
 	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_YellFont", {
 	font = subFont,
 	size = AdvNut.util.GetScreenScaleFontSize(10),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_ChatFontAction", {
@@ -124,69 +146,72 @@ surface.CreateFont("nut_ChatFontAction", {
 	size = AdvNut.util.GetScreenScaleFontSize(7.5),
 	weight = 500,
 	italic = true,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_ScaledFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(150),
-	weight = 1000
+	weight = 1000,
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_infoname", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(10),
 	weight = 1000,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_infodesc", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(20),
 	weight = 1000,
-	antialias = true
-})
-
-surface.CreateFont("nut_infodesc_s", {
-	font = mainFont,
-	size = AdvNut.util.GetScreenScaleFontSize(7),
-	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("AdvNut_EntityTitle", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(9),
 	weight = 700,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("AdvNut_EntityDesc", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(9),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_SmallFont", {
 	font = mainFont,
-	size = AdvNut.util.GetScreenScaleFontSize(7),
+	size = AdvNut.util.GetScreenScaleFontSize(5),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_MediumFont", {
 	font = mainFont,
-	size = AdvNut.util.GetScreenScaleFontSize(9),
+	size = AdvNut.util.GetScreenScaleFontSize(8),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("nut_LargeFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(14),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 surface.CreateFont("AdvNut_3D2DTitleFont", { 
@@ -194,14 +219,16 @@ surface.CreateFont("AdvNut_3D2DTitleFont", {
 	size = AdvNut.util.GetScreenScaleFontSize(32),
 	weight = 700,
 	antialias = true,
-	additive = false
+	additive = false,
+	extended = true
 })
 
 surface.CreateFont("AdvNut_3D2DDescFont", {
 	font = mainFont,
 	size = AdvNut.util.GetScreenScaleFontSize(20),
 	weight = 500,
-	antialias = true
+	antialias = true,
+	extended = true
 })
 
 timer.Destroy("HintSystem_OpeningMenu")

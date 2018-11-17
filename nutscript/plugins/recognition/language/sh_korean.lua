@@ -6,6 +6,7 @@ PLUGIN:AddPluginLanguage("rg_syntax", "<인자 없음|aim|whisper|yell>", langua
 PLUGIN:AddPluginLanguage("rg_normal", "일반", language);
 PLUGIN:AddPluginLanguage("rg_whisper", "속삭임", language);
 PLUGIN:AddPluginLanguage("rg_yell", "외침", language);
+PLUGIN:AddPluginLanguage("rg_unknown", "아직 모르는 사람", language); 
 
 PLUGIN:AddPluginLanguage("rg_recongitioned_aim", "바라보는 플레이어에게 인식되었습니다.", language);
 PLUGIN:AddPluginLanguage("rg_recongitioned", "%s 범위 안의 플레이어에게 인식되었습니다.", language);

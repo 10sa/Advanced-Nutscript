@@ -44,7 +44,7 @@ if (CLIENT) then
 				if (!v.Author) then v.Author = ""; end;
 				
 				if (primaryAmmo or secondaryAmmo or v.Instructions != "") then
-					local text = "<font=nut_MediumFont>";
+					local text = "<font=nut_SmallFont>";
 					
 					if (v.Instructions != "") then
 						text = text..(v.Instructions).."\n\n";
@@ -167,7 +167,7 @@ if (CLIENT) then
 				local markupHeight = self.markup:GetHeight();
 				
 				local drawYPos = (ScrH() * 0.4);
-				local drawXPos = x + 150;
+				local drawXPos = x + 200;
 				local drawWidth = markupWidth + 20;
 				local drawHeight = markupHeight + 18;
 				

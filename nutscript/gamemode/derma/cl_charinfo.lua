@@ -32,7 +32,7 @@ function PANEL:Init()
 	self.faction:DockMargin(60, 2, 5, 0)
 	self.faction:SetWide(self:GetWide())
 	self.faction:SetText(AdvNut.hook.Run("GetPlayerName",client))
-	self.faction:SetFont("nut_infodesc_s")
+	self.faction:SetFont("nut_SmallFont")
 	self.faction:SetText(team.GetName(client:Team()).." | "..self:GetPlayerPermission(client))
 	
 	local datatall = self:GetTall() - (self.name:GetTall() + self.faction:GetTall())
@@ -91,6 +91,8 @@ function PANEL:InitDermaMenu()
 		client:ConCommand("say /chardesc");
 	end);
 	
+	AdvNut.hook.Run("DrawCharInfoMenus", dermaMenu);
+	
 	dermaMenu:Open(tabPosX + self:GetWide() * 0.3, tabPosY + self:GetTall());
 end;
 
@@ -145,7 +147,7 @@ end
 function PANEL:AddTextData(text)
 	local label = vgui.Create("DLabel", self.textPanel);
 	label:Dock(TOP);
-	label:SetFont("nut_infodesc_s");
+	label:SetFont("nut_SmallFont");
 	label:SetText(text);
 	label:DockMargin(10, 0, 2, 0);
 	label:SetContentAlignment(7);

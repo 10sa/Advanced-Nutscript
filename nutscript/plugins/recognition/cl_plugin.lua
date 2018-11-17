@@ -28,7 +28,7 @@ function PLUGIN:GetPlayerName(client, mode, text)
 
 				fakeName = "["..description.."]"
 			else
-				return "Unknown"
+				return self:GetPluginLanguage("rg_unknown");
 			end
 		// end
 

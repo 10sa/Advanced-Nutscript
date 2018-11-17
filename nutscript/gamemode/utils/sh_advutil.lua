@@ -11,6 +11,31 @@ function AdvNut.util.GetPlayerTraceEntity(client)
 	
 	return util.TraceLine(dat).Entity;
 end;
+
+function AdvNut.util.AddWorkshopCollection(collection)
+	http.Fetch(
+		"http://steamcommunity.com/sharedfiles/filedetails/?id="..collection,
+		function(source)
+			local page = string.Explode("<div class=\"workshopItem\">",source)
+			local t = {}
+			for k, v in pairs(page) do 
+				local value = string.Explode("\"><div",v);
+				value = string.Explode("id=", value[1])[2];
+				table.insert(t, value);
+			end 
+			table.remove(t, 1);
+			
+			for k, v in pairs(t) do
+				resource.AddWorkshop(v);
+				MsgN(string.format("Add Workshop Item to Client... [%s]", v));
+			end 
+		end,
+		
+		function()
+			return false;
+		end
+	);
+end;
 	
 function AdvNut.util.CreateIdentifier(subIdentifier, caller)
 	if (caller != nil) then

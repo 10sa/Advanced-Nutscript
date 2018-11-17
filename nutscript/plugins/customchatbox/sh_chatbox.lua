@@ -1,8 +1,8 @@
 if (CLIENT) then
-	local CHAT_FADETIME = 15
-	local CHAT_FADEDELAY = 15
+	local CHAT_FADETIME = 0
+	local CHAT_FADEDELAY = 5
 	local OUTLINE_COLOR = Color(0, 0, 0, 150)
-	local NUT_CVAR_CHATMESSAGES = CreateClientConVar("nut_chatmessages", "100", true)
+	local NUT_CVAR_CHATMESSAGES = CreateClientConVar("nut_chatmessages", "8", true)
 
 	nut.chat.panel = nut.chat.panel or {}
 	nut.chat.open = nut.chat.open or false

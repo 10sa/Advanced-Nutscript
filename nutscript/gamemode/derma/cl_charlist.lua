@@ -150,7 +150,19 @@ function PANEL:SetCharacter(index, deleteCallback)
 		
 		self.choose.DoClick = function(panel)
 			if (!self.banned) then
-				nut.lastCharIndex = self.index
+				nut.lastCharIndex = self.index;
+				
+				self:MoveTo((ScrW() - self:GetWide()) * 0.5, y, 0.5);
+				local loadingPanel = vgui.Create("AdvNut_BaseForm", self:GetParent());
+				loadingPanel:SetWide(ScrW() * 0.8)
+				loadingPanel:SetTall(ScrH() * 0.7);
+				loadingPanel:Center();
+				
+				local loadingLabel = vgui.Create("DLabel", loadingPanel);
+				loadingLabel:Dock(FILL);
+				loadingLabel:SetText(nut.lang.Get("loading_character"));
+				loadingLabel:SetContentAlignment(5);
+				
 				netstream.Start("nut_CharChoose", self.index);
 			end
 		end

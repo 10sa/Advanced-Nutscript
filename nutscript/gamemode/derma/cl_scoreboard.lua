@@ -121,6 +121,7 @@ function PANEL:Init()
 	self.name = vgui.Create("DLabel", self)
 	self.name:SetPos(95, 5)
 	self.name:SetText("John Doe")
+	self.name:SetFont("nut_SmallFont");
 	self.name:SetTextColor(color_black)
 	
 	self.desc = vgui.Create("DLabel", self)
@@ -131,6 +132,7 @@ function PANEL:Init()
 	self.desc:SetTall(38)
 	self.desc:SetWide(width - 128)
 	self.desc:SetContentAlignment(7)
+	self.desc:SetFont("nut_SmallFont");
 	self.stringRequestPanel = {};
 end
 

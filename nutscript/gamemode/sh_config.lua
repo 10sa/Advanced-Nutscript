@@ -42,8 +42,8 @@ nut.config.Register("saveDefaultDoor", false, SHARE);
 nut.config.Register("statusMeActions", true, SHARE);
 
 -- 배고픔 / 목마름 닳는 속도 (초)
-nut.config.Register("hungerRestore", 120, SHARE);
-nut.config.Register("thristRestore", 100, SHARE);
+nut.config.Register("hungerRestore", 1200, SHARE);
+nut.config.Register("thristRestore", 1000, SHARE);
 
 -- 스테미너의 회복량 입니다.
 nut.config.Register("staminaRestore", 1, SHARE);
@@ -136,7 +136,7 @@ nut.config.Register("defaultInvWeight", 20, SHARE);
 nut.config.Register("showTypingText", true, SHARE);
 
 -- The maximum number of characters.
-nut.config.Register("maxChars", 4, SHARE);
+nut.config.Register("maxChars", 1, SHARE);
 
 -- The delay between which someone can buy something.
 nut.config.Register("buyDelay", 1, SHARE);

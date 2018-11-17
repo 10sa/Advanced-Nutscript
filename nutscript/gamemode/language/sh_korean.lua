@@ -105,6 +105,7 @@ nut.lang.Add("choose", "선택", language);
 
 nut.lang.Add("load_tip", "만들어진 캐릭터를 불러옵니다.", language);
 nut.lang.Add("choose_tip", "플레이 할 캐릭터를 선택합니다.", language);
+nut.lang.Add("loading_character", "캐릭터를 불러오는 중...", language);
 
 // 캐릭터 삭제
 nut.lang.Add("delete", "삭제", language);
